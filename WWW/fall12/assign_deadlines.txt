@@ -1,0 +1,12 @@
+p0 10/04/2012 23:59:59 no Tutorial yes buyLotsOfFruit.py,shopSmart.py
+p1 10/21/2012 02:00:00 no Games yes multiAgents.py
+p2 11/7/2012 02:00:00 no Bayes yes inference.py,bustersAgents.py
+hw3 10/20/2012 02:00:00 no Homework3 yes hw3.pdf
+hw4 10/25/2012 02:00:00 no Homework4 yes hw4.pdf
+hw5 11/02/2012 13:00:00 no Homework5 yes hw5.pdf
+hw6 11/08/2012 02:00:00 no Homework6 yes hw6.pdf
+hw7 11/17/2012 02:00:00 no Homework7 yes hw7.pdf,learning.py
+hw8 12/1/2012 02:00:00 no Homework8 yes hw8.pdf
+p3_abstract 11/14/2012 02:00:00 no FinalProject_Abstract yes abstract.pdf
+p3_progress 11/28/2012 02:00:00 no FinalProject_Progress yes progress.pdf
+p3 12/07/2012 02:00:00 no FinalProject yes project.zip

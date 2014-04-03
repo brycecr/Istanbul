@@ -1,0 +1,2 @@
+#!/bin/bash
+cd /usr/class/cs221/junk/projects/p1;python2.7 ~/cs221/cs221-staff/grading/ProcessSubmissions.py -n pa1 -i 'AutograderParser(/usr/class/cs221/projects/p1,/usr/class/cs221/submissions/p1)' -o grades

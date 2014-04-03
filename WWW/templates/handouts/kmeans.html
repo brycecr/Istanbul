@@ -1,0 +1,284 @@
+<head>
+
+	%include templates/parts/head.html
+
+	<style>
+		p {
+			text-align: left;
+		}
+	</style>
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<div id="handoutTitle">
+				K Means
+			</div>
+			<p>
+				Written by Chris Piech. Based on a handout by Andrew Ng.
+			</p>
+
+		</div>
+		<hr/>
+
+		<br/>
+		<h3 class="header lead">The Basic Idea</h3>
+		<div class="row">
+			<div class="span9">
+				<div class="subsection">
+					<p>
+						Say you are given a data set where each observed example has a set of features, but has <b>no</b> labels. Labels are an essential ingredient to a supervised
+						algorithm like Support Vector Machines, which learns a hypothesis function to predict labels given features. So we can't run supervised learning.
+						What can we do?
+					</p>
+					<p>
+						One of the most straightforward tasks we can
+						perform on a data set without labels is to find groups of data in our dataset which are similar to one another -- what we call clusters.
+					</p>
+					<p>
+						K-Means is one of the most popular "clustering" algorithms. K-means stores $k$ centroids that it uses to define clusters. A point is considered to be in a
+						particular cluster if it is closer to that cluster's centroid than any other centroid.
+
+					</p>
+					<p>
+						K-Means finds the best centroids by alternating between (1) assigning data points to clusters based on the current centroids
+						(2) chosing centroids (points which are the center of a cluster) based on the current assignment of data points to clusters.
+
+					</p>
+
+					<center>
+						<img class="psetImg" src="{{pathToRoot}}img/kmeansViz.png">
+						<p class="psetImgCaption">
+							Figure 1: K-means algorithm. Training examples are shown as dots, and
+							cluster centroids are shown as crosses. (a) Original dataset. (b) Random initial cluster centroids. (c-f) Illustration of running two iterations of k-means. In each
+							iteration, we assign each training example to the closest cluster centroid
+							(shown by "painting" the training examples the same color as the cluster
+							centroid to which is assigned); then we move each cluster centroid to the
+							mean of the points assigned to it. Images courtesy of Michael Jordan.
+						</p>
+					</center>
+
+				</div>
+
+			</div>
+
+			<div class="span3">
+				<div class="faq well">
+					<b>Visual Cortex:</b>
+					<br/>
+					K-Means is the first algorithm you must implement for the Visual Cortex assignment.
+				</div>
+			</div>
+		</div>
+
+		<br/>
+		<h3 class="header lead">The Algorithm</h3>
+		<div class="row">
+			<div class="span9">
+				<div class="subsection">
+					<p>
+						In the clustering problem, we are given a training set ${x^{(1)}, ... , x^{(m)}}$, and
+						want to group the data into a few cohesive "clusters." Here, we are given feature vectors for each data point
+						$x^{(i)} \in \mathbb{R}^n$
+						as usual; but no labels $y^{(i)}$ (making this an unsupervised learning
+						problem). Our goal is to predict $k$ centroids <b>and</b> a label $c^{(i)}$ for each datapoint.
+						The k-means clustering algorithm is as follows:
+					</p>
+					<p>
+						<img class="psetImg" src="{{pathToRoot}}img/kmeansMath.png" style="padding-top: 0px">
+					</p>
+				</div>
+			</div>
+			<div class="span3">
+				<div class="faq well">
+					<b>Euclidean Distance:</b>
+					<br/>
+					 The notation $\lVert x - y \lVert$ means <a href="http://en.wikipedia.org/wiki/Euclidean_distance">euclidean distance</a> between vectors $x$ and $y$.
+				</div>
+			</div>
+		</div>
+		<br/>
+		<h3 class="header lead">Implementation</h3>
+		<div class="row">
+			<div class="span9">
+				<div class="subsection">
+					<p>Here is pseudo-python code which runs k-means on a dataset. It is a short algorithm made longer by verbose commenting.
+<pre><span style="color: green;"># Function: K Means
+# -------------
+# K-Means is an algorithm that takes in a dataset and a constant
+# k and returns k centroids (which define clusters of data in the
+# dataset which are similar to one another).</span>
+<span style="color: blue;">def</span> kmeans(dataSet, k):
+	
+    <span style="color: green;"># Initialize centroids randomly</span>
+    numFeatures = dataSet.getNumFeatures()
+    centroids = getRandomCentroids(numFeatures, k)
+    
+    <span style="color: green;"># Initialize book keeping vars.</span>
+    iterations = 0
+    oldCentroids = None
+    
+    <span style="color: green;"># Run the main k-means algorithm</span>
+    <span style="color: blue;">while not</span> shouldStop(oldCentroids, centroids, iterations):
+        <span style="color: green;"># Save old centroids for convergence test. Book keeping.</span>
+        oldCentroids = centroids
+        iterations += 1
+        
+        <span style="color: green;"># Assign labels to each datapoint based on centroids</span>
+        labels = getLabels(dataSet, centroids)
+        
+        <span style="color: green;"># Assign centroids based on datapoint labels</span>
+        centroids = getCentroids(dataSet, labels, k)
+        
+    <span style="color: green;"># We can get the labels too by calling getLabels(dataSet, centroids)</span>
+    <span style="color: blue;">return</span> centroids
+</pre>
+<pre><span style="color: green;"># Function: Should Stop
+# -------------
+# Returns True or False if k-means is done. K-means terminates either
+# because it has run a maximum number of iterations OR the centroids
+# stop changing.</span>
+<span style="color: blue;">def</span> shouldStop(oldCentroids, centroids, iterations):
+    if iterations > MAX_ITERATIONS: return True
+    <span style="color: blue;">return</span> oldCentroids == centroids
+</pre>
+<!--<pre><span style="color: green;"># Function: Get Random Centroids
+# -------------
+# Returns k random centroids, each of dimension n.</span>
+def getRandomCentroids(n, k):
+    <span style="color: green;"># return some reasonable randomization.</span>
+</pre>-->
+<pre><span style="color: green;"># Function: Get Labels
+# -------------
+# Returns a label for each piece of data in the dataset. </span>
+<span style="color: blue;">def</span> getLabels(dataSet, centroids):
+    <span style="color: green;"># For each element in the dataset, chose the closest centroid. 
+    # Make that centroid the element's label.</span>
+</pre>
+<pre><span style="color: green;"># Function: Get Centroids
+# -------------
+# Returns k random centroids, each of dimension n.</span>
+<span style="color: blue;">def</span> getCentroids(dataSet, labels, k):
+    <span style="color: green;"># Each centroid is the geometric mean of the points that
+    # have that centroid's label. Important: If a centroid is empty (no points have
+    # that centroid's label) you should randomly re-initialize it.</span>
+</pre>
+					</p>
+					<p>
+						Important note: You might be tempted to calculate the distance between two points manually,
+						by looping over values. This will work, but it will lead to a slow k-means! And a slow k-means
+						will mean that you have to wait longer to test and debug your solution. 
+					</p>
+					<p>Let's define three vectors:</p>
+					<pre>x = np.array([1, 2, 3, 4, 5]
+y = np.array([8, 8, 8, 8, 8])
+z = np.ones((5, 9))</pre>
+<p>To calculate the distance between x and y we can use:
+<pre>np.sqrt(sum((x - y) ** 2))</pre></p>
+<p>To calculate the distance between all the length 5 vectors in z and x we can use:
+	<pre>np.sqrt(((z-x)**2).sum(axis=0))</pre></p>
+				</div>
+
+			</div>
+
+			<div class="span3">
+				<div class="faq well">
+					<b>Numpy:</b>
+					<br/>
+					K-Means is much faster if you write the update functions using operations on numpy arrays, instead of manually looping over the arrays and updating the values yourself.
+				</div>
+			</div>
+		</div>
+		<br/>
+		<h3 class="header lead">Expectation Maximization</h3>
+		<div class="row">
+			<div class="span9">
+				<div class="subsection">
+					<p>
+						K-Means is really just the EM (Expectation Maximization) algorithm applied to a
+						particular naive bayes model.
+					</p>
+					<p>
+						To demonstrate this remarkable claim, consider the classic naive bayes model with a class variable which can take on discrete values
+						(with domain size $k$) and a set of feature variables, each of which can take on a continuous value (see figure 2). 
+						
+						The conditional probability distributions for $P(f_i = x | C= c)$ is going to be slightly different
+						than usual. Instead of storing this conditional probability as a table, we are going to store it
+						as a single <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal</a> (gaussian) distribution,
+						with it's own mean and a standard deviation of 1. Specifically, this means that: $P(f_i = x | C= c) \sim \mathcal{N}(\mu_{c,i}, 1)$
+					</p>
+					<p>Learning the values of $\mu_{c, i}$ given a dataset with assigned values to the features but not the class variables is the
+						provably identical to running k-means on that dataset.</p>
+
+					<center>
+						<img class="psetImg" src="{{pathToRoot}}img/kmeansNB.png" style="height:200px">
+						<p class="psetImgCaption">
+							Figure 2: The K-Means algorithm is the EM algorithm applied to this Bayes Net.
+						</p>
+					</center>
+
+					<p>
+						If we know that this is the strcuture of our bayes net, but we don't know any of the conditional
+						probability distributions then we have to run Parameter Learning before we can run Inference.
+					</p>
+
+					<p>
+						In the dataset we are given, all the feature variables are observed (for each data point) but
+						the class variable is hidden. Since we are running Parameter Learning on a bayes net where
+						some variables are unobserved, we should use EM.
+					</p>
+					<p>
+						Lets review EM. In EM, you randomly initialize your model parameters, then you alternate between (E) assigning values to hidden variables, based on parameters
+						and (M) computing parameters based on fully observed data.
+					</p>
+					<p>
+						<b>E-Step</b>: Coming up with values to hidden variables, based on parameters. If you work out the math of chosing the best values for the class variable based on the 
+						features of a given piece of data in your data set, it comes out to "for each data-point, chose the centroid that it is closest to, by euclidean distance, and assign that
+						centroid's label." The proof of this is within your grasp! See lecture.
+					</p>
+					<p>
+						<b>M-Step</b>: Coming up with parameters, based on full assignments. If you work out the math of chosing the best parameter values based on the 
+						features of a given piece of data in your data set, it comes out to "take the mean of all the data-points that were labeled as c." 
+					</p>
+					
+					<p>
+						So what? Well this gives you an idea of the qualities of k-means. Like EM, it is provably going to find a local optimum. Like EM, it is not necessarily going to 
+						find a global optimum. It turns out those random initial values do matter.
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<br/>
+		<h3 class="header lead">Intuition</h3>
+		<div class="row">
+			<div class="span9">
+				<div class="subsection">
+					<p>
+						Figure 1 shows k-means with a 2-dimensional feature vector (each point has two dimensions, an x and a y). In your applications, will probably be working
+						with data that has a lot of features. In fact each data-point may be hundreds of dimensions. We can visualize clusters in up to 3 dimensions (see figure 3) but beyond that 
+						you have to rely on a more mathematical understanding. 
+					</p>
+					
+					<center>
+						<img class="psetImg" src="{{pathToRoot}}img/kmeans3d.png" style="height:200px">
+						<p class="psetImgCaption">
+							Figure 3: KMeans in other dimensions. (left) K-means in 2d. (right) K-means in 3d. You have to imagine k-means in 4d.
+						</p>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		%include templates/parts/footer.html
+
+	</div>
+</body>

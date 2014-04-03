@@ -1,0 +1,392 @@
+
+<!doctype html>
+<html lang="en-US">
+<head>
+	
+	%include templates/parts/head.html
+	%include templates/parts/d3.html
+	
+	<!-- Stylesheet -->	
+	
+		<style type="text/css">
+
+path.arc {
+  fill: #fff;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+  
+}
+
+.node {
+  font-size: 12.3px;
+  font-weight: bold;
+}
+
+#conceptGraph .link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+    </style>
+	
+	<style>
+		
+		
+		/* override style stuff */
+#header {
+  position: relative;
+  margin: 10px 0;
+  padding-top: 0;
+}
+#header img {
+  right: 0;
+}
+#menu-primary {
+  width: auto;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 0;
+}
+#footer-content {
+  width: 100%;
+}
+#footer .copyright {
+  float: right;
+}
+
+/* hacky custom sidebar */
+#con-sidebar {
+  width: 34%;
+  margin-left: 3%;
+  float: left;
+  margin-top: 58px;
+}
+.concept-thumb {
+  display: block;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 88px;
+}
+a.concept-thumb:hover {
+  border: none;
+}
+
+/* standard */
+a.btn {
+  background-color: #0da4d3;
+  color: #fff !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+a.btn:hover, a.btn.active {
+  color: #fff;
+  background-color: #000;
+  border: none;
+}
+
+/* hide comments */
+#hidden-comments {
+  display: none;
+}
+#show-comments {
+  margin: 20px 0;
+}
+
+/* episode carousel */
+#episode-container {
+  position: relative;
+  width: 750px;
+  height: 500px;
+  margin: 20px auto;
+  /* vertical space = (total height - episode height - height of bottom thing) / 2 */
+  padding-top: 65px;
+}
+
+#episodes {
+  margin: 0;
+  height: 180px;
+}
+#episodes li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+#episodes li.first {
+  display: block;
+}
+#episodes li > a {
+  position: relative;
+  display: block;
+  width: 750px;
+}
+#episodes li > a:hover {
+  border: 0;
+}
+#episodes h2 {
+  text-transform: uppercase;
+  position: absolute;
+  right: 0;
+  top: 250px;
+  background-color: #fff;
+  padding: 10px 30px;
+}
+#episodes li > a h2, #episodes li > a .date {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#episodes li > a:hover h2, #episodes li > a:hover .date {
+  background-color: #000;
+  color: #fff;
+}
+#episodes .date {
+  position: absolute;
+  right: 0;
+  top: 300px;
+  color: #999;
+  background-color: #fff;
+  padding: 5px 30px 5px 10px;
+}
+#episodes p {
+  margin-top: 20px;
+  width: 500px;
+}
+#transport {
+  position: absolute;
+  top: 410px; /* 350 + top pad of container */
+  width: 750px;
+}
+#transport a {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: block;
+  background-color: rgba(0,0,0,.5);
+  color: #fff;
+  z-index: 99;
+}
+#next-episode {
+  right: 0;
+}
+#transport a:hover {
+  border: 0;
+  background-color: #000;
+}
+
+#episode-thumbs {
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  margin: 0;
+  width: 750px;
+  z-index: 100;
+}
+#episode-thumbs li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+#episode-thumbs li a {
+  display: block;
+  border: 6px solid #fff;
+}
+#episode-thumbs li a:hover {
+  border-color: #0da4d3;
+}
+
+#controls {
+  margin-top: 20px;
+  width: 750px;
+}
+#controls .btn {
+  position: relative;
+  float: right;
+  margin-left: 10px;
+  z-index: 99;
+}
+
+/* map */
+svg {
+  font-family: Abel,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 15px;
+}
+.episode > rect {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+path {
+  fill: none;
+}
+.episode, .node, .detail text, .all-episodes {
+  cursor: pointer;
+}
+.all-episodes {
+  fill: #aaa;
+}
+.detail a text:hover, text.all-episodes:hover {
+  text-decoration: underline;
+}
+#graph-info {
+  position: absolute;
+  width: 140px;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 10px;
+}
+
+/* references */
+#references h3 {
+  color: #999;
+}
+em.ref {
+  color: #999;
+  margin-left: 10px;
+}
+.ref-episode a, .ref-episode a:visited {
+  white-space: nowrap;
+  color: #999;
+}
+
+/* map */
+#map .leaflet-popup-content a {
+  display: block;
+  margin-top: 10px;
+  border-bottom: 1px solid transparent;
+}
+#map .leaflet-popup-content a:hover {
+  color: #000;
+  border-bottom-color: #0da4d3;
+}
+
+	</style>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+		
+		<!-- Header -->
+		<div id="pageHeader">
+			<div id="handoutTitle">
+				Big Picture
+			</div>
+			<p>
+				Written by Chris Piech.
+			</p>
+
+		</div>
+		<hr/>
+		<br/>
+		
+		<div class="row">
+			<div class="span12">
+				<div class="subsection">
+					<p>
+						We have covered a lot of material in CS221. In this handout I do my
+						best to compile the list of skills you are expected to have and topics you are expected to know. The skills and topics fall into three 
+						main categories: 
+						Using search to solve AI problems, 
+						Modeling an AI decision as inference over a network of variables,
+						Solving AI problems by teaching machines to learn from data.
+						</p>
+						<p> 
+						There are many ways to visualize what you have learned. I chose two different visualizations 
+						(1) a list of all the abilities you should have and (2) a hierarchical decomposition of the topics we have covered. I hope these are
+						helpful. Any feedback on how to understand what you have learned would be welcome.
+						 </p>
+						 <p> 
+						Of course, if I could ask for you to take away only one thing from CS221, it would be an interest to go further. 
+						your current drive and enthusiasm is the best predictor of your future ability.
+						 </p>
+				</div>
+			</div>
+		</div>
+		<br/>
+		
+		<h3 class="header lead">Abilities</h3>
+		<div class="row">
+			<div class="span12">
+				<div class="subsection">
+					<p>I find it useful to think of a class in terms of the things I should be able to <b>do</b> after finishing. In general what I expect
+						you to know (really grok) are the abilities we covered in the assignments, problem sets and midterm.
+						</p> 
+						
+					<p>
+						This is how the diagram works: see that large column in the middle? Those are the 20 most important abilities we hope you have a grasp of
+						after CS221. 
+						The nodes to the left are (a subset of) the course topics. 
+						The nodes to the right are the homework, programming and midterm problems.
+					</p>
+					<br/>
+					<div>
+						<div id="graph"></div>
+						<div id="graph-info"></div>
+						<script src="http://www.findtheconversation.com/wp-content/themes/conversation_theme/d3.v3.min.js"></script>
+						<script src="scripts/concepts.js"></script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+				
+		<h3 class="header lead">Concept Hierarchy</h3>
+		<div class="row">
+			<div class="span12">
+				<div class="subsection">
+					<p>
+						Another way to understand what we covered in CS221 is through the more traditional concept hierarchy. During class I tried to augment
+						your education with periferal topics and gems of information (remember the proof that k-means was just expectation maximization on a
+						naive bayes classifier?). This list is not complete.
+					</p>
+					<br/>
+					<div id="conceptGraph" style="margin-left:85px">
+						<script src="scripts/tree.js"></script>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		
+		<h3 class="header lead">Other Visualizations</h3>
+		<div class="row">
+			<div class="span12">
+				<div class="subsection">
+					<p>
+						I am looking for feedback on these visualizations. Any suggestions or reactions would be welcome (piech at cs.stanford.edu).
+				</div>
+			</div>
+		</div>
+
+
+		%include templates/parts/footer.html		
+
+	</div>
+	
+
+</body>
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+
+ Served from: www.findtheconversation.com @ 2013-08-09 12:43:37 by W3 Total Cache -->

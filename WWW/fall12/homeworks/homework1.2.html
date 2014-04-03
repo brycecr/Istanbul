@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head><link rel="shortcut icon" href="//ssl.gstatic.com/docs/spreadsheets/forms/favicon_jfk.png" type="image/x-icon">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Homework 1 - Problem 2: package delivery</title>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+</script>
+<link href='https://docs.google.com/static/spreadsheets/client/css/779923916-published_form_compiled.css' type='text/css' rel='stylesheet'>
+</head>
+<body class="ss-base-body" dir="ltr" itemscope itemtype="http://schema.org/CreativeWork/FormObject"><meta itemprop="name" content="Homework 1 - Problem 2: package delivery">
+<meta itemprop="description" content="You are running a package delivery service in a country where there are a set of cities $V$ connected by a set of two-way roads $E$ (each road $(i,j) \in E$ connects city $i$ with city $j$).  Each road takes one time step to traverse.  You receive a set of orders $R$, where each order $(i,j) \in R$ requests that a package at city $i$ needs to be delivered to city $j$.  You have $k$ delivery trucks which are initially all in the same city $s \in V$.  At each time step, the trucks move (simultaneously) along any single road, traveling from the current city to an adjacent one. Trucks may also opt to not move in a given time step.
+
+At a city, a truck can either pick up or drop off any number of packages (which takes no time); note that a truck is also allowed to temporarily drop off packages at non-destination cities.  Trucks have unlimited capacity, and can take multiple (or zero) packages.
+
+Your goal is to minimize the number of time steps it takes before all packages are delivered to their respective destination cities.">
+<meta itemprop="thumbnailUrl" content="https://docs.google.com/spreadsheet/formthumb?formkey=dHFuY0k2N2xEczUxQ08tRVdMUjd4b3c6MQ">
+
+<meta itemprop="embedUrl" content="https://docs.google.com/spreadsheet/embeddedform?formkey=dHFuY0k2N2xEczUxQ08tRVdMUjd4b3c6MQ">
+<meta itemprop="faviconUrl" content="//ssl.gstatic.com/docs/spreadsheets/forms/favicon_jfk.png">
+
+<div class="ss-form-container">
+<div class="ss-form-heading"><h1 class="ss-form-title">Homework 1 - Problem 2: package delivery</h1>
+<p></p>
+<div class="ss-form-desc ss-no-ignore-whitespace">You are running a package delivery service in a country where there are a set of cities $V$ connected by a set of two-way roads $E$ (each road $(i,j) \in E$ connects city $i$ with city $j$).  Each road takes one time step to traverse.  You receive a set of orders $R$, where each order $(i,j) \in R$ requests that a package at city $i$ needs to be delivered to city $j$.  You have $k$ delivery trucks which are initially all in the same city $s \in V$.  At each time step, the trucks move (simultaneously) along any single road, traveling from the current city to an adjacent one. Trucks may also opt to not move in a given time step.
+
+At a city, a truck can either pick up or drop off any number of packages (which takes no time); note that a truck is also allowed to temporarily drop off packages at non-destination cities.  Trucks have unlimited capacity, and can take multiple (or zero) packages.
+
+Your goal is to minimize the number of time steps it takes before all packages are delivered to their respective destination cities.</div>
+
+<hr class="ss-email-break" style="display:none;">
+<div class="ss-required-asterisk">* Required</div></div>
+<div class="ss-form"><form action="https://docs.google.com/spreadsheet/formResponse?formkey=dHFuY0k2N2xEczUxQ08tRVdMUjd4b3c6MQ&amp;ifq" method="POST" id="ss-form">
+
+
+<br>
+<div class="errorbox-good">
+<div class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_0">SUNetID
+<span class="ss-required-asterisk">*</span></label>
+<label class="ss-q-help" for="entry_0">For example, &quot;psl&quot; (this is not your student id number)</label>
+<input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0"></div></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_1">Name
+</label>
+<label class="ss-q-help" for="entry_1"></label>
+<input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1"></div></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_2">Collaborators
+</label>
+<label class="ss-q-help" for="entry_2"></label>
+<input type="text" name="entry.2.single" value="" class="ss-q-short" id="entry_2"></div></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-paragraph-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_4">(a) [5 points]
+</label>
+<label class="ss-q-help" for="entry_4">Formalize this problem using a deterministic state space model, that is, what are the states, actions, costs, initial state, and goal test?  Try to find a minimal representation (use few states).  How many states are there (express your answer as a function of $|V|$, $|R|$, and $k$).</label>
+<textarea name="entry.4.single" rows="8" cols="75" class="ss-q-long" id="entry_4"></textarea></div></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-paragraph-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_6">(b) [1 point]
+</label>
+<label class="ss-q-help" for="entry_6">What search algorithm would you use to solve this problem?</label>
+<textarea name="entry.6.single" rows="8" cols="75" class="ss-q-long" id="entry_6"></textarea></div></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-paragraph-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_8">(c) [3 points]
+</label>
+<label class="ss-q-help" for="entry_8">Suppose you wanted to minimize the average delivery time (rather than the maximum delivery time).  Adapt the state space model (states, actions, goal test, action costs, etc) from above to accommodate the new objective.</label>
+<textarea name="entry.8.single" rows="8" cols="75" class="ss-q-long" id="entry_8"></textarea></div></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-item  ss-paragraph-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_10">(d) [1 point]
+</label>
+<label class="ss-q-help" for="entry_10">What search algorithm would you use to solve the average delivery time variant?</label>
+<textarea name="entry.10.single" rows="8" cols="75" class="ss-q-long" id="entry_10"></textarea></div></div></div>
+<br>
+<input type="hidden" name="pageNumber" value="0">
+<input type="hidden" name="backupCache" value="">
+
+
+<div class="ss-item ss-navigate"><div class="ss-form-entry">
+<input type="submit" name="submit" value="Submit"></div></div></form>
+<script type="text/javascript">
+
+      (function() {
+var divs = document.getElementById('ss-form').
+getElementsByTagName('div');
+var numDivs = divs.length;
+for (var j = 0; j < numDivs; j++) {
+if (divs[j].className == 'errorbox-bad') {
+divs[j].lastChild.firstChild.lastChild.focus();
+return;
+}
+}
+for (var i = 0; i < numDivs; i++) {
+var div = divs[i];
+if (div.className == 'ss-form-entry' &&
+div.firstChild &&
+div.firstChild.className == 'ss-q-title') {
+div.lastChild.focus();
+return;
+}
+}
+})();
+      </script></div>
+<div class="ss-footer"><div class="ss-attribution"></div>
+<div class="ss-legal"><span class="ss-powered-by">Powered by <a href="http://docs.google.com">Google Docs</a></span>
+<span class="ss-terms"><small><a href="https://docs.google.com/spreadsheet/reportabuse?formkey=dHFuY0k2N2xEczUxQ08tRVdMUjd4b3c6MQ&amp;source=https://docs.google.com/spreadsheet/viewform?formkey%3DdHFuY0k2N2xEczUxQ08tRVdMUjd4b3c6MQ">Report Abuse</a>
+-
+<a href="http://www.google.com/accounts/TOS">Terms of Service</a>
+-
+<a href="http://www.google.com/google-d-s/terms.html">Additional Terms</a></small></span></div></div></div></body></html>

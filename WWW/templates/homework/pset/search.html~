@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		%include templates/parts/head.html
+
+		<style>
+			p {
+				text-align: left;
+			}
+		</style>
+
+		<script>
+			function TaMap() {
+			};
+
+			TaMap.taNameMap = {
+				'jjacobs3' : 'Jeff',
+				'awni' : 'Awni',
+				'knuhlig' : 'Karl',
+				'syxing' : 'Sarah'
+			}
+
+			$.getJSON("{{pathToRoot}}data/taMap.json", function(taMap) {
+				TaMap.map = eval(taMap) // this will show the info it in firebug console
+			});
+
+			TaMap.getTa = function() {
+				$('#taLookupFail').html('');
+				$('#taLookupResult').html('');
+				var sunetId = $('#sunetIdInput').val()
+				if (!( sunetId in TaMap.map)) {
+					$('#taLookupFail').html('Could not find a TA for SunetId "' + sunetId + '"');
+					return;
+				}
+				var taSunetId = TaMap.map[sunetId];
+				var taName = TaMap.taNameMap[taSunetId]
+				var outputString = 'Your TA is ' + taName + ': ' + taSunetId + '@stanford.edu'
+				$('#taLookupResult').html(outputString);
+			}
+		</script>
+
+	</head>
+
+	<body>
+		%include templates/parts/navBar.html
+
+		<div class="container">
+			<div id="pageHeader">
+				<div id="title">
+					Pset 1: Search
+				</div>
+				<p>
+					Due July 8th, 11:59pm.
+				</p>
+
+			</div>
+			<hr/>
+			<!--announcements-->
+			<div class="row">
+				<div class="span12">
+					<p class="header lead">
+						<strong>Instructions</strong>
+					</p>
+					<p>
+						This problem set has three problems that you should submit an answer for (<a href="#scripto">Scripto Coninua</a>, <a href ="#maps">Searchable Maps</a> and <a href="#ta">Autonomous TA</a>). Write your solutions to each of the three problems in separate documents and save them to files named p1.pdf, p2.pdf and p3.pdf.
+					</p>
+
+					<p>
+						The assignment is to be submitted as follows.
+						Log onto a corn machine, put your solution pdf into a directory on the Stanford AFS space. Go into the directory that contains your source code.  Then type:
+						<code>
+							/usr/class/cs221/submitter/submit
+						</code>
+						You can submit multiple times and we will grade your latest submission -- so feel free to submit a lot.
+						In fact why don't you try submitting right now (yes now). If you have problems submitting, please contact the TAs immediately. See <a href="{{pathToRoot}}handouts/submit.html">submitting</a> for more details.
+					</p>
+					<br/>
+				</div>
+			</div>
+
+			<div class="row" id="scripto">
+				<div class="span12">
+					<p class="header lead">
+						<strong>0. Welcome Email&nbsp; </strong>
+					</p>
+					<p>
+						Look up your TA:
+
+						<div class = "taGetter">
+							<div class="input-prepend input-append pull-left">
+								<span class="add-on"><i class="icon-user"></i></span>
+								<input class="span3" id="sunetIdInput"type="text" placeholder="SunetId">
+								<button class="btn btn-primary" type="button" onclick="TaMap.getTa();">
+									Lookup TA
+								</button>
+							</div>
+							<div id="taLookupResult"></div>
+							<div id="taLookupFail"></div>
+						</div>
+						<div style="clear:both"></div>
+
+					<p>
+						and send an introductory e-mail to your TA and to Chris Piech (piech@cs.stanford.edu).
+					</p>
+					<p>
+						Here's the information to include in your e-mail:
+					</p>
+					<div class="subquestion">
+						<table class="table table-noborder">
+							<tbody>
+								<tr>
+									<td>a</td>
+									<td>Your name</td>
+								</tr>
+								<tr>
+									<td>b</td>
+									<td>Why you decided to take CS221.</td>
+								</tr>
+								<tr>
+									<td>c</td>
+									<td>What you are most looking forward to about the class.</td>
+								</tr>
+								<tr>
+									<td>d</td>
+									<td>What you are least looking forward to about the class.</td>
+								</tr>
+								<tr>
+									<td>e</td>
+									<td>Any suggestions that you think might help you learn and master the course material.</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+						<p>
+							And if you feel like giving us a little more to remember you by, you could also tell us what do you do for fun and/or tell us a quick anecdote about something that makes you unique -- a talent, an unusual experience, or anything of that sort.
+						</p>
+						<br/>
+
+					</div>
+				</div>
+
+				<div class="row" id="scripto">
+					<div class="span12">
+						<p class="header lead">
+							<strong>1. Scripto Continua&nbsp; </strong>
+						</p>
+						In some languages such as Chinese, and in some English web domains, sentences are written <a href="http://en.wikipedia.org/wiki/Scriptio_continua">without spaces</a> between the words. An important first step in language processing is segmenting sequences of characters into words.
+						<center>
+							<img class="psetImg" src="{{pathToRoot}}img/wordSegmentation.png">
+							<p class="psetImgCaption">
+								Figure 1: A sentence in Mandarin and two possible segmentations.
+							</p>
+						</center>
+
+						Formally, we have a set of characters (in English, these would be letters) and an unsegmented sequence of characters that we call a sentence. We also have a dictionary
+						<code>
+							D
+						</code>
+						, which is the set of all words in a language (each word is also a sequence of characters). The goal of sentence segmentation is to split the sentence into words from the dictionary. For example in english, if
+						<code>
+							D = {i,cat,dog,see,sleep,the}
+						</code>
+						, then given the characters
+						<code>
+							iseethecat
+						</code>
+						,
+						<code>
+							[i, see, the, cat]
+						</code> is a possible segmentation.</p>
+
+						<!--<center><p class="psetImg"></p></center>-->
+
+						<div class="subquestion">
+							<table class="table table-noborder">
+								<tbody>
+									<tr>
+										<td>a</td>
+										<td>Suppose maximizing our utility corresponds to minimizing the number of words in the output segmentation. Construct a deterministic state space model for this task.</td>
+									</tr>
+									<tr>
+										<td>b</td>
+										<td>What search algorithms (out of the following, BFS, DFS, UCS, A*, Bellman-Ford) would produce a minimum cost path for your model and why? </td>
+									</tr>
+									<tr>
+										<td>c</td>
+										<td>If our goal is to maximize the number of words in the segmentation, revise the state space model from above. Which search algorithms work now? </td>
+									</tr>
+									<tr>
+										<td>d</td>
+										<td>
+										<p>
+											Instead of minimizing the number of words in the segmentation, suppose we had at our disposal a function $\text{Fluency}(w_1, w_2)$
+											which returns a number (either positive or negative) representing the compatibility of $w_1$ and $w_2$ being next to each other
+											(for example, $\text{Fluency}(an, cat)$ would be low and $\text{Fluency}(a, cat)$ would be high).
+											Suppose our utility function is the sum of the fluencies of adjacent words; formally,
+											if the segmentation produces words $w_1, \dots, w_n$, then the utility is $\sum_{i=2}^n \text{Fluency}(w_{i-1}, w_i)$.
+										</p><!--<center><img class="psetImg" src="{{pathToRoot}}img/fluency.jpg" style="height:200px">
+										<p class="psetImgCaption">Figure 2: A segmentation and corresponding Fluency values.</p>
+										</center>-->
+										<p>
+											Modify the state space model from above to find the most fluent segmentation.
+										</p></td>
+
+									</tr>
+
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row" id="maps">
+					<div class="span12">
+						<p class="header lead">
+							<strong>2. Searchable Maps&nbsp; </strong>
+						</p>
+
+						In the US road network there are over 24 million nodes and over 58 million edges. Even on a state of the art computer with an optimized implementation of bi-directional dijkstra, calculating the fastest route between a random start node $s$ and a random end node $t$ can take a few seconds. Google Maps (for example) performs these queries in a fraction of that time. In this problem we will unravel how we can use A* search towards handling a real sized road network.
+
+						<center><img class="psetImg" src="{{pathToRoot}}img/alchemistMap.png" style="height:500px">
+							<p class="psetImgCaption">
+								Figure 2: The fastest path for Santiago the protagonist of the <a href="http://en.wikipedia.org/wiki/The_Alchemist_(novel)">Alchemist</a>. Santiago had to follow his dreams. Google used an advanced search algorithm and plotted a more efficient journey in a fraction of a second.
+							</p>
+						</center>
+
+						<table class="table table-noborder">
+							<tbody>
+								<tr>
+									<td>a</td>
+									<td>The <a href="http://en.wikipedia.org/wiki/Haversine_formula">Haversine distance</a> between points $a$ and $b$ written $G(a, b)$ is the distance between two points along the surface of the earth. Let $S_H$ and $S_L$ be the maximum speed and the minimum speed that a car is allowed to travel on any road respectively. Define a consistent heuristic for a search for the fastest path from $s$ to $t$ based on their Haversine distance.</td>
+								</tr>
+								<tr>
+									<td>b</td>
+									<td>It is infeasable to precompute and save the fastest path between every two nodes (there are over 500 trillion pairs in the US network alone), but it is possible to compute and store the fastest path between every node and a single landmark. Let $T(a, L)$ be the amount of time it takes to get from node $a$ to landmark $L$.
+									<center>
+										<img src="{{pathToRoot}}img/landmark.jpg" style="height:300px"></img>
+										<p class="psetImgCaption">
+											Figure 3: The triangle of distances between points $n$, $t$ and a landmark $L$.
+										</p>
+									</center> Use either the <a href="https://en.wikipedia.org/wiki/Triangle_inequality">triangle inequality</a> rule or the <a href="https://en.wikipedia.org/wiki/Triangle_inequality#Reverse_triangle_inequality">reverse triangle inequality</a> rule in conjunction with landmark travel time to formulate a consistent heuristic $h_L(n)$ for a node $n$ expanded by an A* search between $s$ and $t$. For simplicity you may assume that it all roads are traversible in both directions, at exactly the same speed. In other words $T(a, b)$ = $T(b, a)$.</td>
+								</tr>
+								<tr>
+									<td>c</td>
+									<td>Let $h_1$ and $h_2$ be consistent heuristics. Define a new heuristic $h(s) = \max\{h_1(s), h_2(s)\}$. Prove that $h$ is consistent.</td>
+								</tr>
+								<tr>
+									<td>d</td>
+									<td>Let's say you have $K$ landmarks $(L_1, L_2, ... , L_K)$. Use the intuition from part (c), and your heuristics from parts (a) and (b) to create a single fastest path heuristic function.</td>
+								</tr>
+								<tr>
+									<td>e</td>
+									<td>Sometimes new roads are constructed, and sometimes roads are closed for repair. Suppose a heuristic $h$ is consistent for a particular state space model. If new edges are
+									added to the search space graph, does $h$ remain consistent for the new model? What
+									if edges are removed? In both cases, give a proof or a counterexample.</td>
+								</tr>
+								<tr>
+									<td>f</td>
+									<td><b>Optional</b>: Think up your own improvement over the base Dijkstra algorithm for finding the fastest path between two points. Alternatively how would you solve this problem if you were optimizing something other than speed (e.g. how beautiful a route is)?</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row" id="ta">
+					<div class="span12">
+						<p class="header lead">
+							<strong>3. Autonomous TA</strong>
+						</p>
+						<p>
+							Due to the use of computer tools in education, there is a unprecedented amount of data on how students learn which has enabled new artificial intelligence research topics. In this problem our objective is to write an autonomous TA who can give hints  (at the optimal time) to a student who is working on a homework assignment $H$.
+						</p>
+
+						<center>
+							<img class="psetImg" src="{{pathToRoot}}img/karelStateMachine.jpg" style="height:500px">
+							<p class="psetImgCaption">
+								Figure 4: The state machine for <a href="http://www.stanford.edu/class/cs106a/">CS106A</a> students solving <a href="http://see.stanford.edu/materials/icspmcs106a/07-assignment-1-karel.pdf">Checkerboard Karel</a>. The state machine depicts the probability of a student being in a node and the probability of a student changing states. Node $s$ is the starter code and $g_1$ and $g_2$ are two solutions. Hints received by students (and how they affect the state transitions) are not displayed.
+							</p>
+						</center>
+
+						<p class="subsection">
+						<p>
+							<b>Hints:</b>
+						</p>
+						<p>
+							For homework $H$ both the human TAs and our new autonomous TA are only allowed to give hints from a predetermined set of 5 hints. We will assume each hint can (and should) only be given to a student once.
+						</p>
+						</p>
+						<p class="subsection">
+						<p>
+							<b>Dataset:</b>
+						</p>
+						<p>
+							In the past tens of thousands of students have solved $H$ using our editor. For each of the past students we have:
+							<ul>
+								<li>
+									A copy of the students partial solutions, saved in 5 minute intervals as they solve $H$.
+								</li>
+								<li>
+									A history of the hints that the student has received from a human TA in-between each five minute interval.
+								</li>
+								<li>
+									The student's midterm score.
+								</li>
+							</ul>
+						<p>
+							Not all students complete the assignment. There are a few states which are correct solutions, but a student can stop at any time.
+						</p>
+						</p>
+
+						<p class="subsection">
+						<p>
+							<b>Discretization:</b>
+						</p>
+						<p>
+							To make our problem discrete we have chosen a set of 30 most representative
+							<code>
+								states
+							</code>
+							that a student's partial solution can be in and we have created a function
+							<code>
+								nearest(studentsWork)
+							</code>
+							that returns the best fit
+							<code>
+								state
+							</code>
+							for any solution or partial solution. A state could be something like "the student hasn't started yet" or "the student has solved the first subproblem using algorithm $x$."
+						</p>
+						</p>
+
+						<p class="subsection">
+						<p>
+							<b>Task:</b>
+						</p>
+						<p>
+							Formalize the task of chosing which (if any) hint our autonomous TA should give to a <em>new</em> student at a particular time as a Markov Decision Problem where the TA also considers what future hints it will give. The objective we want to maximize will be the student's expected midterm grade. For this problem we are going to make the assumption that a student's next state is a probabilistic event that depends on the student's current state and the autonomous TA's action but that it is unaffected by the student's previous states and TA's previous actions. For each part of your formalization explain briefly how you could compute the necessary values using the past students data.
+						</p>
+
+						<p>
+							There are many different solutions to this problem. The expectation is that your formalization would reasonably allow a TA to give an autonomous hint. Creative solutions will be considered as extra credit.
+						</p>
+						</p>
+					</div>
+				</div>
+
+				%include templates/parts/footer.html
+			</div>
+
+	</body>
+
+</html>

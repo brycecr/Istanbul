@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+%include templates/parts/head.html
+
+<style>
+body {
+    
+    line-height:21px;
+word-spacing:1px;
+}
+p {
+    text-align:left;
+}
+</style>
+</head>
+
+<body>
+%include templates/parts/navBar.html
+
+    <div class="container">
+        <div id="pageHeader">
+            <div id="handoutTitle">Project 2: Driverless Car</div>
+            <p>Due July 22nd, 11:59pm.</p>
+            <p>Written by Chris Piech.</p>
+        </div>
+        <hr/>
+        
+       
+        
+        <center>
+        <img src="{{pathToRoot}}img/car3.png" width="600px">
+        </center>
+
+            <center><p class="psetImgCaption" style="margin-top:0px">
+								Figure 1: The Driverless Car project uses
+          Hidden Markov Models, Exact Inference and Particle Filters.
+							</p></center>
+
+        
+        <h3 class="header lead">Introduction</h3>
+        <hr>
+
+        <br/>
+
+        <div class="row">
+            <div class="span9">
+
+                <div class="subsection">
+                    <p>The development of a <a href="https://en.wikipedia.org/wiki/Autonomous_car">driverless car</a> has many motivations -- perhaps the most important is to reduce the amount of road carnage. A new <a href ="http://en.mercopress.com/2013/03/18/in-2010-there-were-1.24-million-road-traffic-related-deaths-worldwide-says-who-report">study</a> by the World Health Organisation shows that such accidents kill a shocking 1.24m people a year worldwide. The hope is that by creating an AI agent that can drive, constantly aware and cautious, we could reduce the death toll.</p>
+
+                    <p>In this project, you will design car agents that use a simple sensor to locate other cars and drive safely. You'll advance from driving blindly to tracking multiple other cars so that your car can make its way from start to finish accident free. In order to minimize financial costs, we are going to develop an autonomous car that uses only a microphone to sense other cars.</p>
+
+                    <center>
+							<img class="psetImg" src="{{pathToRoot}}img/carHmm.png" style="height:200px">
+							<p class="psetImgCaption">
+								Figure 2: The hidden markov model that we are going to use to track cars. At each time point there is a hidden variable $c$ which is the actual location of the car and an observed variable $d$ which is a noisy sensor of the distance to the car (relative to your car).
+							</p>
+						</center>
+
+                    <p>The code for this project contains the following files, available as a <a href="driverlessCar.zip">zip
+                    archive</a>.  
+                </div>
+                
+                <div class="subsection">
+                    <p><b>Key files to read:</b></p>
+
+                    <table border="0" cellpadding="10">
+                      
+                      <tr><td><code><a href="docs/exactInference.html">exactInference.py</a></code></td>
+                      <td>This is the file where you will program your exact inference algorithm.</td></tr>
+                      
+                      <tr><td><code><a href="docs/learner.html">learner.py</a></code>
+                      <td>This is the file where you will program your learner, that observes cars and learns transition probabilities.</td></tr>
+
+                      <tr><td><code><a href="docs/particleFilter.html">particleFilter.py</a></code></td>
+                      <td>This is the file where you will program your particle filter.</td></tr>
+
+                      <tr><td><code><a href="docs/util.html">util.py</a></code></td>
+                      <td>Useful data structures for implementing search algorithms.</td></tr>
+                    </table> 
+                </div> 
+
+                <div class="subsection">
+                    <p><strong>Submission:</strong> Submission is the same as with the Pacman assignment. You will submit the files 
+                        <code>exactInference.py</code>, 
+                        <code>learner.py</code> and
+                        <code>particleFilter.py</code>. See <a href="{{pathToRoot}}handouts/submit.html">submitting</a> for more details.
+                    </p>
+                </div>
+
+                <div class="subsection">
+                    <p><strong>Evaluation:</strong> Your code will be autograded for technical
+                    correctness. Please <em>do not</em> change the names of any provided functions or classes within the code, or you will wreak havoc on the autograder. However, the correctness of your implementation -- not the autograder's judgements -- will be the final judge of your score.  If necessary, we will review and grade assignments individually to ensure that you receive due credit for your work.
+                </div>
+
+                <div class="subsection">
+                    <p><strong>Academic Dishonesty:</strong> We will be checking your code against
+                    other submissions in the class for logical redundancy (as usual). If you copy someone
+                    else's code and submit it with minor changes, we will know. These cheat
+                    detectors are quite hard to fool, so please don't try. We trust you all to
+                    submit your own work only; <em>please</em> don't let us down. If you do, we will pursue the strongest consequences available to us, as outlined by the honor code.
+                </div>
+
+                <div class="subsection">
+                    <p><strong>Getting Help:</strong> You are not alone!  If you find yourself stuck on something, contact the course staff for help.  Office hours and piazza are there for your support; please use them.  We want these projects to be rewarding and instructional, not frustrating and demoralizing.  But, we don't know when or how to help unless you ask.
+                </div>
+            </div>
+            <div class="span3">
+                <div class="well info faq" style="padding-bottom:0px">
+                    <p><b>Tasks:</b></p>
+                    <table class="table table-condensed">
+						<tbody>
+							<tr>
+								<td style="width: 120px"><a href ="#emission">Emission</a></td>
+							</tr>
+							<tr>
+								<td style="width: 120px"><a href ="#transition">Transition</a></td>
+							</tr>
+							<tr>
+								<td style="width: 120px"><a href ="#particleFilter">Particle Filter</a></td>
+							</tr>
+							<tr>
+								<td style="width: 120px"><a href ="#driver">Driver</a></td>
+							</tr>
+						</tbody>
+					</table>
+                </div>
+                <div class="well info faq">
+                    <b>Due Date:</b> Self Driving Car is due July 22nd at 11:59pm (PDT).
+                </div>
+                <div class="well info faq">
+                    <b>Submit:</b> You can submit multiple times. We will grade your latest submission.
+                </div>
+            </div>
+        </div>
+        <br/>
+        
+        <h3 class="header lead">Tasks</h3>
+        <hr>
+        <div class="row">
+            <div class="span9">
+                <div class="subsection">
+                    <p>First, run a driverless car simulation with you behind the wheel. In general, your goal is to drive from the start to finish (the green box) without
+                       getting in an accident. How well can you do on crooked Lombard St without knowing the location of other cars?</p>
+
+                    <pre>python drive.py -l lombard</pre>
+                </div>
+
+                <div class="subsection">
+                    <p>You can steer by either using the arrow keys or w, a, s, d.<br/>
+                       Quit by pressing q</p>
+                </div>
+
+                <div class="subsection">
+                    <p>Without modeling where the other cars were, the staff was only able to get to the finish line 4/10 times. This 60% accident rate is substantially higher than the 300,000 miles the Google car is reported to have driven accident free.<div id = "emission" ></div></p>
+                </div>
+
+                
+            </div>
+        </div>
+        <br/>
+        <p class="lead"><strong>1. Emission Probability&nbsp; </strong></p>
+        <div class="row">
+            <div class="span9">
+
+                <div class="subsection">
+                    In order to track other cars, our autonomous car is equiped with a microphone. "Hey," you ask. "Why don't we use a more advanced sensor like a laser array, or you know... at least a video camera?" We would love to have a laser array. But we are building a self driving car for the people. By using cheaper hardware, backed by better artificial intelligence we can make a more affordable car. 
+                </div>
+
+                <center>
+        <img src="{{pathToRoot}}img/emmission.png">
+        </center>
+                <center><p class="psetImgCaption" style="margin-top:0px">
+								Figure 3: The probability of a cars location given an observation. When you finish this milestone you should be able to find a car by circling it.
+							</p></center>
+
+                <div class="subsection">
+                    <p>Once a heartbeat (one update of our simulation) our microphone records how loud each car is, which we are then able to turn into a noisy measure of distance. According to the specifications, the microphone generates a distance observation (one for each car) $d$ that is distributed normally about the true distance $t$, with a standard deviation of <code>Const.SONAR_STD</code> (which if you are curious is about two thirds of a car length). 
+
+                </div>
+
+
+                <div class="subsection">
+                    <p style="font-size:20px"><center> $d \sim \mathcal{N}(t, sonarStd )$</center></p>
+
+                
+
+
+<p>In the context of a hidden markov model, the probability of an observation given a current state is called the emission probability. Since our observation is generated using a normal, the emission probability is a normal probability density funciton (<a href="http://en.wikipedia.org/wiki/Probability_density_function">pdf</a>). To get the probability of a normal distribution producing a value you can use the utility function <code>util.pdf(mean, std, value)</code>.</p>
+                </div>
+
+                <center>
+        <img style="height:300px" src="pdf.png">
+        </center>
+                <center><p class="psetImgCaption" style="margin-top:0px">
+								Figure 4: The probability density function for the sonar distance $d$.
+							</p></center>
+                
+
+                <div class="subsection">
+                    <p>Fill in the <code>observe</code> method in the <code>ExactInference</code> class of <code>exactInference.py</code> to update the probability of each tile given the observed noisy measurement. When complete, you should be able to find the location of a stationary car by circling it:
+                </div>
+
+
+                <div class="subsection">
+                    <pre>python drive.py -p -d -k 1 -i exactInference</pre>
+                </div>
+
+            <div class="subsection">
+                   You may want to break down this task into two milestones. First, calculate the probability of each location given the observation, ignoring any prior beliefs you had from previous observations. You should see a ring of probabilities surrounding your car that intersects the car you are observing (figure 2). Second, use the beliefs you calculate after a given observation as your prior probability over locations for the subsequent observation.
+                </div>
+
+            <div class="subsection">
+                   Discretization: In order to make this problem tractable we have discretized the world into 30 pixel a side tiles. In all inference tasks we are going to calculate the probability of a car being in a tile. Given a tile's row and col, you can calculate the corresponding pixel y and x values using methods in <code>util</code> (similarly, given x and y you can calculate col and row). The observed distance from our microphone, and the location of your agent are reported in pixel units (x, y).<div id = "transition"></div>
+                </div>
+                
+                
+            </div>
+
+            <div class="span3">
+                <div class="well info faq">
+                    <p><b>Update Equation:</b> Before typing any code, write down the equation of the inference problem you are trying to solve.                     
+                </div>
+                
+                <div class="well info faq">
+                    <p><b>Initial Belief:</b> You are implementing the online belief update for observing new evidence. Before any readings, you believe the cars could be anywhere: a uniform prior.
+                </div>
+                <div class="well info faq">
+					<p><b>For the People:</b> A microphone only costs a few dollars.
+                </div>
+            </div>
+            
+        </div>
+
+        
+        <br/>
+        <p class="lead"><strong>2. Transition Probability </strong></p>
+        <div class="row">
+            <div class="span9">
+                <div class="subsection">
+                Cars don't hold still forever. In order to track a moving car, we are going to need to know the transition probability, which is the probability of the car being in a new location, given its previous location. We are going to learn the transition probability by observing cars driving around the different worlds. You will need to learn a different transition probability function for each map.
+                </div>
+
+                <div class="subsection">
+                    <p>Fill in the <code>carMove</code> and the <code>saveTransitionProb</code> method in the <code>Learner</code> class of <code>learner.py</code>. Running the learner to completion took us 2 mins (it's important to see lots of different scenarios). If you want to test your code using fewer observations, you can change the learn settings in <code>Const</code>. Note that the structure of the dictionary you save is of your chosing! 
+                </div>
+
+                <div class="subsection">
+                <pre>python learn.py -l small</pre>
+                </div>
+                <div class="subsection">
+                <pre>python learn.py -l lombard</pre>
+                </div>
+
+                <div class="subsection">
+                    <p>Once you have learned the transition probabilities, finish <code>ExactInference</code> by writing the <code>elapseTime</code> method using your precomputed transition probabilities. You can load your saved transition probabilities (assuming that you created them) using <code>util.loadTransProb()</code>. If in your <code>elapseTime</code> method you come accross a tile that was never observed in training, you can assume that a car in this tile will not move. When you are all done, you should be able to track a moving car!
+                </div>
+
+                <div class="subsection">
+                    <pre>python drive.py -d -k 1 -i exactInference</pre>
+                </div>
+
+
+                <div class="subsection">
+                    Every 100 heartbeats, your program will output the average error of your belief distribution. You can use this error as a benchmark of how well your inference is doing. When we run the program using our solution (and with the random seed <code>-f</code> turned on) and the car drives along the outer ring we get an error of 95.4 after 100 iterations and 72.5 after 200 iterations. When we grade your assignment we will run it multiple times with multiple different start conditions. 
+                </div>
+
+                <div class="subsection">
+                    <p>You have hit a major milestone. But what happens if you change the number of cars that you are tracking from 1 to 3? When you run exact inference on Lombard St
+                    <pre>python drive.py -l lombard -i exactInference</pre>
+                    your program may start to lag.
+                </div>
+
+            </div>
+
+            <div class="span3">
+<div class="well info faq">
+                    <b>Multiple Cars:</b> We assume that cars still move independently of one another (an incorrect, but useful assumption), so while you can develop all of your code for one car at a time, adding multiple cars should still work correctly.
+                </div>
+
+            </div>
+
+            
+        </div>
+
+        <div id = "particleFilter"></div>
+        <br/>
+        <p class="lead"><strong>3. Particle Filter </strong></p>
+        <div class="row">
+            <div class="span9">
+                <div class="subsection">
+                Though exact inference is perfect for the small maps, it is too slow on large worlds such as lombard or blocks. We can solve this problem by using a particle filter, where the complexity of the program is O(numParticles) as opposed to O(numTiles). Implement all necessary methods for the <code>ParticleFilter</code> class in <code>particleFilter.py</code>. When complete, you should be able to track cars nearly as effectively as with exact inference.
+                </div>
+
+                <div class="subsection">
+                Regardless of how you go about representing particles, when the simulation controller calls <code>getBelief</code>, you must return a <code>Belief</code> instance (see <code>util.py</code>).
+                </div>
+
+                <div class="subsection">
+                A few extra things to consider. You should use the same transition probabilities as in exact inference. The belief cloud generated by a particle filter will look noisy compared to the one for exact inference. To debug, you may want to start with the parked car flag (<code>-p</code>) and the display car flag (<code>-d</code>).
+                </div>
+
+                <div class="subsection">
+                <pre>python drive.py -i particleFilter -l lombard</pre>
+                </div>
+
+                <div class="subsection">
+                Your particle filter should be accurate enough that you can drive down lobard st, with the <code>-d</code> flag turned off.
+                </div>
+            </div>
+
+            <div class="span3">
+<div class="well info faq">
+                    <b>Particle:</b> In this problem, a particle is a car position.
+                </div>
+<div class="well info faq">
+                    <b>Classes:</b> You might find it easier (and stylistically nicer) to use a particle class. Make sure you define any and all helper classes in the same file. 
+                </div>
+
+            </div>
+        </div>
+
+        <br/>
+        <p id = "driver" class="lead"><strong>4. Autonomous Driver (Optional)</strong></p>
+        <div class="row">
+            <div class="span9">
+                <div class="subsection">
+                Now that you can track moving cars, you are ready to have an AI agent take the wheel. If you are interested you can celebrate your accomplishment by writing an autonomous driver. Right now the <code>getAutonomousActions</code> method in <code>AutoDriver</code> has your car drive around haphazardly. The basic algorithm in the starter code <code>AutoDriver</code> is: Drive towards a goal node (in the underlying <code>AgentGraph</code>). Do not drive into any tiles where you have a reasonable belief that there may be a car. Once you have reached your goal, randomly chose a next state in the <code>AgentGraph</code> to be your new goal.
+                </div>
+
+                <div class="subsection">
+                <pre>python drive.py -a -d -i particleFilter -l lombard</pre>
+                </div>
+
+                <div class="subsection">
+                If you are interested, you can make this agent smarter. Some ideas include: 
+                <ul>
+                    <li>Have the agent follow the shortest path to the terminal node (possibly using the <code>AgentGraph</code>).</li> 
+                    <li>Program your agent to be careful of left turns where it could get side swiped. It might be useful to use your transition probability from part 2.</li>
+                    <li>The probability of an agent being in a tile is really the probability of the center of the agent being in the tile. Your agent should take into account the car width <code>Const.CAR_WIDTH</code> to be perfectly safe.</li>
+                </ul>
+                </div>
+
+                <div class="subsection">
+                Make sure to document any extensions you do!
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+        <br/>
+        <p><em>Project 2 is done.  Go Driverless Car!</em></p>
+
+        %include templates/parts/footer.html
+    </div>
+
+</body>
+
+</html>

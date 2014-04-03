@@ -1,0 +1,316 @@
+<head>
+
+<title>Intro to CS</title>
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+
+    <style>
+p {
+    text-align:left;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" id="pageTitle" href="../index.html">Stanford Intro CS</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<!--<li>
+						<a class="navLink" href="../index.html#schedule">Schedule</a>
+					</li>-->
+					<!--<li>
+						<a class="navLink" href="../index.html#policies">Policies</a>
+					</li>-->
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Handouts <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../handouts/officeHours.html">Office Hours</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/submit.html">Submitting</a>
+							</li>
+							<li>
+                                <a class="navDropdown" href="../handouts/pythonTutorial.html">Python Tutorial</a>
+                              </li>
+							<!--<li>
+								<a class="navDropdown" href="../handouts/minimax.html">Minimax</a>
+							</li>-->
+							<li>
+								<a class="navDropdown" href="../handouts/markovDecisions.html">Markov Decisions</a>
+							</li>
+              				<li>
+								<a class="navDropdown" href="../handouts/predictingRegrades.html">Regrades</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../handouts/practiceMidterms.html">Practice Midterms</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/docs/MidtermSolution.pdf">Midterm Solutions</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/kmeans.html">K Means</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/bigPicture.html">Big Picture</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Assignments <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li style="padding-left:5px">
+								Programming:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/prog/pacman/pacman.html">Pacman</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/driverlessCar/driverlessCar.html">Driverless Car</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/visualCortex/visualCortex.html">Visual Cortex</a>
+							</li>
+
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Problem Sets:
+							</li>
+
+							<li>
+								<a class="navDropdown" href="../homework/pset/search.html">Search Pset</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../homework/pset/variables.html">Variable Pset</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/pset/learning.html">Learning Pset</a>
+							</li>
+							<!--<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Variable Models Pset</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Machine Learning Pset</a>
+							</li>-->
+							
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Projects:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/finalProject.html">Final Project</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<!--<ul class="nav pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle pull-right  navLink" data-toggle="dropdown" href="#">AI Stories <b class="caret navCaret"></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../apps/driverlessCar.html">Self Driving Car</a>
+                                <a class="navDropdown" href="../apps/machineTranslation.html">Machine Translation</a>
+                                <a class="navDropdown" href="../apps/deepBlue.html">Deep Blue</a>
+                                <a class="navDropdown" href="../apps/watson.html">Watson</a>
+							</li>
+						</ul>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- Main Content -->
+	<div class="container">
+
+       
+
+		<!-- Header -->
+		<div id="pageHeader">
+            <div id="title">Python Tutorial: Conway's Game of Life</div>
+        </div>
+        <hr/>
+
+         <p>In this tutorial, you will get a feel for the basics of the Python language by coding 
+         a simple implementation of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>.</p>
+         
+        <br/>
+        <h3 class="header lead">First Things First</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>Download and install <a href="http://www.python.org/download/releases/2.7.5/">Python 2.7.5</a>. Note that the code for tutorials and projects in this course are only tested on Python 2.7.5.</p>
+                    <p>Make sure you are able to run Python from the terminal. To test this, first type "python" in the terminal and make sure you see a result similar to the following:</p>
+                    <pre>$ python
+Python 2.7.5 (default, May 15 2013, 22:43:36) [MSC v.1500 32 bit (Intel)] on win
+32
+Type "help", "copyright", "credits" or "license" for more information.
+>>></pre>  
+                    <p>Now, create a new text file called "hello.py" which contains only the line</p>
+                    <pre>print "hello!"</pre>
+                    <p>In your terminal, make sure you are in the same directory as "hello.py" and type "python hello.py". You should see a result similar to the following:</p>
+                    <pre>$ python hello.py
+hello!</pre>
+                    <p>If both of these worked, you should be good to go for the tutorial!
+                </div>
+            </div>
+        </div>    
+
+        <br/>
+        <h3 class="header lead">Game of Life Overview</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>Our "Game of Life" board will be an n-by-n grid of square cells, each of which can be either "alive" or "dead". A given cell's neighbors are those cells directly above, below, left, or right of the cell, plus with the cells diagonally adjacent to it (the cells touching its diagonals). Each cell changes from one time step to the next according to the following rules:</p>
+                    <ul>
+                    <li>Any living cell with fewer than two living neighbors dies.</li>
+                    <li>Any living cell with exactly two or exactly three living neighbors remains alive.</li>
+                    <li>Any living cell with more than three living neighbors dies.</li>
+                    <li>Any dead cell with exactly three living neighbors becomes alive.</li>
+                    </ul>
+                    <p>These extremely simple rules give rise to some incredibly complex and beautiful patterns, as illustrated here:</p>
+                    <p>
+                    <img class="thumbnail" src="http://upload.wikimedia.org/wikipedia/commons/e/e6/Conways_game_of_life_breeder_animation.gif" style="height:192px"></p>
+                    <p>In fact, these rules are so powerful that they actually allow Conway's Game of Life to be Turing Complete, which roughly means that we could perform any computation within the game that a standard computer could (though they would be painfully slow). And to just get super meta for a second, a consequence of this is that Game of Life can simulate ITSELF! (#Conwayception)</p>
+                    <div class="appMedia">
+                      <ul class="thumbnails">
+                        <li>
+                          <div class="thumbnail">
+                            <iframe width="450" height="280" src="http://www.youtube.com/embed/D6aP9S9rEQk" frameborder="0" allowfullscreen></iframe>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br/>
+        <h3 class="header lead">Download the Tutorial Files</h3>
+        <div class="row">
+          <div class="span12">
+            <div class="subsection">
+              <p>Download the files <a href="http://www.stanford.edu/~jjacobs3/gameoflife.zip">here</a>, and unzip them.</p>
+              <p>You're now ready to start the tutorial!</p>
+            </div>
+          </div>
+        </div>
+    
+        <br/>
+        <h3 class="header lead">Part 1: The Dictionary Approach</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>We now begin writing our implementation.</p>
+                    <p>Open the file "life.py" in the "part1" subfolder of the "gameoflife" folder you downloaded.</p>
+                    <p>What you're looking at is a class called "Life". In Python, classes have the following format:</p>
+                    <pre>class &lt;Name of class&gt;:
+  def __init__(self [,other arguments]):
+    # Constructor code goes here
+  
+  def otherMethod(self):
+    # method code</pre>
+                    <p>One of the first things you should understand about Python is that, unlike Java, it allows you to both define and set the value of instance variables in the same line. Thus, instead of needing to define our instance variables outside of the constructor and setting their values inside of it, we can simply write "self.variable = value" in our constructor and have "self.variable" serve as an instance variable which can be used by any other methods in the class.</p>
+                    <p>Now that we know this, write the code for Life's constructor. Define instance variables "rows", "cols", and "grid".</p>
+                    <p>Next, implement the methods "isAlive(self, row, col)" which returns True if the cell at the given row and column is alive and False otherwise, "setAlive(self, row, col, tf)" which sets the cell at the given row and column to have the value tf, "getNumRows(self)" which returns the number of rows in the game board, and "getNumCols(self)" which returns the number of columns in the game board.</p>
+                    <p>To do this, you'll need to know how to use Python's list and dictionary data structures, as the board passed into your constructor is a list of dictionaries. In Python, an n-by-m list of zeros (which is similar to an n-by-m array in Java or C) is initialized as</p>
+                    <pre>list = [[0 for x in range(n)] for y in range(m)]</pre>
+                    <p>The element of the list in row r and column c can then be accessed:</p>
+                    <pre>list[r][c]</pre>
+                    <p>Or set to a different value:</p>
+                    <pre>list[r][c] = 5</pre>
+                    <p>If a list in Python is similar to an array in Java, then a dictionary in Python is similar to a Map (i.e., HashMap or TreeMap). A dictionary is initialized as</p>
+                    <pre>dictionary = {}</pre>
+                    <p>Instead of being indexed by numbers, dictionaries can be indexed by any type of data, as in:</p>
+                    <pre>dictionary[3.14] = 'pi'
+dictionary[False] = 7
+dictionary['tasty'] = 'banana'</pre>
+                    <p>In our case, each cell in our board is a dictionary which maps the string 'alive' into True or False, depending on whether the cell at that position is alive or dead. For example,</p>
+                    <pre>board[2][3]['alive'] = True</pre>
+                    <p>sets the cell in the second row and third column to be alive.</p>
+                    <p>Finally, implement the "runTimeStep(self)" method. This is the ultimate test of your understanding of lists and dictionaries, as you'll need to leverage those structures along with the methods you've written to implement the rules of Conway's Game of Life. For your convenience, we have provided two methods in util.py: "createEmptyGrid(rows, cols)" which returns a new grid with the given dimensions in which all cells are set to be dead, and "getNumLiveNeighbors(grid, row, col)" which returns the number of living neighbors in the given cell of the given grid.</p>
+                    <p>Once you've implemented all of the methods correctly, you can try out your implementation by running</p>
+                    <pre>python runlife.py &lt;Board File&gt;</pre>
+                    <p>where &lt;Board File&gt; is one of the files we have provided: "blinkerBoard.csv", "toadBoard.csv", "beaconBoard.csv", "gliderBoard.csv", or "pentominoBoard.csv". Try them out, and if you'd like to explore more you can make your own boards and run them the same way!</p>
+                </div>
+            </div>
+        </div>
+        
+        <br />
+        <h3 class="header lead">Part 2: The Class Approach</h3>
+        <div class="row">
+          <div class="span12">
+            <div class="subsection">
+            <p>In this part, you'll learn the advantages of "upgrading" from a dictionary structure to a class, and write your first Python class from scratch!</p>
+            <p>Close the files you have open from Part 1, change to the "part2" folder, and open the "life.py" file.</p>
+            <p>Once again, we're asking you to implement the methods in the Life class. However, this time instead of using a dictionary data structure to keep track of the cells, you'll create a Cell class.</p>
+            <p>Create a new blank text file called "cell.py" in the "part2" folder and use the information on defining classes given in Part 1 to write your own Cell class, with an "alive" instance variable as well as a constructor that takes in a single boolean argument determining whether the cell will start off alive or dead, and any other methods you find yourself needing to implement the methods in "life.py". For your convenience, the "util.py" file in the "part2" folder has an updated "createEmptyGrid(rows, cols)" method which creates a two-dimensional list of Cell objects with the given dimensions, each of which is set to be dead.</p>
+            <p>Once again, when your implementation is correct you will be able to run "runlife.py" in the same manner as in Part 1 and try out the different boards.</p>
+            </div>
+          </div>
+        </div>
+        
+        <br/>
+        <p>The solutions to both parts can be downloaded <a href="http://stanford.edu/~jjacobs3/gameoflife-solutions.zip">here</a>. Have fun!</p>
+		
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2013 &#124; Designed by <a href="http://stanford.edu/~cpiech">Chris</a>. Inspired by <a href="http://njoubert.com/">Niels</a> and <a href="http://cs.stanford.edu/~pliang/">Percy</a>.
+	</p>
+	<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>
+</div>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('.dropdown-toggle').dropdown()
+		$('.thumbnail').tooltip({
+			placement : 'bottom',
+			delay : {
+				show : 750
+			}
+		})
+	});
+</script>
+
+	</div>
+</body>

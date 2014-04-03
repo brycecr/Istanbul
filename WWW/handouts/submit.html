@@ -1,0 +1,258 @@
+<head>
+
+<title>Intro to CS</title>
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+
+    <style>
+p {
+    text-align:left;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" id="pageTitle" href="../index.html">Stanford Intro CS</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<!--<li>
+						<a class="navLink" href="../index.html#schedule">Schedule</a>
+					</li>-->
+					<!--<li>
+						<a class="navLink" href="../index.html#policies">Policies</a>
+					</li>-->
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Handouts <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../handouts/officeHours.html">Office Hours</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/submit.html">Submitting</a>
+							</li>
+							<li>
+                                <a class="navDropdown" href="../handouts/pythonTutorial.html">Python Tutorial</a>
+                              </li>
+							<!--<li>
+								<a class="navDropdown" href="../handouts/minimax.html">Minimax</a>
+							</li>-->
+							<li>
+								<a class="navDropdown" href="../handouts/markovDecisions.html">Markov Decisions</a>
+							</li>
+              				<li>
+								<a class="navDropdown" href="../handouts/predictingRegrades.html">Regrades</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../handouts/practiceMidterms.html">Practice Midterms</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/docs/MidtermSolution.pdf">Midterm Solutions</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/kmeans.html">K Means</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/bigPicture.html">Big Picture</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Assignments <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li style="padding-left:5px">
+								Programming:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/prog/pacman/pacman.html">Pacman</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/driverlessCar/driverlessCar.html">Driverless Car</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/visualCortex/visualCortex.html">Visual Cortex</a>
+							</li>
+
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Problem Sets:
+							</li>
+
+							<li>
+								<a class="navDropdown" href="../homework/pset/search.html">Search Pset</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../homework/pset/variables.html">Variable Pset</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/pset/learning.html">Learning Pset</a>
+							</li>
+							<!--<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Variable Models Pset</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Machine Learning Pset</a>
+							</li>-->
+							
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Projects:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/finalProject.html">Final Project</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<!--<ul class="nav pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle pull-right  navLink" data-toggle="dropdown" href="#">AI Stories <b class="caret navCaret"></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../apps/driverlessCar.html">Self Driving Car</a>
+                                <a class="navDropdown" href="../apps/machineTranslation.html">Machine Translation</a>
+                                <a class="navDropdown" href="../apps/deepBlue.html">Deep Blue</a>
+                                <a class="navDropdown" href="../apps/watson.html">Watson</a>
+							</li>
+						</ul>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- Main Content -->
+	<div class="container">
+
+       
+
+		<!-- Header -->
+		<div id="pageHeader">
+            <div id="title">How to Submit</div>
+        </div>
+        <hr/>
+
+         <p>To submit your solution to an assignment you must do the following:
+                    Log onto a corn machine, put your source code into a directory on the Stanford AFS space. Go into the directory that contains your source code, then run the submit script.</p>
+                    <p>
+                    You can submit multiple times and we will grade your latest submission. Feel free to submit a lot.
+                    If you have problems submitting, please contact the TAs immediately. You
+                    will not get extensions because you waited until after the deadline
+                    to contact the TAs.</p>
+        <br/>
+        <h3 class="header lead">1. Get a terminal</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>Macs come with Terminal pre installed. You can skip this step.</p>
+                    <p>If you have a PC you can download any one of the dozens of free terminal programs. We recommend <a href="https://itservices.stanford.edu/service/ess/pc/securecrt">SecureCrt</a>.</p>
+                </div>
+            </div>
+        </div>    
+
+        <br/>
+        <h3 class="header lead">2. Copy your homework onto corn</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>If you have an FTP Client (for mac we recomend <a href="https://itservices.stanford.edu/service/ess/mac/fetch">Fetch</a>, for PC we recomend <a href="https://itservices.stanford.edu/service/ess/pc/securefx">SecureFx</a>), you can copy your files over using a graphical user interface (log in through corn.stanford.edu). Copy your solution to any folder in your Stanford AFS space.</p>
+                    <div class="span5">                
+                    <img src="../img/fetch.png" style="height:400px;">
+                    <p style="text-align:center"><em>Connecting to corn through Fetch</em></p>
+                    </div>
+                    <div class="span5">                
+                    <img src="../img/secureFx.png" style="margin-left:25px;margin-top:25px; height:325px;"><div style="height:50px">&nbsp;</div>
+                    <p style="text-align:center"><em>Connecting to corn through SecureFx</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <br/>
+        <h3 class="header lead">3. SSH into a corn machine</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>To log in open up a terminal and type:</p>
+                    <p><code>ssh &#60;your sunet id&#62;@corn.stanford.edu</code></p>
+                    <p>You should be prompted to enter your password, and then have a secure shell connection to the stanford corn machines.</p>
+                    <p>You can remotely log in from anywhere. You can even ssh into corn from the cold reaches of central antartica, provided you have an internet connection and a valid sunetId. </p>
+                </div>
+            </div>
+        </div>
+        
+        <br/>
+        <h3 class="header lead">4. Execute the submit script</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                    <p>Once logged into a corn machine, navigate to the directory where you saved your solution and type:</p>
+                    <p><code>/usr/class/cs221/submitter/submit</code>
+                    <p>The programming assignments are submitted as a whole, however you will be asked to submit your problem set questions one at a time. The submit script will have you answer a few questions (like whether or not you collaborated with other students).</p>
+                    <p>Additionally, this quarter we have modified the submit script to ask you for feedback on the assignment (in the case of problem-sets the individual problems). You will be asked how long the assignment took (in hours) and how enjoyable the problem was. Your responses will have <b>no</b> impact on your class grade. Each time you submit a problem your previous feedback for the homework will be overwritten.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <p>Thats all!</p>
+		
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2013 &#124; Designed by <a href="http://stanford.edu/~cpiech">Chris</a>. Inspired by <a href="http://njoubert.com/">Niels</a> and <a href="http://cs.stanford.edu/~pliang/">Percy</a>.
+	</p>
+	<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>
+</div>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('.dropdown-toggle').dropdown()
+		$('.thumbnail').tooltip({
+			placement : 'bottom',
+			delay : {
+				show : 750
+			}
+		})
+	});
+</script>
+
+	</div>
+</body>

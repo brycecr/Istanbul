@@ -1,0 +1,100 @@
+<head>
+	%include templates/parts/head.html
+</head>
+<body>
+
+	%include templates/parts/navBar.html
+
+	<div class="container">
+
+        <div id="pageHeader">
+            <div id="title">Watson</div>
+        </div>
+
+		<hr>
+
+		<div class="appMedia">
+			<ul class="thumbnails">
+				<li>
+					<div class="thumbnail">
+						<iframe width="450" height="280" src="http://www.youtube.com/embed/o6oS64Bpx0g" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</li>
+				<li>
+					<div class="thumbnail">
+						<iframe width="450" height="280" src="http://www.youtube.com/embed/DywO4zksfXw" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="section">
+			<p class="header lead">
+				The Story
+			</p>
+			<div class="row">
+				<div class="span8">
+					<p>
+		Watson is a highly intelligent question answering computer system capable of processing questions posed in natural language. IBM Research began working on this project in 2006, and it is a highly complex application of many different areas of AI, including natural language processing, information retrieval, knowledge representation, and machine learning.
+	</p>
+	<p>
+		In 2011, Watson competed on Jeopardy! against previous winners Ken Jennings and Brad Rutter and won. During the competition, Watson had access to 200 million pages of structured and unstructured content but no Internet. For each given answer, Watson's top 3 most probable questions were displayed on the TV screen, and Watson consistently outperformed its competitors. Jeopardy! was selected as a test of Watson's capabilities because Watson relies on many human cognitive abilities, such as understanding puns, pop culture references, and rapidly processing large amounts of information, that were previously thought to be beyond the limits of computer systems.
+	</p>
+	<p>
+		The applications for Watson are endless - many fields need a good (or even decent) system for reasoning over unstructured data and answering questions. In 2011, IBM began partnering with researchers in the health field to use the technology behind Watson and create a clinical decision support system that will help medical professionals to diagnose as well as treat patients. Watson is also being applied to other areas such as finance and customer engagement
+	</p>
+				</div>
+                <div class="span4">
+					<div class="faq well">
+
+						<img src="../img/jeopardy.jpg" style="margin-bottom:10px;"></img>
+						<p>
+							Watson winning at Jeopardy!.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<p class="header lead">
+				AI Techniques
+			</p>
+			<div class="row">
+				<div class="span12">
+					<div class="subsection">
+		<h4 class="subheading">Understanding the clues</h4>
+		<p>
+			One component of the task of understanding provided clues (category, answer) is question classification. Question classification is the task of identifying question types or parts of the question that can be further broken down. This task boils down into many smaller components such as named entity recognition and coreference resolution to name just two. 
+		</p>
+	</div>
+	<div class="subsection">
+		<h4 class="subheading">Named entity recognition</h4>
+		<p>
+			Named entity recognition seeks to identify and label names in text. For instance, "John" is a Person and "New York" is a Location. Finding these entities is essential for identifying relations in text and helps the system determine whether an answer relates to a question (clearly, essential for a question-answer system). How are these entities found? One method is through building a machine learning classifier. The training process includes taking a set of training documents, assigning each phrase token with a label for an entity, designing feature extractors, and training a classifier that will predict the label for each token.
+		</p>
+	</div>
+	<div class="subsection">
+		<h4 class="subheading">Coreference resolution</h4>
+		<p>
+			Coreference resolution further helps a system understand when different portions of text relate to one another. In the sentence "John lost his hat," John and his are coreferences because they relate to the same person. Again, we can build a machine learning classifier to predict corefering entities. The struggle here (as is the same with many machine learning problems) lies in picking features and weighting them appropriately. Many interesting algorithms and methods have been developed to model the entities and its occurrences in a text in order to address this problem such as the Mention-Pair Model (Soon et al 2001, Ng and Cardie 2002) and the Entity-Mention Model (Pasula	et al 2003, Luo et al 2004, Yang et al 2004). Each technique has its strengths and weaknesses that still need to be resolved.
+		</p>
+	</div>
+				</div>
+
+			</div>
+<br/><br/>
+			<div class="section">
+				<p class="header lead">
+					Get Involved
+				</p>
+				<p>
+		Watson encompasses a large variety of problems. There are so many areas with which you can get involved! If you're interested in natural language processing, CS124 and CS224N are great classes to take. Chris Manning and Dan Jurafsky are two professors at Stanford specializing in NLP. CS229 is a good course for learning more about machine learning techniques in depth. Machine learning shows up in many higher level AI applications, and is the basis behind teaching computer systems to improve based on past experiences. On the information retrieval side, check out CS276, which covers important topics ranging from retrieving search results to evaluating and ranking the results. Google also has made significant advances in this area. Take a look at some of the publications by Google Research. And of course, IBM has published many papers on developments with Watson and are now moving into Watson applications in other fields. Those are definitely worth a read!
+	</p>
+			</div>
+
+			%include templates/parts/footer.html
+
+		</div>
+</body>
+

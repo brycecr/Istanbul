@@ -1,0 +1,50 @@
+<head>
+  <title>CS221 Homework Problem 2.4: A* heuristics</title>
+  <link rel="stylesheet" type="text/css" href="homework.css">
+  <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+  <script src="homework-utils.js"></script>
+</head>
+
+<body onload="onLoad('dGNUbmdJMWFBWE4xZEdQLWxqNUl6OHc6MA')">
+<form>
+<div id="headerFields"></div>
+<ol type="a">
+
+<li class="part"> [2 points]
+Let $h_1$ and $h_2$ be consistent heuristics. Define a new heuristic $h(s) = \max\{h_1(s), h_2(s)\}$. Prove that $h$ is consistent.
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [2 points]
+Suppose a heuristic $h$ is consistent for a particular state space model. If new edges are
+added to the search space graph, does $h$ remain consistent for the new model? What
+if edges are removed? In both cases, give a proof or a counterexample.
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [2 points]
+Consider a search problem with start state $s_\text{start}$ and goal state $s_\text{goal}$, where each
+action is reversible with the same cost (i.e., if an action takes you from $s$ to $t$ with cost $c$,
+then some action can take you from $t$ to $s$ with cost $c$).  Suppose you've run Uniform Cost Search (UCS) and
+found the correct answer.  Now consider the problem of finding the minimum cost path
+from a different start state $s_\text{new}$ to a the goal state $s_\text{start}$.
+Define a consistent heuristic for A* for the new model.
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [2 points]
+Assume all edge costs are strictly positive. Define a heuristic $h(s)$ based on
+breadth-first search and show that it is consistent. Now suppose you are given
+a new model with the same graph structure but different costs. How would you
+adapt the old heuristic so that it is consistent for the new model?  Your adaptation
+should take constant time.
+<textarea class="response"></textarea>
+</li>
+
+</ol>
+<div id="footerFields"></div>
+</form>
+</body>

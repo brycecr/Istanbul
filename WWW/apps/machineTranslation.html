@@ -1,0 +1,347 @@
+1;3201;0c<head>
+<title>Intro to CS</title>
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" id="pageTitle" href="../index.html">Stanford Intro CS</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<!--<li>
+						<a class="navLink" href="../index.html#schedule">Schedule</a>
+					</li>-->
+					<!--<li>
+						<a class="navLink" href="../index.html#policies">Policies</a>
+					</li>-->
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Handouts <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../handouts/officeHours.html">Office Hours</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/submit.html">Submitting</a>
+							</li>
+							<li>
+                                <a class="navDropdown" href="../handouts/pythonTutorial.html">Python Tutorial</a>
+                              </li>
+							<!--<li>
+								<a class="navDropdown" href="../handouts/minimax.html">Minimax</a>
+							</li>-->
+							<li>
+								<a class="navDropdown" href="../handouts/markovDecisions.html">Markov Decisions</a>
+							</li>
+              				<li>
+								<a class="navDropdown" href="../handouts/predictingRegrades.html">Regrades</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../handouts/practiceMidterms.html">Practice Midterms</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/docs/MidtermSolution.pdf">Midterm Solutions</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/kmeans.html">K Means</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/bigPicture.html">Big Picture</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Assignments <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li style="padding-left:5px">
+								Programming:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/prog/pacman/pacman.html">Pacman</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/driverlessCar/driverlessCar.html">Driverless Car</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/visualCortex/visualCortex.html">Visual Cortex</a>
+							</li>
+
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Problem Sets:
+							</li>
+
+							<li>
+								<a class="navDropdown" href="../homework/pset/search.html">Search Pset</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../homework/pset/variables.html">Variable Pset</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/pset/learning.html">Learning Pset</a>
+							</li>
+							<!--<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Variable Models Pset</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Machine Learning Pset</a>
+							</li>-->
+							
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Projects:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/finalProject.html">Final Project</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<!--<ul class="nav pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle pull-right  navLink" data-toggle="dropdown" href="#">AI Stories <b class="caret navCaret"></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../apps/driverlessCar.html">Self Driving Car</a>
+                                <a class="navDropdown" href="../apps/machineTranslation.html">Machine Translation</a>
+                                <a class="navDropdown" href="../apps/deepBlue.html">Deep Blue</a>
+                                <a class="navDropdown" href="../apps/watson.html">Watson</a>
+							</li>
+						</ul>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+	</div>
+</div>
+
+	<div class="container">
+
+        <div id="pageHeader">
+            <div id="title">Machine Translation</div>
+        </div>
+
+		<hr>
+
+		<div class="appMedia">
+			<ul class="thumbnails">
+				<li>
+					<div class="thumbnail">
+						<iframe width="450" height="280" src="//www.youtube.com/embed/K-HfpsHPmvw" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="section">
+			<p class="header lead">
+				The Story
+			</p>
+			<div class="row">
+				<div class="span8">
+					<p>
+					  Research in Machine Translation (MT) began in the early 50s, in an attempt
+					  to translate Russian into English during the height of the Cold War.  The early days of MT
+					  mostly used a rule based system to map Russian words and phrases to their English
+					  counterparts.  These early systems suffered from highly literal
+					  translations without a deeper understanding of the semantic meaning and
+					  context of the phrase.  A great example of this is the sentence below
+					  which was translated to Russian and then back to English using an  MT system:
+					</p>
+					<p>
+					  "The spirit is willing, but the
+					  flesh weak."
+					</p>
+					<p>
+					  "The vodka is good, but the meat
+					  is rotten"
+					</p>
+					<p>
+					  After these early attempts, research in MT was relatively dormant from the
+					  late 60s until the early 90s.  With the birth of the internet and
+					  subsequently the massive availability of information, MT saw a revival.
+					  In particular a statistical approach to MT was put forward and heavily
+					  adopted in the mid 90s.  This approach worked much better than its rule
+					  based counter part from the 50s, and many of the statistical MT
+					  techniques that began in this time are still applied today in
+					  state-of-the art MT systems such
+					  as <a href"http://translate.google.com/">Google Translate</a>.
+					</p>
+					<p>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<p class="header lead">
+				AI Techniques
+			</p>
+			<div class="row">
+				<div class="span8">
+				  <p>
+				    One of the main insights to making
+				    headway in MT involves the application
+				    of <a href="http://en.wikipedia.org/wiki/Bayes'_theorem">Bayes' Theorem</a>
+				    to break the problem down into two
+				    smaller and easier to solve
+				    subproblems.  Suppose we have a French
+				    sentence <i>f</i> that we would like to
+				    translate into an English sentence
+				    <i>e</i>.  From a probabilistic
+				    perspective, we would like to find the
+				    sentence <i>e</i> that has maximal
+				    probability given the french sentence
+				    <i>f</i>.  Using Bayes rule we can write
+				    the problem as
+				  </p>
+				  
+				  <p>
+				    <center>
+				      <img src="../img/bayes_mt.png"></img><br/><br/>
+				    </center>
+				  </p>
+				  <br>
+				  <p>
+				    In the last equality we use the fact
+				    that the probability of <i>f</i> doesn't change and
+				    thus does not affect the optimal <i>e</i>
+				    that is chosen.
+				  </p>
+				  <p>
+				    The two terms on the right, <i>p(f|e)</i> and
+				    <i>p(e)</i>  are the translation model and
+				    the language model respectively.
+				    Modelling these two distributions is
+				    much easier than attempting to model
+				    the posterior distribution over
+				    english sentences directly.  One way
+				    of viewing a simple translation model is as
+				    a way of finding the most probable
+				    'bag of words' in
+				    english that correspond to the french
+				    sentence <i>f</i>.  The language model can
+				    then be applied to turn this 'bag of
+				    words' into a
+				    syntactically sensical sentence.
+				    Another great reason to use this
+				    breakdown is that we don't need to use any
+				    french to english translated text to
+				    train the language model. All we need
+				    is huge amounts of english writing and
+				    for that we have an essentially
+				    unlimited supply, the web! A great intro to
+				    statistical MT and
+				    translation models in particular can
+				    be found in Kevin Knight's <a href="http://www.isi.edu/natural-language/mt/wkbk.pdf">famous
+				    tutorial</a>.
+				  </p>
+						
+				  <p>
+				    Once we've successfully learned
+				    translation and language models, the
+				    last step is to actually search
+				    through the space of english sentences
+				    to find the most likely one.  This
+				    problem can be solved using a greedy
+				    discrete state space search algorithm.
+				  </p>
+				</div>
+				<div class="span4">
+					
+				</div>
+
+			</div>
+
+			<div class="section">
+				<p class="header lead">
+					Get Involved
+				</p>
+				<div class="row">
+				  <div class="span8">
+				<p>
+				  A great place to start to learn more
+				  about statistical MT and more generally
+				  Natural Language Processing (NLP) is to
+				  take both CS 124 and CS 224N here at
+				  Stanford.  <a href="http://www.stanford.edu/~jurafsky/">Dan Jurafsky</a>
+				  and
+				  <a href="http://nlp.stanford.edu/manning/">Chris Manning</a>, two
+				  heavyweights in the world of NLP, are the
+				  course instructors.
+				</p>
+				<p>
+				  Beyond that, many open source near
+				  state-of-the-art MT systems exist that
+				  you can dive into to learn more about
+				  the nuts and bolts.  <a href="http://www.statmt.org/moses/">Moses</a>
+				   in
+				  particular is one relatively easy to use
+				  and high performing system.  If you make
+				  it through Knights tutorial above, then
+				  try your hand at building a translation
+				  model and plugging it into the Moses
+				  system to see how it performs!
+				</p>
+				  </div>
+				</div>
+			</div>
+
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2013 &#124; Designed by <a href="http://stanford.edu/~cpiech">Chris</a>. Inspired by <a href="http://njoubert.com/">Niels</a> and <a href="http://cs.stanford.edu/~pliang/">Percy</a>.
+	</p>
+	<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>
+</div>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('.dropdown-toggle').dropdown()
+		$('.thumbnail').tooltip({
+			placement : 'bottom',
+			delay : {
+				show : 750
+			}
+		})
+	});
+</script>
+
+		</div>
+</body>
+

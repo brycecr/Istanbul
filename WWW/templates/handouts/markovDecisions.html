@@ -1,0 +1,121 @@
+<head>
+
+	%include templates/parts/head.html
+
+    <style>
+p {
+    text-align:left;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+
+       
+
+		<!-- Header -->
+		<div id="pageHeader">
+            <div id="title">Markov Decisions</div>
+        </div>
+        <hr/>
+
+        <center>
+        <div>                
+                    <img style="height:400px" src="{{pathToRoot}}img/heli.png"><div style="height:10px">&nbsp;</div>
+                    <p style="text-align:center; width:600px;"><em>The Stanford Autonomous Helicopter. By carefully modelling this seemingly complex real world problem as a Markov Decision Problem, the AI team was able to make the helicopter fly 
+                    <a href = "http://heli.stanford.edu/papers/iser04-invertedflight.pdf">upside down</a>.</em></p>
+                    <div style="height:20px">&nbsp;</div>
+                    </div>
+                    
+        </center>
+
+        <p>This handout consisely outlines what you need to know about Markov Decision Problems for CS221. It is not exhaustive.
+        In fact Markov Decision Problems are interesting enough to fill an olympic swiming pool with handouts.</p>
+         
+        <br/>
+        <h3 class="header lead">The Basic Idea</h3>
+        <div class="row">
+            <div class="span8">
+                <div class="subsection">
+                Deterministic Search Problems (DSPs) are useful. However very few situations in life have actions with deterministic successor states. Markov Decision Problems (MDPs) extend DSPs by modeling the generation of successor states (given a known previous state and a given action) as a probability distribution called a Transition Probability. By relaxing our model we are able to solve a much richer set of problems.
+                </div>
+                <div class="subsection">
+                One way to think of the difference between DSPs and MDPs: DSPs are state search problems where the agent is playing against herself. MDPs are state search problems where the agent is playing against nature. As such for each round aka ply, the agent gets to chose an action and then nature, ambivilantly, choses a successor state.
+                </div>
+                <div class="subsection">
+                As an important note, though our successor states are now going to be generated using a probability distribution, this <b>does not</b> mean that there is necessarily some part of the world that is metaphorically "rolling dice." Instead, in many Markov Decision Problems, using a probabilistic distribution to represent the generation of successor states reflects that we, as agents, may be uncertain about a potentially certain world. 
+                </div>
+                
+            </div>
+            <div class="span4">
+                <div class="faq well">
+                <b>The Markov assumption:</b><br/>The future is conditionally independent of the past, given the present. In Markov Decision problems we assume that successor states are conditionally independent of all states and actions that took place prior to the last state. This assumption is wrong. But useful.
+                </div>
+            </div>
+        </div>
+        
+        <br/>
+        <h3 class="header lead">Modeling</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                Turning a real world problem into a Markov Decision Problem is almost identical to turning a real world problem into a Deterministic Search Problem. The main difference is that for a MDP instead of specifying the successor of a (state, action) pair, you specify a probability distribution over successor states. 
+                </div>
+                <div class="subsection">
+                It is important to be precise about the assumptions that still exist in MDPs, in addition to the Markov assuption. Markov Decision Problems assume that (a) the world exists in discrete states, (b) the start state is known and (c) we know the legal moves from any state. These do not always fit perfectly to the real world, but allow for a computer to create and search the corresponding decision tree.
+                </div>
+                <div class="subsection">
+                One useful limitation to place on our models is to make sure that they have a "finite horizon." Put simply, it is useful if the state search tree (the one that your formulation describes) is not infinetly deep. If you describe a Markov Decision problem with an <b>infinite</b> horizon, you will need a more specialized solver.
+                </div>
+                <div class="subsection">
+                Here is an example MDP expressed as a tree. In this example the agent (Snowden) is in a deterministic state, and can take actions from a discrete set (eg fly to Moscow). However the resulting states (eg be in Moscow) after he takes an action occur with given probabilities:
+                <br/><br/>
+                <center><img style = "height:300px" src="{{pathToRoot}}img/mdp.png"></img></center> 
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <h3 class="header lead">Inference</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                Inference is the orthodox term for the act of applying an algorithm to a formalized problem in order to come up with an answer. There are generally two goals of inference on Markov Decision Problems: (1) Having an agent chose an action given a current state, (2) creating a policy of how agents should act in every possible state. In CS221 are only going to focus on the former (but please come see the staff if you are interested in learning more about policy inference). 
+                </div>
+                <div class="subsection">
+                Expectimax is an inference algorithm for Markov Decision Problems that allows an agent to select a "utility" maximizing action for a given state. The algorithm is a variant of exhaustive depth-first search which takes advantage of the recursive definition of utility. For every state and for every action in the search tree the algorithm assigns a utility. The utility of a state is the maximum utility of any of the legal actions from that state: <br/>
+                <center><img src="{{pathToRoot}}img/eq1.PNG"></img></center> 
+                And the utility of an action is its expected utility:
+                <center><img src="{{pathToRoot}}img/eq2.PNG"></img></center>
+                For all possible resulting states, the probability of that resulting state is multiplied by its utility.
+                </div>
+                <div class="subsection">
+                Expectimax gets its name because the rows of the search tree alternate from being utility is the <b>expect</b>ation of the children to utilities are the <b>max</b> of the children.
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <h3 class="header lead">Learning Transition Distributions</h3>
+        <div class="row">
+            <div class="span12">
+                <div class="subsection">
+                Sometimes, for real world problems the transition distrubutions are known. For example in the pac-man problem, RandomGhost choses a successor state <em>uniformly</em>. 
+                </div>
+                <div class="subsection">
+                In the situations where the transition distributions are not obvious (read: almost every real world example) you must
+                formulate a way to calculate your transition probabilities. Generally these probabilities are learned by watching the world. The easiest way to learn a probability distribution by observation is to "count." Given enough training examples, you can count the fraction of times a given state action pair, <em><b>s</b></em>, <em><b>a</b></em> resulted in successor state <em><b>s'</b></em> and report that fraction as your transition probability. Later on in the class we will cover more advanced ways of learning  probability distributions for Markov Decision Problems.
+                </div>
+            </div>
+        </div>
+		
+		%include templates/parts/footer.html
+
+	</div>
+</body>

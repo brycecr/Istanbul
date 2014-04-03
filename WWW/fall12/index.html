@@ -1,0 +1,436 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <p>
+    <div style="float:left; clear:left">
+    <img src="stanford-seal.gif"/>
+  </div>
+  <div class="top" style="font-size:20; font-weight:bold">
+    CS221: Artificial Intelligence: Principles and Techniques
+  </div>
+  <div class="top">
+  Autumn 2012-2013
+  </div>
+  <div class="top">
+    <a href="https://www.google.com/calendar/embed?src=MWI3bDJxb3FnYzNkYmdnY2NtcjlydWM4czBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">[Calendar]</a>
+    <a href="#syllabus">[Syllabus]</a>
+  </div>
+</p>
+
+<div class="section">
+  <span class="header">Course Information</span>
+
+  <div class="section"><b>Time/location:</b>
+    <ul>
+      <li>Lectures: Tue/Thu 9-10:15am in NVIDIA Auditorium</li>
+      <li>Sections: will happen based on need; see <a href="https://www.google.com/calendar/embed?src=MWI3bDJxb3FnYzNkYmdnY2NtcjlydWM4czBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">calendar</a></li>
+      <li>Office hours: see <a href="https://www.google.com/calendar/embed?src=MWI3bDJxb3FnYzNkYmdnY2NtcjlydWM4czBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">calendar</a></li>
+    </ul>
+  </div>
+
+  <div class="section"><b>Instructor:</b> <a href="http://cs.stanford.edu/~pliang">Percy Liang</a></div>
+  <div class="section"><b>Course assistants:</b> 
+    <ul>
+      <li><a href="http://stanford.edu/~angeli">Gabor Angeli</a></li>
+      <li>Naran Bayanbat</li>
+      <li>Thiraphat Charoensripongsa</li>
+      <li>Rohan Kamath</li>
+      <li>Tiffany Low</li>
+      <li>Tyler O'Neil</li>
+      <li>Aju Thalappillil Scaria</li>
+      <li>Cameron Schaeffer</li>
+      <li>Hao Su</li>
+    </ul>
+  </div>
+
+  <div class="section"><b>Contact:</b>
+    Please use <a href="https://piazza.com/class#fall2012/cs221">Piazza</a> for all questions related to lectures, homeworks, and projects.
+    For private questions, email <a href="mailto:cs221-aut1213-staff@lists.stanford.edu">cs221-aut1213-staff@lists.stanford.edu</a>.
+  </div>
+
+  <div class="section"><b>Calendar</b>: look <a href="https://www.google.com/calendar/embed?src=MWI3bDJxb3FnYzNkYmdnY2NtcjlydWM4czBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">here</a> for dates/times of all lectures, sections, office hours, due dates.</div>
+
+  <div class="section"><b>Course description:</b>
+    Problems in game playing, natural language processing, computer vision, robotics are challenging
+    due to the inherent noise/uncertainty and computational complexity.
+    This course provides the mathematical and algorithmic framework for tackling these sorts of problems.
+    Topics include search, decision theory, graphical models, machine learning, and various applications.
+  </div>
+
+  <div class="section"><b>Book:</b> <a href="http://aima.cs.berkeley.edu">Russell and Norvig.  Artificial Intelligence: A Modern Approach, 3rd. edition</a>.
+  </div>
+
+  <div class="section"><b>Prerequisites:</b> a good grasp of basic data structures and algorithms,
+    probability, linear algebra; solid programming skills.</div>
+
+  <div class="section"><b>Coursework and grading</b>:
+    <ul>
+      <li>Homeworks (30%): there will be weekly homeworks.
+        All homework problems must be submitted online by 11:59pm.
+        No late homeworks will be accepted, but the lowest homework will be dropped.
+      </li>
+      <li>Projects (30%): there will be two programming projects (to be done individually) and one <a href="projects/final.html">open-ended project</a>
+      (done in groups of up to three).  No late projects will be accepted.
+      </li>
+      <li>Midterm (20%): open-book/open-notes, 3 hours.  Date/time: Wed Oct 24 6-9pm.  Location: Cemex Auditorium.
+      If you have a conflict, <a href="https://docs.google.com/spreadsheet/viewform?formkey=dDh6NXBVUGdjUXlhVlRsRUluMGFzWGc6MQ#gid=0">submit a request</a> to take it at another time (do this by Sep 30).
+      <ul>
+        <li> A set of <a href="exams/midterm_practice.pdf">practice problems</a> and their <a href="exams/midterm_practice_solution.pdf">solutions</a> are available </li>
+      </ul>
+      </li>
+      <li>Final exam (20%): open-book/open-notes, 3 hours.  <a href="http://studentaffairs.stanford.edu/registrar/autumn-exams">Date/time: Mon Dec 10 12:15-3:15pm.  Location: NVIDIA AUDITORIUM</a></li>
+      <ul>
+        <li> A set of <a href="exams/final_practice.pdf">practice problems</a> and their <a href="exams/final_practice_solution.pdf">partial solutions</a> are available </li>
+      </ul>
+      <li> <b>Check my grade</b>: Enter your sunetid below, and we will send you
+           an email with your current course grade, as it exists in our
+           gradebook.
+        <ul>
+          <li> Your sunetid is the first part of your email address. For example,
+               if your email is 'abc@stanford.edu' then your sunetid would be
+               'abc'.
+          <li> The scores from this system may lag behind regrades.
+               If they are not accurate even after the next assignment has been
+               released, please let us know.
+               For example, if you submit a regrade for homework i, and it is
+               still incorrect when homework i+1 is released, please
+               let us know.
+        </ul>
+        <div><form action="http://plato42.stanford.edu:8221/">
+          <label for="grade_lookup"> sunetid: </label>
+          <input id="grade_lookup" type="text" name="sunetid" />
+          <input type=submit />
+        </form></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section"><b>Collaboration policy:</b> we encourage students to form study groups and
+  discuss homeworks and projects.  However, students must write up homeworks and
+  code from scratch independently without referring to any notes from the joint session.
+  </div>
+
+  <div class="section">
+    All lectures are taped and can be watched online for
+  <a href="http://scpd.stanford.edu/">SCPD students</a> and <a href="https://myvideosu.stanford.edu/OCE/GradCourseInfo.aspx?coll=c4cf86f2-8c90-4ab1-8235-2e4e7b513d1b&course=CS221">full-time students</a>.</div>
+
+</div>
+
+<div class="section">
+  <a name="syllabus"><span class="header">Syllabus</span></a>
+  <p>Note: the dates listed here are preliminary and subject to change.</p>
+  <table>
+    <tr>
+      <th>Day</th>
+      <th>Topic</th>
+      <th>Reading</th>
+      <th>Slides</th>
+      <th>Assignment</th>
+    </tr>
+
+    <tr><td colspan="100"><hr/></tr>
+
+    <tr>
+      <td>Tue Sep 25</td>
+      <td>Overview</td>
+      <td>1.1-1.4, 2.1-2.4</td>
+      <td>
+        <a href="lectures/overview.html">html</a>
+        <a href="lectures/overview.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/overview.pdf">pdf</a>
+      </td>
+      <td>
+        HW
+        <a href="homeworks/homework0.1.html">0.1</a>
+        (due Oct 1)
+        <br/>
+        HW
+        <a href="homeworks/homework1.1.html">1.1</a>
+        <a href="homeworks/homework1.2.html">1.2</a>
+        <a href="homeworks/homework1.3.html">1.3</a>
+				<a href="homeworks/homework1_solution.pdf">[solutions]</a>
+        (due Oct 3)
+        <br/>
+        <a href="projects/tutorial/tutorial.html">P0: Python tutorial</a> (due Oct 4)</td>
+      </td>
+    </tr>
+
+    <tr><td colspan="100"><hr/></tr>
+    <tr><td></td><td><b>[State space models]</b></td></tr>
+
+    <tr>
+      <td>Thu Sep 27</td>
+      <td>Search: deterministic state space models</td>
+      <td>3.1-3.4</td>
+      <td>
+        <a href="lectures/search.html">html</a>
+        <a href="lectures/search.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/search.pdf">pdf</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tue Oct 2</td>
+      <td>Search: algorithms, A* heuristics, relaxation</td>
+      <td>3.5-3.6, 10.1-10.2</td>
+      <td>
+        <a href="lectures/search.html#slideId=Algorithms">html</a>
+        <a href="lectures/search.html#slideId=Algorithms&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/search.pdf">pdf</a>
+      </td>
+      <td>
+        HW
+        <a href="homeworks/homework2.1.html">2.1</a>
+        <a href="homeworks/homework2.2.html">2.2</a>
+        <a href="homeworks/homework2.3.html">2.3</a>
+        <a href="homeworks/homework2.4.html">2.4</a>
+        (due Oct 8)
+      </td>
+    </tr>
+
+    <tr>
+      <td>Thu Oct 4</td>
+      <td>Games: Markov decision processes</td>
+      <td>17.1-17.3</td>
+      <td>
+        <a href="lectures/games.html">html</a>
+        <a href="lectures/games.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/games.pdf">pdf</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tue Oct 9</td>
+      <td>Games: Markov decision processes</td>
+      <td>17.1-17.3</td>
+      <td>
+        <a href="lectures/games.html#slideId=Value_iteration">html</a>
+        <a href="lectures/games.html#slideId=Value_iteration&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/games.pdf">pdf</a>
+      </td>
+      <td>
+        <a href="homeworks/homework3.html">HW3</a> (due Oct 19)
+				<a href="homeworks/hw3_solution.pdf">[solutions]</a>
+        <br/>
+        <a href="projects/multiagent/multiagent.html">P1: Multi-Agent</a> (due Oct 20)
+      </td>
+    </tr>
+
+    <tr>
+      <td>Thu Oct 11</td>
+      <td>Games: minimax, evaluation functions</td>
+      <td>5.1-5.5</td>
+      <td>
+        <a href="lectures/games.html#slideId=Policy_optimization_in_games">html</a>
+        <a href="lectures/games.html#slideId=Policy_optimization_in_games&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/games.pdf">pdf</a>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr><td colspan="100"><hr/></tr>
+    <tr><td></td><td><b>[Variable-based models]</b></td></tr>
+
+    <tr>
+      <td>Tue Oct 16</td>
+      <td>Constraints: constraint satisfaction problems, factor graphs</td>
+      <td>6.1-6.5</td>
+      <td>
+        <a href="lectures/constraints.html">html</a>
+        <a href="lectures/constraints.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/constraints.pdf">pdf</a>
+      </td>
+      <td>
+        <a href="homeworks/homework4.html">HW4</a> (due Oct 24)
+      </td>
+    </tr>
+
+    <tr>
+      <td>Thu Oct 18</td>
+      <td>Constraints: independence, variable elimination</td>
+      <td>14.4</td>
+      <td>
+        <a href="lectures/constraints.html#slideId=Graph_structure_and_independence">html</a>
+        <a href="lectures/constraints.html#slideId=Graph_structure_and_independence#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/constraints.pdf">pdf</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tue Oct 23</td>
+      <td>Constraints: Markov networks</td>
+      <td>14.5,15.1-15.5</td>
+      <td>
+        <a href="lectures/constraints.html#slideId=Markov_networks">html</a>
+        <a href="lectures/constraints.html#slideId=Markov_networks#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/constraints.pdf">pdf</a>
+      </td>
+      <td>
+        <a href="homeworks/hw5.pdf">HW5</a> (due Nov 1)
+        <br/>
+        <a href="projects/tracking/tracking.html">P2: Probabilistic Inference</a> (due <font color="darkred"> Nov 6</font>)
+      </td>
+    </tr>
+
+    <tr>
+      <td>Thu Oct 25</td>
+      <td>Constraints: Gibbs sampling, particle filtering</td>
+      <td>14.5,15.1-15.5</td>
+      <td>
+        <a href="lectures/constraints.html#slideId=Approximate_algorithms">html</a>
+        <a href="lectures/constraints.html#slideId=Approximate_algorithms&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/constraints.pdf">pdf</a>
+        <a href="lectures/inference-demo.html">demo</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tue Oct 30</td>
+      <td>Generative: Markov models, Bayesian networks, HMMs</td>
+      <td>14.1-14.3</td>
+      <td>
+        <a href="lectures/generative.html">html</a>
+        <a href="lectures/generative.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/generative.pdf">pdf</a>
+      </td>
+      <td>
+        <a href="homeworks/hw6.pdf">HW6</a> (due Nov 7)
+      </td>
+    </tr>
+
+    <tr><td colspan="100"><hr/></tr>
+    <tr><td></td><td><b>[Machine learning]</b></td></tr>
+
+    <tr>
+      <td>Thu Nov 1</td>
+      <td>Learning: supervised learning, linear models</td>
+      <td>18.1-18.2, 18.6, 18.8</td>
+      <td>
+        <a href="lectures/learning.html">html</a>
+        <a href="lectures/learning.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/learning.pdf">pdf</a>
+        <a href="lectures/learning-demo.html">demo</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tue Nov 6</td>
+      <td>Learning: loss minimization</td>
+      <td></td>
+      <td>
+        <a href="lectures/learning.html#slideId=linearPredictors">html</a>
+        <a href="lectures/learning.html#slideId=linearPredictors&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/learning.pdf">pdf</a>
+      </td>
+      <td>
+        <a href="homeworks/hw7.pdf">HW7</a> 
+        + <a href="homeworks/hw7.zip">code</a> (due Nov 16)
+      </td>
+    </tr>
+
+    <tr>
+      <td>Thu Nov 8</td>
+      <td>Learning: loss minimization, maximum likelihood</td>
+      <td>20.2.1, 20.2.2</td>
+      <td>
+        <a href="lectures/learning.html#slideId=nonlinearity">html</a>
+        <a href="lectures/learning.html#slideId=nonlinearity&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/learning.pdf">pdf</a>
+      </td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>Tue Nov 13</td>
+      <td>Learning: unsupervised learning, reinforcement learning</td>
+      <td>21.1-21.6</td>
+      <td>
+        <a href="lectures/learning.html#slideId=maximumLikelihood">html</a>
+        <a href="lectures/learning.html#slideId=maximumLikelihood&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/learning.pdf">pdf</a>
+      </td>
+      <td>
+        <br/>P3: abstract (1 paragraph) due
+      </td>
+    </tr>
+
+    <tr><td colspan="100"><hr/></tr>
+    <tr><td></td><td><b>[Logic]</b></td></tr>
+
+    <tr>
+      <td>Thu Nov 15</td>
+      <td>Logic: propositional logic</td>
+      <td>7.3-7.6</td>
+      <td>
+        <a href="lectures/logic.html">html</a>
+        <a href="lectures/logic.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/logic.pdf">pdf</a>
+        <a href="lectures/logic.html#slideId=propositionalLogicDemo">demo</a>
+      </td>
+      <td>
+        <a href="homeworks/hw8.pdf">HW8</a> (due Nov 30)
+      </td>
+    </tr>
+
+    <tr>
+      <td>Tue Nov 27</td>
+      <td>Logic: propositional logic</td>
+      <td>8.1-8.3,9.1-9.5</td>
+      <td>
+        <a href="lectures/logic.html#slideId=formulasModels">html</a>
+        <a href="lectures/logic.html#slideId=formulasModels&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/logic.pdf">pdf</a>
+      </td>
+      <td>P3: progress report (1 page) due</td>
+    </tr>
+
+    <tr>
+      <td>Thu Nov 29</td>
+      <td>Logic: first-order logic</td>
+      <td></td>
+      <td>
+        <a href="lectures/logic.html#slideId=Specification_of_first-order_logic">html</a>
+        <a href="lectures/logic.html#slideId=Specification_of_first-order_logic&mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/logic.pdf">pdf</a>
+      </td>
+      <td></td>
+    </tr>
+
+    <tr><td colspan="100"><hr/></tr>
+    <tr><td></td><td><b>[Applications]</b></td></tr>
+
+    <tr>
+      <td>Tue Dec 4</td>
+      <td>Language, vision, summary</td>
+      <td></td>
+      <td>
+        <a href="lectures/applications.html">html</a>
+        <a href="lectures/applications.html#mode=print&numRowsPerPage=1&numColsPerPage=1">one</a>
+        <a href="lectures/applications.pdf">pdf</a>
+      </td>
+    </tr>
+    <tr>
+      <td>Thu Dec 6</td>
+      <td>Robotics (guest lecture by <a href="http://robotics.stanford.edu/~ok">Oussama Khatib</a>)</td>
+      <td></td>
+      <td></td>
+      <td>P3: report (3 pages max + appendix) due</td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-35433298-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+</body>

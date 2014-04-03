@@ -1,0 +1,55 @@
+<head>
+  <title>CS221 Homework Problem 2.1: word segmentation</title>
+  <link rel="stylesheet" type="text/css" href="homework.css">
+  <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+  <script src="homework-utils.js"></script>
+</head>
+
+<body onload="onLoad('dDdKeEpnRXdDdDVVUVNlenJVYXkzZ0E6MA')">
+
+<form>
+<div id="headerFields"></div>
+
+<ol type="a">
+<b>Setup</b>.
+In some languages such as Chinese, sentences are written without spaces between
+the words, and an important first step in language processing is segmenting
+sentences into words.
+Formally, we have a set of characters (in English, these would be letters).
+A sentence is a sequence of characters.
+We also have a dictionary $D$, which is the set of words (each word is also a sequence of characters).
+Given a sentence, the goal is to split the sentence into words from the dictionary.
+For example, if $D = \{i, cat, dog, see, sleep, the\}$, then given the sentence <i>iseethecat</i>,
+[<i>i, see, the, cat</i>] is a possible segmentation.
+
+
+<li class="part"> [3 points]
+Suppose maximizing our utility corresponds to minimizing the number of words in the output segmentation.
+Construct a deterministic state space model for this task.
+What search algorithms (out of the following - DAG search, BFS, DFS, UCS, A*, Bellman-Ford) would produce a minimum cost path for your model?
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [2 point]
+If our goal is to maximize the number of words in the segmentation, revise the
+state space model from above.  Which search algorithms work now?
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [3 point]
+Instead of minimizing the number of words in the segmentation, suppose we had at our disposal a function $\text{Fluency}(w_1, w_2)$
+which returns a number (either positive or negative) representing the compatibility of $w_1$ and $w_2$ being next to each other
+(for example, $\text{Fluency}(an, cat)$ would be low and $\text{Fluency}(a, cat)$ would be high).
+Suppose our utility function is the sum of the fluencies of adjacent words; formally,
+if the segmentation produces words $w_1, \dots, w_n$, then the utility is $\sum_{i=2}^n \text{Fluency}(w_{i-1}, w_i)$.
+Modify the state space model from above to find the most fluent segmentation.
+<textarea class="response"></textarea>
+</li>
+
+</ol>
+<div id="footerFields"></div>
+</form>
+</body>

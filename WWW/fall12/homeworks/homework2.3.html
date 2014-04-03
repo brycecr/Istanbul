@@ -1,0 +1,63 @@
+<head>
+  <title>CS221 Homework Problem 2.3: time and money</title>
+  <link rel="stylesheet" type="text/css" href="homework.css">
+  <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+  <script src="homework-utils.js"></script>
+</head>
+
+<body onload="onLoad('dG4xY2V1WmlvTTZrTWZGczBVVU1pVGc6MA')">
+<form>
+<div id="headerFields"></div>
+<ol type="a">
+
+<b>Setup</b>: Suppose we have a set of cities $C$ which are connected by a set of roads $R$,
+where traversing each road $(i,j) \in R$ requires paying $m_{i,j}$ dollars for the toll
+and takes some time $t_{i,j}$.
+Your goal is to go from city $c_\text{start} \in C$ to city $c_\text{goal} \in C$.
+For a path $p$, let $\text{PathMoney}(p)$ be the total money paid in traversing $p$,
+and let $\text{PathTime}(p)$ be the total time spent traversing $p$.
+
+<li class="part"> [1 point]
+Suppose such that one unit of time is worth $m$ dollars to you.
+Define a utility function in terms of $\text{PathMoney}(p)$ and $\text{PathTime}(p)$.
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [3 point]
+Construct a state space model and specify an algorithm to maximize the utility function you described above.
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [1 point]
+How does PathMoney and PathTime of the optimal path change as you vary $m$?
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [1 point]
+Suppose you have a budget of $M$ dollars.
+You're in a rush and would like to just minimize the amount of time you
+spend on the road subject to the constraint that you can't spend more than $M$ dollars.
+Write down your utility function in terms of PathMoney and PathTime.
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [4 points]
+Construct a state space model and specify an algorithm to maximize the utility function you described above.
+Hint: assume that all $m_{i,j}$ are non-negative integers.
+How big is your state space?
+<textarea class="response"></textarea>
+</li>
+
+<li class="part"> [2 points]
+Describe a non-trivial consistent A* heuristic based on state abstraction. Provide a short and concise 
+justification for the consistency of your heuristic.
+<textarea class="response"></textarea>
+</li>
+
+</ol>
+<div id="footerFields"></div>
+</form>
+</body>

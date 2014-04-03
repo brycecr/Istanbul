@@ -1,0 +1,75 @@
+<head>
+    
+    <title>CS221</title>
+    
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    
+    <!-- Styles -->
+    
+    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    
+    <!-- Java Script -->
+    <script src="../plugins/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" id="pageTitle" href="#">Stanford CS221</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a class="navLink" href="#information">Information</a></li>
+              <li><a class="navLink" href="#schedule">Schedule</a></li>
+              <li><a class="navLink" href="#policies">Policies</a></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Assignments <b class="caret navCaret" ></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li><a class="navDropdown" href="">Pacman</a></li>
+                    <li><a href="">Finding Home</a></li>
+                  </ul>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                  <a class="dropdown-toggle pull-right  navLink" data-toggle="dropdown" href="#">Applications <b class="caret navCaret"></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li><a href="">Coming soon...</a></li>
+                  </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+
+        
+        
+        <div id="header">
+            <div id="logo">
+                <img src="img/stanford_seal.gif"/>
+            </div>
+            <div id="headerText">
+                <div id="title">
+                    Artificial Intelligence: Principles and Techniques
+                </div>
+                <div>
+                    Summer 2012 - 2013
+                </div>
+                <div>
+                    Tuesday, Thursday 10-11:50am in <a href="http://goo.gl/maps/Pxcbt">Gates B3</a>
+                </div>
+            </div>
+        </div>
+        
+        
+<hr>
+

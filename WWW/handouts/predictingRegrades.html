@@ -1,0 +1,302 @@
+<head>
+
+<title>Intro to CS</title>
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>
+
+	<style>
+		p {
+			text-align: left;
+		}
+	</style>
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" id="pageTitle" href="../index.html">Stanford Intro CS</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<!--<li>
+						<a class="navLink" href="../index.html#schedule">Schedule</a>
+					</li>-->
+					<!--<li>
+						<a class="navLink" href="../index.html#policies">Policies</a>
+					</li>-->
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Handouts <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../handouts/officeHours.html">Office Hours</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/submit.html">Submitting</a>
+							</li>
+							<li>
+                                <a class="navDropdown" href="../handouts/pythonTutorial.html">Python Tutorial</a>
+                              </li>
+							<!--<li>
+								<a class="navDropdown" href="../handouts/minimax.html">Minimax</a>
+							</li>-->
+							<li>
+								<a class="navDropdown" href="../handouts/markovDecisions.html">Markov Decisions</a>
+							</li>
+              				<li>
+								<a class="navDropdown" href="../handouts/predictingRegrades.html">Regrades</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../handouts/practiceMidterms.html">Practice Midterms</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/docs/MidtermSolution.pdf">Midterm Solutions</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/kmeans.html">K Means</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../handouts/bigPicture.html">Big Picture</a>
+							</li>
+
+						</ul>
+					</li>
+
+					<li class="dropdown">
+						<a class="dropdown-toggle navLink" data-toggle="dropdown" href="#">Assignments <b class="caret navCaret" ></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li style="padding-left:5px">
+								Programming:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/prog/pacman/pacman.html">Pacman</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/driverlessCar/driverlessCar.html">Driverless Car</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="../homework/prog/visualCortex/visualCortex.html">Visual Cortex</a>
+							</li>
+
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Problem Sets:
+							</li>
+
+							<li>
+								<a class="navDropdown" href="../homework/pset/search.html">Search Pset</a>
+							</li>
+                            <li>
+								<a class="navDropdown" href="../homework/pset/variables.html">Variable Pset</a>
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/pset/learning.html">Learning Pset</a>
+							</li>
+							<!--<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Variable Models Pset</a>
+							</li>
+							<li>
+							<a class="navDropdown" href="/homework/prog/pacman/pacman.html">Machine Learning Pset</a>
+							</li>-->
+							
+							<li class="divider"></li>
+							<li style="padding-left:5px">
+								Projects:
+							</li>
+							<li>
+								<a class="navDropdown" href="../homework/finalProject.html">Final Project</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<!--<ul class="nav pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle pull-right  navLink" data-toggle="dropdown" href="#">AI Stories <b class="caret navCaret"></b></a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<li>
+								<a class="navDropdown" href="../apps/driverlessCar.html">Self Driving Car</a>
+                                <a class="navDropdown" href="../apps/machineTranslation.html">Machine Translation</a>
+                                <a class="navDropdown" href="../apps/deepBlue.html">Deep Blue</a>
+                                <a class="navDropdown" href="../apps/watson.html">Watson</a>
+							</li>
+						</ul>
+					</li>
+				</ul>-->
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<div id="title">
+				Predicting Regrades
+			</div>
+		</div>
+		<hr/>
+
+		<center>
+			<div>
+				<img style="height:300px" src="../img/regrades.png">
+				<div style="height:10px">
+					&nbsp;
+				</div>
+				<p style="text-align:center; width:500px;">
+					<em>For each student we have a large set of observed variables. The three grades the student received on the first pset $g_1, g_2, g_3$, how much they enjoyed each problem $e_1, e_2, e_3$ and how much time it took them $t_1, t_2, t_3$. We also know the student's background $b \in \left\{ {bs, ms, phd, scpd}\right\}.$</em>
+				</p>
+				<div style="height:20px">
+					&nbsp;
+				</div>
+			</div>
+
+		</center>
+
+		<p>
+			Getting accurate feedback for an assignment is a cornerstone of the educational process. But it can be obscured by the presence of grading errors.
+			To maximize our grading accuracy we can use related variables to notice which assignments have suprisingly high or suprisingly low grades and warent a deeper inspection. This handout describes the problem of predicting which homeworks have been misgraded (an unsolved problem) using bayesian nets (a beautiful formalization).
+		</p>
+
+		<br/>
+		<h3 class="header lead">The Basic Idea</h3>
+		<div class="row">
+			<div class="span8">
+				<div class="subsection">
+					The challenge is simple. Design a bayesian network which you think best describes the causal relationship between
+					the given variables. We will chose five finalists, that we will evaluate on real data. The winner will be used for a research project.
+					Based on the predictions of the winning model, we will regrade up to 10 homeworks (an additional 10 homeworks will be regraded as part of a control set, chosen randomly).
+				</div>
+				<div class="subsection">
+					You must formulate your prediction as a bayesian network (watch out for directed cycles) for two reasons. (1) We are practicing bayesian networks and
+					(2) it is a great model for this task. Your network is allowed to have additional variables, that are observed (for example a variable for a student's <a href="http://en.wikipedia.org/wiki/Grit_(personality_trait)">grit</a>)-- we haven't gone over how
+					you can populate CPDs for networks that has unobserved variables. That is the material for thursday's class. If you use unobserved variables, your model could be the class demo :). As a note, though you might be tempted to include a lot of causal
+					relationships know that when you have a small amount of observations to learn from, simple models tend to do better.
+				</div>
+				<div class="subsection">
+					Thus, your task is straight forward: come up with the best probabilistic description of how the world of homework grades works.
+				</div>
+			</div>
+
+			<div class="span4">
+				<div class="faq well">
+					<b>Contest:</b>
+					<br/>
+					Submit a model by Monday at 11:59pm and stand a chance to win extra credit and make a novel contribution to education research.
+				</div>
+			</div>
+		</div>
+
+		<br/>
+		<h3 class="header lead">Modeling</h3>
+		<div class="row">
+			<div class="span12">
+				<div class="subsection">
+					After giving it some thought I imagined the world working as depicted in Model A. The variables I have introduced are, for each assignment $i$ there is a difficulty $d_i$ and each student has a variable "grit" which represents
+					how hard the student is willing to work to overcome obstacles. It turns out that grit, and having a <a href="http://bigthink.com/in-their-own-words/the-difference-between-a-fixed-mindset-and-a-growth-mindset">growth mindset</a> are some of the best predictors of student success.
+					I am going to assume for my model that $g \in \left\{ {+, v+, v, v-, -}\right\}$, $t \in \left\{ {low, med, high}\right\}$, $d \in \left\{ {low, med, high}\right\}$, $grit \in \left\{ {low, med, high}\right\}$, $e \in \left\{ {1, 2, 3, 4, 5}\right\}$. In the models
+					we can share CPTs over all nodes of the same type.
+				</div>
+
+				<div class="row">
+					<div class="span5" style="margin-left:50px;">
+						<center><img src="../img/complexRegrade.png"></img>
+							<p class="psetImgCaption">
+								Model A: The variables and their relationships. Depicts a single student.
+							</p>
+						</center>
+					</div>
+					<div class="span5 offset1">
+						<center><img src="../img/simpleRegrade.png"></img>
+							<p class="psetImgCaption">
+								Model B: Also only depicts one student.
+							</p>
+						</center>
+					</div>
+				</div>
+
+				<div class="subsection">
+					Though model A, might be a better description of the world, the CPT for time is problematically big. The size of the table is equal to the product of the size of the domains of time's parents, which is 45! I think that we don't have quite enough data to accurately fill the CPT. Therefore I think the best model for predicting regrades
+					is model B which makes the necessary, but incorrect, assumption that enjoyment does not directly cause someone to spend more or less time on homework.
+				</div>
+
+				<div class="subsection">
+					A few asides: First, I have assumed that student backgrounds are independent of all the variables depicted in the models. Second, I think that what students are interested in does effect if they enjoy a problem. But since the enjoy variables are observed, knowing a persons interest does not change my belief about what grade they will get.</div>
+				<div class="subsection">
+					Have a better idea?</div>
+				
+			</div>
+		</div>
+
+		<br/>
+		<h3 class="header lead">Submission</h3>
+		<div class="row">
+			<div class="span12">
+				<div class="subsection">
+					Participating in this challenge is optional. If you wish to participate, email a model to the staff by Monday at midnight with the subject "Modeling Regrades." We will then chose our favorite five as finalists.</div>
+				<div class="subsection">
+					In your submission be precise about the bayes net you are proposing and justify your choices (if possible please include a figure). Specifically we need: the variables, their domains, which arcs have the same CPTs.
+				</div>
+				<div class="subsection">
+					The student whose model best fits the data will have their worst pset grade (for a single problem) changed to a +.
+				</div>
+			</div>
+		</div>
+
+		
+
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2013 &#124; Designed by <a href="http://stanford.edu/~cpiech">Chris</a>. Inspired by <a href="http://njoubert.com/">Niels</a> and <a href="http://cs.stanford.edu/~pliang/">Percy</a>.
+	</p>
+	<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>
+</div>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('.dropdown-toggle').dropdown()
+		$('.thumbnail').tooltip({
+			placement : 'bottom',
+			delay : {
+				show : 750
+			}
+		})
+	});
+</script>
+
+	</div>
+</body>
