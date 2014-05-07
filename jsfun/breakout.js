@@ -14,8 +14,8 @@ var BRICK_HEIGHT = 10;
 
 var BALL_RADIUS = 10;
 
-var PADDLE_WIDTH = 40;
-var PADDLE_HEIGHT = 10;
+var PADDLE_WIDTH = 80;
+var PADDLE_HEIGHT = 20;
 
 var numlives = 3;
 var bricksLeft = 100;
@@ -34,7 +34,7 @@ for (var i=0; i < NUM_ROWS; ++i) {
 
 var ball = new GCircle(200,400,BALL_RADIUS);
 ball.vx = Math.random()*20-10;
-ball.vy = 3;
+ball.vy = 6;
 stage.add(ball);
 
 var paddle = new GRect(180,550,PADDLE_WIDTH,PADDLE_HEIGHT);
@@ -42,7 +42,12 @@ stage.add(paddle);
 
 function detectWalls() {
     if (ball.position.y > STAGE_HEIGHT) {
-        console.log("you lose");
+        var text = new PIXI.Text("YOU LOSE", {font:"50px Arial", fill:"red"});
+        text.position.x = STAGE_WIDTH/2 - text._width/2;
+        text.position.y = STAGE_HEIGHT/2;
+        stage.addChild(text);
+        ball.vx = 0;
+        ball.vy = 0;
         return;
     } else if (ball.position.x < 0 || ball.position.x > STAGE_WIDTH) {
         ball.vx = -ball.vx;
@@ -59,9 +64,10 @@ function detectCollision() {
             var collider = stage.getElementAt(ball.position.x+i, ball.position.y+j);
             if (collider !== null) {
                 console.log(collider);
-                ball.vy = -ball.vy*1.01;
+                ball.vy = -ball.vy;
                 if (collider !== paddle) {
                     stage.remove(collider);
+                    bricksLeft -= 1;
                 }
                 return;
             }
@@ -79,5 +85,13 @@ function drawFrame() {
     var mousex = stage.getMousePosition().x;
     if (mousex > 0 && mousex < STAGE_WIDTH-PADDLE_WIDTH) {
         paddle.position.x = mousex;
+    }
+    if (bricksLeft === 0) {
+        var text = new PIXI.Text("YOU WIN", {font:"50px Arial", fill:"red"});
+        text.position.x = STAGE_WIDTH/2 - text._width/2;
+        text.position.y = STAGE_HEIGHT/2;
+        stage.addChild(text);
+        ball.vx = 0;
+        ball.vy = 0;
     }
 }
