@@ -15,7 +15,7 @@ var BRICK_HEIGHT = 10;
 var BALL_RADIUS = 10;
 
 var PADDLE_WIDTH = 40;
-var PADDLE_HEIGHT = 20;
+var PADDLE_HEIGHT = 10;
 
 var numlives = 3;
 var bricksLeft = 100;
@@ -76,5 +76,8 @@ function drawFrame() {
     
     detectCollision();
     
-    paddle.position.x = stage.getMousePosition().x;
+    var mousex = stage.getMousePosition().x;
+    if (mousex > 0 && mousex < STAGE_WIDTH-PADDLE_WIDTH) {
+        paddle.position.x = mousex;
+    }
 }
