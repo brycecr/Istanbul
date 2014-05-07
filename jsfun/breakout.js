@@ -1,43 +1,80 @@
-var stage = new PIXI.Stage(0xFFFFFF); // make a white stage
+var STAGE_WIDTH = 400;
+var STAGE_HEIGHT = 600;
 
-var renderer = PIXI.autoDetectRenderer(400, 300);
+var stage = setBackground(STAGE_WIDTH, STAGE_HEIGHT, 0xFFFFFF);
 
-document.body.appendChild(renderer.view);
+/* local game state */
+var TOP_GAP = 20;
+var BRICK_GAP = 5;
+var BRICKS_ROW = 10;
+var NUM_ROWS = 10;
 
-//requestAnimFrame(animate);
+var BRICK_WIDTH = Math.floor((STAGE_WIDTH - BRICK_GAP*(BRICKS_ROW+2))/BRICKS_ROW);
+var BRICK_HEIGHT = 10;
 
-var graphics = new PIXI.Graphics();
- 
-// begin a green fill..
-graphics.beginFill(0x00FF00);
- 
-graphics.drawRect(10,10,100,50);
+var BALL_RADIUS = 10;
 
-// end the fill
-graphics.endFill();
+var PADDLE_WIDTH = 40;
+var PADDLE_HEIGHT = 20;
 
-var thing = new PIXI.Graphics();
-//thing.beginFill(0xFF0000);
-thing.lineStyle(1, 0x000000, 1.0)
-thing.drawCircle(100,100,20);
+var numlives = 3;
+var bricksLeft = 100;
 
-//thing.endFill();
- 
-// add it the stage so we see it on our screens..
-stage.addChild(graphics);
-stage.addChild(thing);
+var colors = [0xFF0000, 0xFFFF00, 0xFF00FF, 0x00FFFF, 0x00FF00];
 
-/*
-var count = 0;
-function animate() {
-    requestAnimFrame(animate);
-     
-   // thing.clear();
-//    count +=1;
-    //thing.beginFill(0xFF0000);
-//    thing.drawCircle(100,100,20+count);
-    //thing.endFill();
-    
-    renderer.render(stage);
+for (var i=0; i < NUM_ROWS; ++i) {
+    for (var j=0; j < BRICKS_ROW; ++j) {
+        var rect = new GRect(BRICK_GAP + (i*(BRICK_WIDTH+BRICK_GAP)), 
+                             TOP_GAP + BRICK_GAP + (j*(BRICK_HEIGHT+BRICK_GAP)), 
+                             BRICK_WIDTH, BRICK_HEIGHT);
+        rect.setColor(colors[Math.floor(j/2)]);
+        stage.add(rect);
+    }
 }
-*/
+
+var ball = new GCircle(200,400,BALL_RADIUS);
+ball.vx = Math.random()*20-10;
+ball.vy = 3;
+stage.add(ball);
+
+var paddle = new GRect(180,550,PADDLE_WIDTH,PADDLE_HEIGHT);
+stage.add(paddle);
+
+function detectWalls() {
+    if (ball.position.y > STAGE_HEIGHT) {
+        console.log("you lose");
+        return;
+    } else if (ball.position.x < 0 || ball.position.x > STAGE_WIDTH) {
+        ball.vx = -ball.vx;
+    } else if (ball.position.y <= 0) {
+        ball.vy = -ball.vy;   
+    }
+}
+
+function detectCollision() {
+    
+    detectWalls();
+    for (var i=0; i<=BALL_RADIUS; i+=BALL_RADIUS) {
+        for (var j=0; j<BALL_RADIUS; j+=BALL_RADIUS) {
+            var collider = stage.getElementAt(ball.position.x+i, ball.position.y+j);
+            if (collider !== null) {
+                console.log(collider);
+                ball.vy = -ball.vy*1.01;
+                if (collider !== paddle) {
+                    stage.remove(collider);
+                }
+                return;
+            }
+        }
+    }
+}
+
+
+function drawFrame() {
+    ball.position.x += ball.vx;
+    ball.position.y += ball.vy;
+    
+    detectCollision();
+    
+    paddle.position.x = stage.getMousePosition().x;
+}

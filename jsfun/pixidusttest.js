@@ -1,19 +1,12 @@
-var stage = new PIXI.Stage(0xFFFFFF); // make a white stage
 
-var renderer = PIXI.autoDetectRenderer(400, 300);
-
-document.body.appendChild(renderer.view);
-
-requestAnimFrame(animate);
+var stage = setBackground(400,400,0x000000);
 
 var thing = new GRect(50,50,50,50);
 stage.add(thing);
 
-function animate() {
-    requestAnimFrame(animate);
+function drawFrame() {
     
     thing.position.x += 1;
     thing.position.y += 1;
 
-    renderer.render(stage);
 }
