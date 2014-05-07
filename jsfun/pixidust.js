@@ -82,6 +82,8 @@ PIXI.Stage.prototype.add = function(graphicsObject) {
     if (graphicsObject instanceof GObject) {
         this.addChild(graphicsObject.graphics);
         this.gobjects.push(graphicsObject);
+    } else {
+        this.addChild(graphicsObject);
     }
 }
 
@@ -94,6 +96,8 @@ PIXI.Stage.prototype.remove = function(graphicsObject) {
         if (i > -1) {
             this.gobjects.splice(i, 1);   
         }
+    } else {
+        this.removeChild(graphicsObject);
     }
 }
 
