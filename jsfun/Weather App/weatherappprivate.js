@@ -65,7 +65,7 @@ WeatherApp.prototype.sendWeatherRequestWithURL = function(url, successFn, errorF
 
 	function xhrHandler() {
 		if (this.readyState != 4) return;
-		else if (this.status != 200) errorFn();
+		else if (this.status != 200 && errorFn) errorFn();
 		else {
 			var data = JSON.parse(this.responseText);
 
@@ -73,9 +73,9 @@ WeatherApp.prototype.sendWeatherRequestWithURL = function(url, successFn, errorF
 
 			// If there is no data, call the error handler
 			if (daysArray == null) {
-				errorFn();
+				if (errorFn) errorFn();
 				return;
-			}
+			} else if (!successFn) return;
 
 			var cleanedDaysArray = [];
 
