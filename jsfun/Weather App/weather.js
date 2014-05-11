@@ -8,7 +8,7 @@ var app = new WeatherApp();
 // Your main function for the weather app.  You should create a new WeeatherApp object
 // add all buttons and controls to the screen in this function.
 function run() {
-
+	
 }
 
 
@@ -16,7 +16,7 @@ function run() {
 // Should process the user's query and make a request to the appropriate weather API to fetch
 // the weather for the given location.
 function showWeather(query) {
-	
+
 }
 
 

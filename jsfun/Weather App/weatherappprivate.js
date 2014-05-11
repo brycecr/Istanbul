@@ -91,7 +91,7 @@ WeatherApp.prototype.sendWeatherRequestWithURL = function(url, successFn, errorF
 				day["dayName"] = dayNames[i];
 				day["tempHigh"] = daysArray[i]["temp"]["max"];
 				day["tempLow"] = daysArray[i]["temp"]["min"];
-				day["weatherDescription"] = daysArray[i]["weather"][0]["main"];
+				day["weatherDescription"] = daysArray[i]["weather"][0]["main"]; // Rain Clouds Clear Snow
 				day["humidity"] = daysArray[i]["humidity"];
 				day["windSpeed"] = daysArray[i]["speed"];
 
