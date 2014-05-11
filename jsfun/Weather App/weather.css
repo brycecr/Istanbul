@@ -1,0 +1,13 @@
+#errorField {
+	color: red;
+}
+
+
+#weatherCanvas {
+	border: 2px solid black;
+}
+
+
+#inputDiv {
+	margin-bottom: 10px;
+}
