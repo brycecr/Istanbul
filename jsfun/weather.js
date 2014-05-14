@@ -26,7 +26,7 @@ function getColor(temp) {
 }
 
 for (var i=0; i<images.length; ++i) {
-    var sprite = PIXI.Sprite.fromImage('data/'+images[i]);
+    var sprite = new GImage(images[i]);
     sprite.position.y = IMAGE_Y;
     sprite.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i;
     stage.add(sprite);

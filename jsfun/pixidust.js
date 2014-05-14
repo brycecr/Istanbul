@@ -3,6 +3,9 @@
 * a collection of wrappers on pixi.js functionality for the sake 
 * of making the interface more obvious for students who have
 * been introduced to graphical programming by cs106A.
+*
+* Written by brycecr; github.com/brycecr
+* except for the watch bit below
 */
 
 /* HERE FOLLOWS A COOL WATCH HACK SO I CAN WATCH THINGS 
@@ -116,7 +119,7 @@ PIXI.Stage.prototype.getElementAt = function(x, y, notelem) {
 
 var stage;
 var renderer;
-    function setBackground(width, height, color) {
+function setBackground(width, height, color) {
         var checkLoad = function() {   
         document.readyState !== "complete" ? setTimeout(checkLoad,11) : function(){};   
     };  
@@ -227,6 +230,15 @@ GCircle.prototype.getRadius = function() { return this.radius; }
 GCircle.prototype.setRadius = function(radius) { this.setRadiusX(radius); this.setRadiusY(radius); this.radius = radius; }
 /* End GCircle */
 
+/* Begin GImage */
+function GImage(image_loc) {
+    return PIXI.Sprite.fromImage('data/'+image_loc);           
+}
 
-
+function add(obj) {
+    if (typeof obj === 'undefined') {
+        console.log("Tried to add an object without creating canvas first!");
+    }
+    stage.add(obj);
+}
 
