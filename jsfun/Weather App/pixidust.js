@@ -236,7 +236,7 @@ function GImage(image_loc) {
 }
 
 function add(obj) {
-    if (typeof variable === 'undefined') {
+    if (typeof obj === 'undefined') {
         console.log("Tried to add an object without creating canvas first!");
     }
     stage.add(obj);
