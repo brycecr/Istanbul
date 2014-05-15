@@ -70,6 +70,7 @@ WeatherApp.prototype.addTextField = function() {
  *
  * Parameters: none
  */
+/*
 WeatherApp.prototype.addCanvas = function() {
 
 	// Make a new canvas
@@ -81,6 +82,10 @@ WeatherApp.prototype.addCanvas = function() {
 	// Append it inside our canvas div
 	var canvasDiv = document.getElementById("canvasDiv");
 	canvasDiv.appendChild(canvas);
+}
+*/
+WeatherApp.prototype.addCanvas = function() {
+    return setBackground(1000,500,0xFFFFFF);
 }
 
 
