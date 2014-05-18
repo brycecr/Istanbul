@@ -234,6 +234,24 @@ GCircle.prototype.setRadius = function(radius) { this.setRadiusX(radius); this.s
 function GImage(image_loc) {
     return PIXI.Sprite.fromImage('data/'+image_loc);           
 }
+/* End GImage. Wasn't that sweet? */
+
+/* Begin GLabel */
+function GLabel(str) {
+    this.text = new PIXI.Text(str, { font: "30px Verdana", fill: 0x000000, align: "left"});
+    return text;
+}
+
+function GLabel(str, x, y) {
+    var text = new PIXI.Text(str, { font: "30px Verdana", fill: 0x000000, align: "left"});
+    text.position.x = x;
+    text.position.y = y;
+    return text;
+}
+
+PIXI.Text.prototype.setColor = function(color) {
+    this.setStyle({'fill': color});   
+}
 
 function add(obj) {
     if (typeof obj === 'undefined') {
@@ -242,3 +260,11 @@ function add(obj) {
     stage.add(obj);
 }
 
+function clearCanvas() {
+    for (var i = stage.children.length - 1; i >= 0; --i) {
+        stage.removeChild(stage.children[i]);   
+    }
+}
+
+/* Colors! */
+var Color = {'red': 0xFF0000, 'green': 0x00FF00, 'blue': 0x0000FF, 'cyan': 0x00FFFF, 'yellow': 0xFFFF00, 'white': 0xFFFFFF, 'black':0x000000, 'magenta':0xFF00FF,'orange':0xFFA500, 'pink':0xFFCBDB, 'gray':0x888888, 'light_gray':0xCCCCCC},'dark_gray':0x333333};

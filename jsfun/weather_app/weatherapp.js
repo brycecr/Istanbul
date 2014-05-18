@@ -85,7 +85,7 @@ WeatherApp.prototype.addCanvas = function() {
 }
 */
 WeatherApp.prototype.addCanvas = function() {
-    return setBackground(1000,500,0xFFFFFF);
+    setBackground(1000,500,0xFFFFFF);
 }
 
 
