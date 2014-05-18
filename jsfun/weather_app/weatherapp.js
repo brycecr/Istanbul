@@ -21,23 +21,12 @@ function WeatherApp() {}
  * -----------
  *	buttonName: the text that is displayed on the button.
  */
-WeatherApp.prototype.addButton = function(buttonName) {
+WeatherApp.prototype.addButton = function(buttonName, callbackFn) {
 	var inputDiv = document.getElementById("inputDiv");
 	var button = document.createElement("BUTTON");
 	button.textContent = buttonName;
 
-	var obj = this;
-
-	// If the button is the query button, wire it to trigger loadWeather()
-	if (buttonName.toUpperCase().indexOf("LOCAL") == -1) {
-		button.onclick = function() {
-			obj.loadWeather('inputField');
-		};
-	} else {
-		button.onclick = function() {
-			obj.loadGeoWeather();
-		};
-	}
+	button.onclick = callbackFn;
 
 	inputDiv.appendChild(button);
 }
@@ -47,8 +36,10 @@ WeatherApp.prototype.addButton = function(buttonName) {
 /* Function: addTextField()
  * -----------------------------
  * Creates and adds a new text field to the top area of the webpage.
+ * Returns the text field object that was added to the page.
  *
  * Parameters: none
+ * Returns: the text field that was created.
  */
 WeatherApp.prototype.addTextField = function() {
 
@@ -60,6 +51,8 @@ WeatherApp.prototype.addTextField = function() {
 	// Append it inside our input div
 	var inputDiv = document.getElementById("inputDiv");
 	inputDiv.appendChild(textField);
+
+	return textField;
 }
 
 
@@ -70,20 +63,6 @@ WeatherApp.prototype.addTextField = function() {
  *
  * Parameters: none
  */
-/*
-WeatherApp.prototype.addCanvas = function() {
-
-	// Make a new canvas
-	var canvas = document.createElement("CANVAS");
-	canvas.id = "weatherCanvas";
-	canvas.width = "1000";
-	canvas.height = "500";
-
-	// Append it inside our canvas div
-	var canvasDiv = document.getElementById("canvasDiv");
-	canvasDiv.appendChild(canvas);
-}
-*/
 WeatherApp.prototype.addCanvas = function() {
     setBackground(1000,500,0xFFFFFF);
 }
@@ -135,6 +114,30 @@ WeatherApp.prototype.displayErrorMessage = function(error) {
 	errorField.innerHTML = error;
 }
 
+
+
+
+/* Function: getCurrentLocation()
+ * ----------------------------
+ * Calculates the user's current location, and calls callbackFn, passing
+ * the user's current latitude and longitude.  The provided callbackFn should
+ * therefore be something like 
+ *
+ * function callback(latitude, longitude) {
+ *	...
+ * }
+ *
+ *
+ * Parameters:
+ * -----------
+ * callbackFn: the function that's called once the user's location has been calculated
+ */
+WeatherApp.prototype.getCurrentLocation = function(callbackFn) {
+	// Query the user's location
+	navigator.geolocation.getCurrentPosition(function(position) {
+		callbackFn(position.coords.latitude, position.coords.longitude);
+	});
+}
 
 
 
