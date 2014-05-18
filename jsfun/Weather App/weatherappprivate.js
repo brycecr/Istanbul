@@ -1,45 +1,5 @@
 /********* PRIVATE WEATHERAPP METHODS ************/
 
-/* Function: loadWeather(fieldId)
- * ------------------------------
- * Gets the user's entered text from the text field with the given id,
- * and passes the text to showWeather();
- *
- * Parameters:
- * -----------
- * 	fieldId: the ID of the text field from which to get text.
- */
-WeatherApp.prototype.loadWeather = function(fieldId) {
-	this.displayErrorMessage("");
-	var query = document.getElementById(fieldId).value;
-	showWeather(query);
-}
-
-
-
-/* Function: loadGeoWeather(doneFn)
- * -------------------------
- * Gets the user's location (latitude/longitude) and passes it to showLocalWeather().
- * If the user's browser doesn't support geolocation, an error message is displayed.
- *
- * Parameters: none
- */
-WeatherApp.prototype.loadGeoWeather = function() {
-
-	this.displayErrorMessage("");
-
-	// Check if the browser supports geolocation
-	if (navigator.geolocation) {
-
-		// Query the user's location
-		navigator.geolocation.getCurrentPosition(function(position) {
-			showLocalWeather(position.coords.latitude, position.coords.longitude);
-		});
-
-	} else {
-		this.displayErrorMessage("Error: your browser does not support geolocation.");
-	}
-}
 
 
 /* Function: sendWeatherRequestWithURL(url, successFn, errorFn)
