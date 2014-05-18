@@ -201,20 +201,14 @@ GRect.prototype.draw = function() { this.graphics.drawRect(this.position.x, this
 /* End GRect */
 
 /* GOval */
-function GOval(x, y, radiusx, radiusy) {
-    GObject.call(this, x, y);
-    this.radiusx = radiusx;
-    this.radiusy = radiusy;
+function GOval(x, y, width, height) {
+    GRect.call(this, x, y, width, height);
     this.refresh();
 }
 
-GOval.prototype = Object.create(GObject.prototype);
+GOval.prototype = Object.create(GRect.prototype);
 GOval.prototype.constructor = GOval;
-GOval.prototype.getRadiusX = function() { return this.radiusx; }
-GOval.prototype.setRadiusX = function(radius) { this.radiusx = radiusx; this.referesh(); }
-GOval.prototype.getRadiusY = function() { return this.radiusy; }
-GOval.prototype.setRadiusY = function(radius) { this.radiusy = radiusy; this.referesh(); }
-GOval.prototype.draw = function() { this.graphics.drawEllipse(this.position.x, this.position.y, this.radiusx, this.radiusy); }
+GOval.prototype.draw = function() { this.graphics.drawEllipse(this.position.x, this.position.y, this.width/2, this.height/2); }
 /* End GOval */
 
 /* GCircle */
@@ -266,5 +260,15 @@ function clearCanvas() {
     }
 }
 
+/* Cute solution from http://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object */
+function pickRandomProperty(obj) {
+    var result;
+    var count = 0;
+    for (var prop in obj)
+        if (Math.random() < 1/++count)
+           result = prop;
+    return obj[result];
+}
+
 /* Colors! */
-var Color = {'red': 0xFF0000, 'green': 0x00FF00, 'blue': 0x0000FF, 'cyan': 0x00FFFF, 'yellow': 0xFFFF00, 'white': 0xFFFFFF, 'black':0x000000, 'magenta':0xFF00FF,'orange':0xFFA500, 'pink':0xFFCBDB, 'gray':0x888888, 'light_gray':0xCCCCCC},'dark_gray':0x333333};
+var Color = {'red': 0xFF0000, 'green': 0x00FF00, 'blue': 0x0000FF, 'cyan': 0x00FFFF, 'yellow': 0xFFFF00, 'white': 0xFFFFFF, 'black':0x000000, 'magenta':0xFF00FF,'orange':0xFFA500, 'pink':0xFFCBDB, 'gray':0x888888, 'light_gray':0xCCCCCC,'dark_gray':0x333333};

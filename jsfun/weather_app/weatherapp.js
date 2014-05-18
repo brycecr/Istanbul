@@ -28,6 +28,9 @@ WeatherApp.prototype.addButton = function(buttonName, callbackFn) {
 
 	button.onclick = callbackFn;
 
+    if (typeof(inputDiv) === "undefined") {
+        inputDiv = document.getElementsByTagName('body');   
+    }
 	inputDiv.appendChild(button);
 }
 
