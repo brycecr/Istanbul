@@ -2,14 +2,16 @@
 
 
 // Global variable: your WeatherApp object
-var app = new WeatherApp();
+var app = new GraphicsApp();
+var textField;
 // Your main function for the weather app.  You should create a new WeeatherApp object
 // add all buttons and controls to the screen in this function.
 function run() {
-	app.addButton("Show Weather");
-    app.addButton("Local Weather");
-    app.addTextField();
-    app.addCanvas();
+    app.addTitle("WeatherBug");
+    textField = app.addTextField();
+	app.addButton("Show Weather", showWeather);
+    app.addButton("Local Weather", showLocalWeather);
+    app.addCanvas(1000, 500);
 }
 
 function getImageForCondition(condition) {
@@ -67,7 +69,9 @@ function error() {
 
 // Should process the user's query and make a request to the appropriate weather API to fetch
 // the weather for the given location.
-function showWeather(query) {
+function showWeather() {
+    app.displayErrorMessage("");
+    var query = textField.value;
     app.fetchWeatherForQuery(query, 7, success, error);
 }
 
@@ -75,8 +79,13 @@ function showWeather(query) {
 
 // Should process the user's current location and make a call to the appropriate weather API
 // to fetch the weather for the user's current location.
-function showLocalWeather(latitude, longitude) {
-    var weather = app.fetchWeatherForCoordinates(latitude, longitude, 7, success, error);
+function showLocalWeather() {
+    app.displayErrorMessage("");
+    app.getCurrentLocation(calculateLocalWeather);
+}
+
+function calculateLocalWeather(latitude, longitude) {
+    app.fetchWeatherForCoordinates(latitude, longitude, 7, success, error);
 }
 
 /********************************************************/
