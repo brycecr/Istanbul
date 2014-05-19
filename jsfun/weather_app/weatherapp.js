@@ -28,6 +28,9 @@ GraphicsApp.prototype.addButton = function(buttonName, callbackFn) {
 
 	button.onclick = callbackFn;
 
+    if (typeof(inputDiv) === "undefined") {
+        inputDiv = document.getElementsByTagName('body');   
+    }
 	inputDiv.appendChild(button);
 }
 
@@ -64,16 +67,7 @@ GraphicsApp.prototype.addTextField = function() {
  * Parameters: none
  */
 GraphicsApp.prototype.addCanvas = function(width, height) {
-
-	// Make a new canvas
-	var canvas = document.createElement("CANVAS");
-	canvas.id = "weatherCanvas";
-	canvas.width = "" + width + "";
-	canvas.height = "" + height + "";
-
-	// Append it inside our canvas div
-	var canvasDiv = document.getElementById("canvasDiv");
-	canvasDiv.appendChild(canvas);
+    setBackground(width,height,0xFFFFFF);
 }
 
 
