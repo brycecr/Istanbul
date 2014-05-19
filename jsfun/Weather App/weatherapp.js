@@ -1,13 +1,13 @@
 /***** AVAILABLE JAVASCRIPT FUNCTIONS ******/
 
 
-/* Function: WeatherApp()
+/* Function: GraphicsApp()
  * --------------------------------
- * Creates a new WeatherApp object and returns it.
+ * Creates a new GraphicsApp object and returns it.
  *
  * Parameters: none
  */
-function WeatherApp() {}
+function GraphicsApp() {}
 
 
 
@@ -21,7 +21,7 @@ function WeatherApp() {}
  * -----------
  *	buttonName: the text that is displayed on the button.
  */
-WeatherApp.prototype.addButton = function(buttonName, callbackFn) {
+GraphicsApp.prototype.addButton = function(buttonName, callbackFn) {
 	var inputDiv = document.getElementById("inputDiv");
 	var button = document.createElement("BUTTON");
 	button.textContent = buttonName;
@@ -41,7 +41,7 @@ WeatherApp.prototype.addButton = function(buttonName, callbackFn) {
  * Parameters: none
  * Returns: the text field that was created.
  */
-WeatherApp.prototype.addTextField = function() {
+GraphicsApp.prototype.addTextField = function() {
 
 	// Make a new text field
 	var textField = document.createElement("INPUT");
@@ -63,7 +63,7 @@ WeatherApp.prototype.addTextField = function() {
  *
  * Parameters: none
  */
-WeatherApp.prototype.addCanvas = function(width, height) {
+GraphicsApp.prototype.addCanvas = function(width, height) {
 
 	// Make a new canvas
 	var canvas = document.createElement("CANVAS");
@@ -88,7 +88,7 @@ WeatherApp.prototype.addCanvas = function(width, height) {
  * -----------
  *	title: the text of the title to add.
  */
-WeatherApp.prototype.addTitle = function(title) {
+GraphicsApp.prototype.addTitle = function(title) {
 	
 	// Set the page title to be equal to the passed in text
  	var titleElem = document.createElement("TITLE");
@@ -118,7 +118,7 @@ WeatherApp.prototype.addTitle = function(title) {
  * -----------
  *	error: the error message to display.
  */
-WeatherApp.prototype.displayErrorMessage = function(error) {
+GraphicsApp.prototype.displayErrorMessage = function(error) {
 	var errorField = document.getElementById("errorField");
 	errorField.innerHTML = error;
 }
@@ -141,7 +141,7 @@ WeatherApp.prototype.displayErrorMessage = function(error) {
  * -----------
  * callbackFn: the function that's called once the user's location has been calculated
  */
-WeatherApp.prototype.getCurrentLocation = function(callbackFn) {
+GraphicsApp.prototype.getCurrentLocation = function(callbackFn) {
 	// Query the user's location
 	navigator.geolocation.getCurrentPosition(function(position) {
 		callbackFn(position.coords.latitude, position.coords.longitude);
@@ -165,7 +165,7 @@ WeatherApp.prototype.getCurrentLocation = function(callbackFn) {
  *
  *	errorFn: a function that takes no parameters.  This function will be called upon failure of the API call.
  */
-WeatherApp.prototype.fetchWeatherForQuery = function(query, numDays, successFn, errorFn) {
+GraphicsApp.prototype.fetchWeatherForQuery = function(query, numDays, successFn, errorFn) {
 	var url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + encodeURIComponent(query) + 
 		"&mode=json&cnt=" + encodeURIComponent(numDays) + "&units=metric";
 	this.sendWeatherRequestWithURL(url, successFn, errorFn);
@@ -191,7 +191,7 @@ WeatherApp.prototype.fetchWeatherForQuery = function(query, numDays, successFn, 
  *
  *	errorFn: a function that takes no parameters.  This function will be called upon failure of the API call.
  */
-WeatherApp.prototype.fetchWeatherForCoordinates = function(latitude, longitude, numDays, successFn, errorFn) {
+GraphicsApp.prototype.fetchWeatherForCoordinates = function(latitude, longitude, numDays, successFn, errorFn) {
 	var url = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + 
 		encodeURIComponent(latitude) + "&lon=" + encodeURIComponent(longitude) + "&mode=json&cnt=" + encodeURIComponent(numDays) + "&units=metric";
 	this.sendWeatherRequestWithURL(url, successFn, errorFn);
