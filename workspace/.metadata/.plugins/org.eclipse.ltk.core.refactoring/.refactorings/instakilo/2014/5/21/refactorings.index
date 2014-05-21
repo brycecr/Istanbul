@@ -1,0 +1,14 @@
+1400616988186	Rename field 'DATAFILE'
+1400617120490	Rename field 'currProfile'
+1400619822825	Extract method 'save'
+1400620055354	Move file
+1400620650871	Rename local variable 'fileName'
+1400621001079	Infer generic type arguments
+1400621036393	Infer generic type arguments
+1400621458787	Extract method 'mapToJsonStr'
+1400621480937	Extract method 'jsonStrToMap'
+1400621493824	Rename local variable 'content'
+1400621528401	Rename local variable 'dataMap'
+1400621543814	Rename method 'photoExists'
+1400621564487	Rename method 'imageExists'
+1400621779321	Extract method 'postPhoto'

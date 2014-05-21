@@ -1,0 +1,9 @@
+{"Julia Lee": [
+    "julia1.jpg",
+    "julia2.jpg",
+    "julia3.jpg",
+    "julia4.jpg",
+    "julia5.jpg",
+    "julia6.jpg",
+    "julia7.jpg"
+]}
