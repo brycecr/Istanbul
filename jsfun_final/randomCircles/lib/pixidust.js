@@ -226,7 +226,7 @@ GCircle.prototype.setRadius = function(radius) { this.setRadiusX(radius); this.s
 
 /* Begin GImage */
 function GImage(image_loc) {
-    return PIXI.Sprite.fromImage('data/'+image_loc);           
+    return PIXI.Sprite.fromImage('img/'+image_loc);           
 }
 /* End GImage. Wasn't that sweet? */
 
