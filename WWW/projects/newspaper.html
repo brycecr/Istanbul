@@ -1,0 +1,180 @@
+<head>
+
+<title>Intro to CS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap-3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap-3.1/js/bootstrap.min.js"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>-->
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<nav class="navbar-inverse navbar-default" role="navigation">
+  <div class="container-fluid">
+  	<div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">Stanford Intro CS</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <!--<li ><a href="#">Link</a></li>-->
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Handouts <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Homeworks <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#">About</a></li>
+	        
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	</div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				Sunrise
+			</h1>
+			<p>
+				Written by Bob Dylan (fact check this)
+			</p>
+
+		</div>
+		<hr/>
+
+		<h2>The Basic Idea</h3>
+		<div class="row">
+
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetSimple.png"></img>
+			</div>
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetSimpleT2.png"></img>
+			</div>
+
+			<div class="col-md-6">
+			</div>
+
+			<div class="col-md-12">
+				<p>
+					The idea is simple: draw the sky, the earth and a sun. Then,
+					slowly animate the sun descending. The sky should take up the top half of the canvas, and the earth should take up the second half.
+				</p>
+				<p>
+					The sky should take up the top hal
+				</p>
+
+				<center>
+					<img class="psetImg" src="../img/kmeansViz.png">
+					<p class="psetImgCaption">
+						Figure 1: K-means algorithm. Training examples are shown as dots, and
+						cluster centroids are shown as crosses. (a) Original dataset. (b) Random initial cluster centroids. (c-f) Illustration of running two iterations of k-means. In each
+						iteration, we assign each training example to the closest cluster centroid
+						(shown by "painting" the training examples the same color as the cluster
+						centroid to which is assigned); then we move each cluster centroid to the
+						mean of the points assigned to it. Images courtesy of Michael Jordan.
+					</p>
+				</center>
+			</div>
+
+		</div>
+		<div class="row">
+			<h2>Extension</h3>
+
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetTrees.png"></img>
+			</div>
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetT2.png"></img>
+			</div>
+
+
+		</div>
+
+		
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2014 &#124; Created by 
+		<a href="#">Bryce</a>, 
+		<a href="http://stanford.edu/~cpiech">Chris</a>, 
+		<a href="#">Julia</a> and  
+		<a href="#">Nick</a>.
+		Based on the wonderful CS106A class which was developed by many talented teachers.
+	</p>
+	<!--<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>-->
+</div>
+<!--<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>-->
+
+	</div>
+</body>
