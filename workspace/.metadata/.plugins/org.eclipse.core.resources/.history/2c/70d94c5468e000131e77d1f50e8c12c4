@@ -1,0 +1,166 @@
+/*
+ * File: Instakilo.java
+ * ---------------------
+ * Reference implementation (in progress) for Instakilo.
+ */
+
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
+
+import acm.graphics.*;
+import acm.program.GraphicsProgram;
+import acm.util.ErrorException;
+
+public class Instakilo extends GraphicsProgram implements IKConstants {
+
+	private HashMap<String, ArrayList<String>> data;
+	private String currProfileName = null;
+	private JTextField nameInput = new  JTextField();
+	private JTextField newPhotoName = new JTextField();
+	private FileSystem fileSystem = new FileSystem();
+
+	public void init() {
+		
+		setSize(APPLICATION_WIDTH, APPLICATION_HEIGHT);
+		data = new HashMap<String, ArrayList<String>>();
+		data = fileSystem.loadMap(DATAFILE_NAME);
+		addInteractors();
+		showWelcomeMessage();
+	}
+
+	private void showWelcomeMessage() {
+		GLabel l = new GLabel("Welcome to InstaKilo!");
+		double x = getWidth() - l.getWidth();
+		add(l, x, 100);
+		
+	}
+
+	private void createNewProfile(String name) {
+		data.put(name, new ArrayList<String>());
+		save();
+	}
+
+	private void save() {
+		fileSystem.saveMap(data, DATAFILE_NAME);
+	}
+
+	//Graphics
+	private void addInteractors() {
+
+		JButton displayButton = new JButton("Display");
+		JButton newProfileButton = new JButton("Create");
+		JButton newPhotoButton = new JButton("Post");
+
+		add(new JLabel("Profile:"), WEST);
+		add(nameInput, WEST);
+		add(displayButton,WEST);
+		add(newProfileButton, WEST);
+
+		add(new JLabel("Photo:"), WEST);
+		add(new JLabel("New photo name:"), WEST);
+		add(newPhotoName, WEST);
+		add(newPhotoButton, WEST);
+
+		displayButton.addActionListener(this);
+		newProfileButton.addActionListener(this);
+		newPhotoButton.addActionListener(this);
+	}
+
+	private void displayMessage(String text) {
+		GLabel msg = new GLabel(text);
+		msg.setFont(MESSAGE_FONT);
+		add(msg, LEFT_MARGIN, TOP_MARGIN + msg.getAscent());
+	}
+
+	private void displayProfile(String name) {
+		if(!data.containsKey(name)) {
+			displayMessage("no such profile");
+			return;
+		}
+		
+		currProfileName = name;
+		removeAll();
+		ArrayList<String> photos = data.get(name);
+
+		//display profile name
+		GLabel profileName = new GLabel(name);
+		profileName.setFont(PROFILE_NAME_FONT);
+		add(profileName, LEFT_MARGIN, TOP_MARGIN + profileName.getAscent());
+
+		//display images
+		double y = profileName.getY() + NAME_IMAGE_MARGIN;
+		double x = LEFT_MARGIN;
+
+		for(String photo : photos) {
+			System.out.println(photo);
+		}
+		
+		for (String photo : photos) {
+			GImage image = new GImage(photo);
+
+			if (image != null) {
+
+				scaleImage(image);
+
+				//TODO doesn't account for width of interactors bar?
+				double imageRight = x + image.getWidth();
+				double maxRight = getWidth() - RIGHT_MARGIN;
+				if (imageRight >  maxRight) {
+					//image doesn't fit on the current line
+					//start a new line of images
+
+					y += ROW_HEIGHT + IMAGE_IMAGE_MARGIN; 
+					x = LEFT_MARGIN;
+				}
+
+				if(y + image.getHeight() > getHeight() - RIGHT_MARGIN) {
+					break;
+				}
+				System.out.println("add " + photo);
+				add(image, x, y);
+
+				x += IMAGE_IMAGE_MARGIN + image.getWidth(); 
+			}
+		}
+		System.out.println("done");
+	}
+
+
+	private void scaleImage(GImage image) {
+		double amount = ROW_HEIGHT / image.getHeight();
+		image.scale(amount);
+	}
+
+	//TODO add extension to detect "enter" key press or print messages if fields are empty
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		if(command.equals("Display")) {
+			displayProfile(nameInput.getText());
+		} else if(command.equals("Create")) {
+			String name = nameInput.getText();
+			createNewProfile(name);
+			displayProfile(name);
+		} else if(command.equals("Post")) {
+			postPhoto();
+		} 
+	}
+
+	private void postPhoto() {
+		if (currProfileName == null) {
+			displayMessage("Please pick a profile first");
+			return;
+		}
+		String photo = newPhotoName.getText();
+		if (fileSystem.imageFileExists(photo)) {
+			data.get(currProfileName).add(photo);
+
+			save();
+			displayProfile(currProfileName);
+		}
+	}
+
+}
+

@@ -1,0 +1,90 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import acm.graphics.GImage;
+import acm.util.ErrorException;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+
+public class FileSystem {
+
+	public boolean photoExists(String imageFilename) {
+		boolean exists = true;
+		try{
+			new GImage(imageFilename);
+		} catch(ErrorException e) {
+			exists = false;		}
+		return exists;
+	}
+
+	public void saveMap(HashMap<String, ArrayList<String>> dataMap, String fileName) {
+		JSONObject json = new JSONObject();
+		for(String key : dataMap.keySet()) {
+			List<String> items = dataMap.get(key);
+			if(items == null) {
+				throw new RuntimeException("Why is the arraylist of photos for " + name + "null?");
+			}
+			JSONArray itemsJson = new JSONArray();
+			for(String item : items) {
+				itemsJson.put(item);
+			}
+			json.put(key, itemsJson);
+		}
+		String jsonStr = json.toString(4);
+
+		File f = new File(fileName);
+		FileWriter file = null;
+		try {
+			file = new FileWriter(f);
+			file.write(jsonStr);
+			file.flush();
+			file.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} 
+	}
+
+	public HashMap<String, ArrayList<String>> loadMap(String filename)  {
+		HashMap<String, ArrayList<String>> dataMap = new HashMap<String, ArrayList<String>>(); 
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new FileReader(filename));
+			String name = null;
+			ArrayList<String> photos = null;
+			while(true) {
+				String line = reader.readLine();
+				if(line == null) break;
+
+				if(line.isEmpty()) { //end of a profile's data
+					dataMap.put(name, photos);
+					name = null;
+					photos = null;
+				} else if (name == null) { //new profile data
+					name = line;
+					photos = new ArrayList<String>();
+				} else { //photo data
+					photos.add(line);
+				}
+			}
+			reader.close();
+		} catch (IOException e) {
+			return null;
+		}
+		return dataMap;
+	}
+
+}

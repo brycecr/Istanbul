@@ -1,0 +1,80 @@
+<head>
+
+	%include templates/parts/head.html
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				Sunrise
+			</h1>
+			<p>
+				Written by Bob Dylan (fact check this)
+			</p>
+
+		</div>
+		<hr/>
+
+		<h2>The Basic Idea</h3>
+		<div class="row">
+
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetSimple.png"></img>
+			</div>
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetSimpleT2.png"></img>
+			</div>
+
+			<div class="col-md-6">
+			</div>
+
+			<div class="col-md-12">
+				<p>
+					The idea is simple: draw the sky, the earth and a sun. Then,
+					slowly animate the sun descending. The sky should take up the top half of the canvas, and the earth should take up the second half.
+				</p>
+				<p>
+					The sky should take up the top hal
+				</p>
+
+				<center>
+					<img class="psetImg" src="{{pathToRoot}}img/kmeansViz.png">
+					<p class="psetImgCaption">
+						Figure 1: K-means algorithm. Training examples are shown as dots, and
+						cluster centroids are shown as crosses. (a) Original dataset. (b) Random initial cluster centroids. (c-f) Illustration of running two iterations of k-means. In each
+						iteration, we assign each training example to the closest cluster centroid
+						(shown by "painting" the training examples the same color as the cluster
+						centroid to which is assigned); then we move each cluster centroid to the
+						mean of the points assigned to it. Images courtesy of Michael Jordan.
+					</p>
+				</center>
+			</div>
+
+		</div>
+		<div class="row">
+			<h2>Extension</h3>
+
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetTrees.png"></img>
+			</div>
+			<div class="col-md-6 col-xs-6">
+				<img style="width:100%" src="/projects/img/sunsetT2.png"></img>
+			</div>
+
+
+		</div>
+
+		
+		%include templates/parts/footer.html
+
+	</div>
+</body>

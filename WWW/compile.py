@@ -30,7 +30,7 @@ class Compiler(object):
         templateText = open(filePath).read()
         compiledHtml = SimpleTemplate(templateText).render(pathToRoot = pathToRoot)
         self.makePath(relativePath)
-        open(relativePath, 'w').write(compiledHtml)
+        open(relativePath, 'wb').write(compiledHtml)
 
     def makePath(self, path):
         dirPath = os.path.dirname(path)

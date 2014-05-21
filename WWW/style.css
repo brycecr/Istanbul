@@ -1,7 +1,6 @@
 
 body {
 	/*font-family: 'Source Sans Pro', sans-serif;*/
-    padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
     font-size:medium;
     position:relative;
     margin: 0 auto;
@@ -18,6 +17,34 @@ code {
 pre {
     color:black;
     font-size:15px;
+}
+
+.buttonBar {
+  clear:left;
+  padding-top: 5px;
+  height:50px;
+}
+
+.projectImg {
+  width:150px;
+  height:100px;
+}
+
+#splashHeader{
+  /*background-image:url('img/bg_ist2.jpg');*/
+  width:100%;
+  height:300px;
+  background-size: 100% auto; 
+}
+
+.container { max-width: 850px; } 
+
+.well {
+  background-color: white !important;
+}
+
+body > .navbar-inverse .navbar-brand{
+padding-left:0px !important;
 }
 
 p {
@@ -43,6 +70,11 @@ margin-top: 3px;
 padding-bottom: 12px;
 height: 30px;
 padding-top: 5px;
+}
+
+#splashBackground {
+  width:100%;
+  max-height: 300px;
 }
 
 #taLookupFail {
@@ -84,9 +116,13 @@ margin-top: 3px;
     color:black;
 }
 
+#logoImg {
+  width: 100px;
+}
+
 #logo {
 	float: left;
-    width: 75px;
+    
     margin-top: -5px;
 }
 
@@ -96,9 +132,8 @@ margin-top: 3px;
 }
 
 #header {
+    margin-top:20px;
     width:100%;
-    height:70px;
-    padding-top:30px;
 }
 
 #pageHeader {

@@ -1,0 +1,183 @@
+<head>
+
+<title>Intro to CS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap-3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap-3.1/js/bootstrap.min.js"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>-->
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<nav class="navbar-inverse navbar-default" role="navigation">
+  <div class="container-fluid">
+  	<div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">Stanford Intro CS</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <!--<li ><a href="#">Link</a></li>-->
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Handouts <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Homeworks <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#">About</a></li>
+	        
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	</div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				Random Painter
+			</h1>
+			<p>
+				Writen by Chris Piech
+			</p>
+
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					Karel is starting to find her world too black and white. Help her fill it with color.
+					<p>
+					<center>
+						<img style="width:100%"  src="../projects/img/randomPainter/long.png">	
+					</center>
+					</p>
+				</p>
+				<h2>Paint and Random</h2>
+				<p>
+					Karel has a few commands up her sleeve. She can paint the corner on which she is standing using the instruction
+<div class="well"><code>paintCorner(color);</code></div>
+The value enclosed in the parentheses, which is called an argument in the terminology
+of programming languages, may be any of the following:
+                 <span style="color:red;">RED</span>&nbsp;&nbsp;  
+                 <span style="color:orange;">ORANGE</span>&nbsp;&nbsp;
+                 <span style="color:green;">GREEN</span>&nbsp;&nbsp;
+                 <span style="color:cyan;">CYAN</span>&nbsp;&nbsp;
+                 <span style="color:blue;">BLUE</span>&nbsp;&nbsp;
+                 <span style="color:magenta;">MAGENTA</span>
+                 and more...             
+				</p>
+				<p>
+					Karel also defines a new condition random, which is true half the time, but in an unpredictable way. Like flipping a coin, sometimes it returns true and sometimes it returns false. For example the code 
+					<div class="well"><code>if(random()) {<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;putBeeper();<br/>
+					}</code></div>
+					Will place a beeper, or will not, with equal probability.
+
+				</p>
+				<h2>Painter</h2>
+				<p>
+					Use these new abilities to have karel randomly paint each corner of a world one of two colors. You can chose any two colors you would like, we chose green and blue.
+				</p>
+				<p>
+
+					 Below are three executions of the same program that randomly paints any sized world green and blue executed on a 10x10 world. Note that because of the random condition, the pattern of green and blue is different on each run!
+				</p>
+				<p>
+					<center>
+						<img style="width:100%"  src="../projects/img/randomPainter/randoms.png">	
+					</center>
+				</p>
+				<p>
+					As always, remember to decompose your solution! Your program should work on a world of any size.
+				</p>
+			</div>
+
+		</div>
+
+		
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2014 &#124; Created by 
+		<a href="#">Bryce</a>, 
+		<a href="http://stanford.edu/~cpiech">Chris</a>, 
+		<a href="#">Julia</a> and  
+		<a href="#">Nick</a>.
+		Based on the wonderful CS106A class which was developed by many talented teachers.
+	</p>
+	<!--<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>-->
+</div>
+<!--<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>-->
+
+	</div>
+</body>
