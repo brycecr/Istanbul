@@ -226,7 +226,7 @@ GCircle.prototype.setRadius = function(radius) { this.setRadiusX(radius); this.s
 
 /* Begin GImage */
 function GImage(image_loc) {
-    return PIXI.Sprite.fromImage('data/'+image_loc);           
+    return PIXI.Sprite.fromImage('img/'+image_loc);           
 }
 /* End GImage. Wasn't that sweet? */
 
@@ -244,6 +244,10 @@ function GLabel(str, x, y) {
 }
 
 PIXI.Text.prototype.setColor = function(color) {
+    alert(typeof(color));
+    if (typeof(color) === "number" || typeof(color) === "Number") {
+        color = '#' + ('00000' + (color | 0).toString(16)).substr(-6); 
+    }
     this.setStyle({'fill': color});   
 }
 

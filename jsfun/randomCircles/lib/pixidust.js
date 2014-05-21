@@ -244,6 +244,10 @@ function GLabel(str, x, y) {
 }
 
 PIXI.Text.prototype.setColor = function(color) {
+    alert(typeof(color));
+    if (typeof(color) === "number" || typeof(color) === "Number") {
+        color = '#' + ('00000' + (color | 0).toString(16)).substr(-6); 
+    }
     this.setStyle({'fill': color});   
 }
 
