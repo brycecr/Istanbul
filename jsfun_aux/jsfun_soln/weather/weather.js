@@ -48,29 +48,38 @@ function success(data) {
     clearCanvas();
     console.log(data);
     for (var i=0; i<data.length; ++i) {
-    var sprite = new GImage(getImageForCondition(data[i].weatherDescription));
-    sprite.position.y = IMAGE_Y;
-    sprite.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i;
-    add(sprite);
+        var sprite = new GImage(getImageForCondition(data[i].weatherDescription));
+        sprite.position.y = IMAGE_Y;
+        sprite.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i;
+        add(sprite);
     
-    var temp = Math.round(data[i].tempHigh);
+        var temp = Math.round(data[i].tempHigh);
     
-    var countingText = new GLabel(temp);
-    countingText.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i;
-    countingText.position.y = TEXT_Y;
-    countingText.setColor(getColor(temp));
-    add(countingText);
-}
+        var countingText = new GLabel(temp);
+        countingText.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i;
+        countingText.position.y = TEXT_Y;
+        countingText.setColor(getColor(temp));
+        add(countingText);
+    }
 }
 
+
+function displayStatusMessage(message) {
+    var error = new GLabel(message);
+    error.position.x = 0;
+    error.position.y = 400;
+    add(error);
+}
+
+
 function error() {
-    app.displayErrorMessage("Errored out");
+    displayStatusMessage("Errored out");
 }
 
 // Should process the user's query and make a request to the appropriate weather API to fetch
 // the weather for the given location.
 function showWeather() {
-    app.displayErrorMessage("");
+    displayStatusMessage("Loading...");
     var query = textField.value;
     app.fetchWeatherForQuery(query, 7, success, error);
 }
@@ -80,8 +89,8 @@ function showWeather() {
 // Should process the user's current location and make a call to the appropriate weather API
 // to fetch the weather for the user's current location.
 function showLocalWeather() {
-    app.displayErrorMessage("");
-    app.getCurrentLocation(calculateLocalWeather);
+    displayStatusMessage("Loading...");
+    app.getCurrentLocation(calculateLocalWeather, error);
 }
 
 function calculateLocalWeather(latitude, longitude) {
