@@ -28,8 +28,8 @@ GraphicsApp.prototype.addButton = function(buttonName, callbackFn) {
 
 	button.onclick = callbackFn;
 
-    if (typeof(inputDiv) === "undefined") {
-        inputDiv = document.getElementsByTagName('body');   
+    if (typeof(inputDiv) === "undefined" || inputDiv === null) {
+        inputDiv = document.getElementsByTagName('body')[0];   
     }
 	inputDiv.appendChild(button);
 }
