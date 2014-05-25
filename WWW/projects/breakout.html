@@ -16,6 +16,8 @@
 <!-- Java Script -->
 <script src="../plugins/jquery.min.js"></script>
 <script src="../plugins/bootstrap-3.1/js/bootstrap.min.js"></script>
+
+<script src="../karel/ace/ace.js" type="text/javascript"></script>
 <!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
   </script>-->
@@ -46,30 +48,55 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Handouts <b class="caret"></b></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Action</a></li>
-	            <li><a href="#">Another action</a></li>
-	            <li><a href="#">Something else here</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">Separated link</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">One more separated link</a></li>
+	          	<li><a href="../handouts/karelCommands.html">Karel Commands</a></li>
+	          	<li><a href="../handouts/methods.html">Methods</a></li>
+	          	<li><a href="../handouts/forLoops.html">For Loops</a></li>
+	          	<li><a href="../handouts/loopAndAHalf.html">Loop and a Half</a></li>
+	          	<li><a href="../handouts/whileLoops.html">While Loops</a></li>
+	          	<li><a href="../handouts/ifStatements.html">If Statements</a></li>
+	          	<li><a href="../handouts/variables.html">Variables</a></li>
+	            <li><a href="../handouts/scope.html">Scope</a></li>
+	            <li><a href="../handouts/operations.html">Operations</a></li>
+	            <li><a href="../handouts/graphics.html">Graphics</a></li>
+	            <li><a href="../handouts/passingData.html">Passing Data</a></li>
+	            
 	          </ul>
 	        </li>
 
 
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Homeworks <b class="caret"></b></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Action</a></li>
-	            <li><a href="#">Another action</a></li>
-	            <li><a href="#">Something else here</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">Separated link</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">One more separated link</a></li>
+	            <li><a href="../projects/collectNewspaper.html">Collect Newspaper</a></li>
+	          	<li><a href="../projects/efes.html">Build Efes</a></li>
+	          	<li><a href="../projects/mountain.html">Mountain Karel</a></li>
+	          	<li><a href="../projects/randomPainter.html">Random Painter</a></li>
+	          	<li><a href="../projects/hailstone.html">Hailstone</a></li>
+	          	<li><a href="../projects/awesome.html">Programming is Awesome</a></li>
+	            <li><a href="../projects/randomCircles.html">Random Circles</a></li>
+	            <li><a href="../projects/bouncingBall.html">Bouncing Ball</a></li>
+	            <li><a href="../projects/illusion.html">Optical Illusion</a></li>
+	            <li><a href="../projects/sunset.html">Sunset</a></li>
+	            <li><a href="../projects/breakout.html">Breakout</a></li>
+	            <li><a href="../projects/instakilo.html">Instakilo</a></li>
+	            <li><a href="../projects/weather.html">Weather App</a></li>
 	          </ul>
 	        </li>
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="../projects/stepUp.html">Step Up</a></li>
+	          	<li><a href="../projects/place50.html">Place 50</a></li>
+	          	<li><a href="../projects/beeperLine.html">Beeper Line</a></li>
+	          	<li><a href="../projects/unKarel.html">UN Karel</a></li>
+	            <li><a href="../projects/emc2.html">E=MC2</a></li>
+	            <li><a href="../projects/fibb.html">Fibonacci</a></li>
+	          </ul>
+	        </li>
+
 	      </ul>
+
 	      
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#">About</a></li>
@@ -130,7 +157,7 @@
 				</p>
 			</div>
 			<div class="col-md-3">
-				<img style="width:100%;" src="/projects/img/breakoutGame.png"></img>
+				<img style="width:100%;" src="/projects/img/breakout/breakoutGame.png"></img>
 			</div>
 		</div>
 
@@ -141,7 +168,7 @@
 					Before you start playing the game, you have to set up the various pieces.  Thus, it probably makes sense to implement the run method as two method calls: one that sets up the game and one that plays it.  An important part of the setup consists of creating the rows of bricks at the top of the game, which look like this:
 				</p>
 				<p>
-					<center><img style="max-width:100%" src="/projects/img/breakoutBricks.png"></img></center>
+					<center><img style="max-width:100%" src="/projects/img/breakout/breakoutBricks.png"></img></center>
 				</p>
 				<p>
 					The number, dimensions, and spacing of the bricks are specified using named constants in the starter file, as is the distance from the top of the window to the first line of bricks.  The only value you need to compute is the x coordinate of the first column, which should be chosen so that the bricks are centered in the window, with the leftover space divided equally on the left and right sides.  The color of the bricks remain constant for two rows and run in the following rainbow-like sequence: RED, ORANGE, YELLOW, GREEN, CYAN.
@@ -212,7 +239,7 @@ which might generate a ball going more or less straight down.  That would make l
 			<div class="col-md-12">
 				<p>Now comes the interesting part.  In order to make Breakout into a real game, you have to be able to tell whether the ball is colliding with another object in the window.  As scientists often do, it helps to begin by making a simplifying assumption and then relaxing that assumption later.  Suppose the ball were a single point rather than a circle.  In that case, how could you tell whether it had collided with another object?</p>
 				<p>
-					<center><img src="/projects/img/breakoutCollision.png"></img></center>
+					<center><img src="/projects/img/breakout/breakoutCollision.png"></img></center>
 				</p>
 				<p>
 					These points have the advantage of being outside the ball--which means that getElementAt can't return the ball itself--but nonetheless close enough to make it appear that collisions have occurred.  
