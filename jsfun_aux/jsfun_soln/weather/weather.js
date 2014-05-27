@@ -10,6 +10,12 @@ var IMAGE_GAP = 20;
 
 var TEXT_Y = IMAGE_Y + IMAGE_HEIGHT + IMAGE_GAP;
 
+var CANVAS_WIDTH = 1100;
+var CANVAS_HEIGHT = 400;
+
+var STATUS_MESSAGE_X = 0;
+var STATUS_MESSAGE_Y = 900;
+
 function getColor(temp) {
     if (temp < 10) {
         return Color.blue;   
@@ -24,16 +30,18 @@ function run() {
     app.addButton("Show Weather", showWeather);
     app.addButton("Show Local Weather", showLocalWeather);
     textField = app.addTextField();
-    app.addCanvas(1100,400);
+    app.addCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
 }
 
 function showWeather() {
     clearCanvas();
     var query = textField.value;
+    displayStatusMessage("Loading weather...");
     app.fetchWeatherForQuery(query, 7, success, error);
 }
 
 function showLocalWeather() {
+    displayStatusMessage("Loading weather...");
     app.getCurrentLocation(recieveCoords);
 }
 
@@ -42,7 +50,7 @@ function recieveCoords(lat, long) {
 }
 
 function error() {
-    app.displayErrorMessage("Something bad happened");   
+    app.displayStatusMessage("Something bad happened");   
 }
 
 function getImageForCondition(cond) {
@@ -57,7 +65,13 @@ function getImageForCondition(cond) {
     }
 }
 
+function displayStatusMessage(message) {
+    add(new GLabel(message, STATUS_MESSAGE_X, STATUS_MESSAGE_Y));
+}
+
 function success(data) {
+    clearCanvas();
+    displayStatusMessage("Weather loaded.");
     for (var i=0; i<data.length; ++i) {
         var image = new GImage(getImageForCondition(data[i].weatherDescription));
         image.position.x = IMAGE_GAP+(IMAGE_GAP+IMAGE_WIDTH)*i;
