@@ -27,9 +27,11 @@ function getColor(temp) {
 }
 
 function run() {
+    app.addTitle("WeatherBug");
+    textField = app.addTextField();
     app.addButton("Show Weather", showWeather);
     app.addButton("Show Local Weather", showLocalWeather);
-    textField = app.addTextField();
+
     app.addCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
 }
 
