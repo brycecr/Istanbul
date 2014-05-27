@@ -43,7 +43,8 @@ function showWeather() {
 }
 
 function showLocalWeather() {
-    displayStatusMessage("Loading weather...");
+    clearCanvas();
+    displayStatusMessage("Loading local weather...");
     app.getCurrentLocation(recieveCoords);
 }
 
@@ -52,7 +53,7 @@ function recieveCoords(lat, long) {
 }
 
 function error() {
-    app.displayStatusMessage("Something bad happened");   
+    displayStatusMessage("Something bad happened");   
 }
 
 function getImageForCondition(cond) {
@@ -68,7 +69,10 @@ function getImageForCondition(cond) {
 }
 
 function displayStatusMessage(message) {
-    add(new GLabel(message, STATUS_MESSAGE_X, STATUS_MESSAGE_Y));
+    var status = new GLabel(message);
+    status.position.x = STATUS_MESSAGE_X;
+    status.position.y = STATUS_MESSAGE_Y;
+    add(status);
 }
 
 function success(data) {
