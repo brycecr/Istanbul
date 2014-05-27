@@ -237,7 +237,8 @@ function GLabel(str) {
 }
 
 function GLabel(str, x, y) {
-    var text = new PIXI.Text(str, { font: "30px Verdana", fill: 0x000000, align: "left"});
+    this.style = { font: "30px Verdana", fill: 0x000000, align: "left"};
+    var text = new PIXI.Text(str, this.style);
     text.position.x = x;
     text.position.y = y;
     return text;
@@ -247,7 +248,13 @@ PIXI.Text.prototype.setColor = function(color) {
     if (typeof(color) === "number" || typeof(color) === "Number") {
         color = '#' + ('00000' + (color | 0).toString(16)).substr(-6); 
     }
-    this.setStyle({'fill': color});   
+    this.style.fill = color;
+    this.setStyle(this.style);   
+}
+
+PIXI.Text.prototype.setFont = function(font) {
+    this.style.font = font;
+    this.setStyle(this.style);
 }
 
 function add(obj) {
