@@ -104,7 +104,7 @@ PIXI.Stage.prototype.remove = function(graphicsObject) {
     }
 }
 
-PIXI.Stage.prototype.getElementAt = function(x, y, notelem) {
+PIXI.Stage.prototype.getElementAt = function(x, y) {
     var children = stage.gobjects;
     for (var i=0; i<children.length; ++i) {
         var child = children[i];
@@ -262,6 +262,13 @@ function add(obj) {
         console.log("Tried to add an object without creating canvas first!");
     }
     stage.add(obj);
+}
+
+function remove(obj) {
+    if (typeof obj === 'undefined') {
+        console.log("Tried to add an object without creating canvas first!");
+    }
+    stage.remove(obj);
 }
 
 function clearCanvas() {
