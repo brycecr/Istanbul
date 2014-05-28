@@ -124,6 +124,14 @@ PIXI.Stage.prototype.getElementAt = function(x, y) {
     return null;
 }
 
+function getElementAt(x,y) {
+    if (typeof(stage) === 'undefined') {
+        console.log('Tried to getElementAt without adding a stage first!');
+        return;
+    }
+    stage.getElementAt(x,y);    
+}
+
 var stage;
 var renderer;
 function setBackground(width, height, color) {
@@ -268,15 +276,17 @@ PIXI.Text.prototype.setFont = function(font) {
 }
 
 function add(obj) {
-    if (typeof obj === 'undefined') {
+    if (typeof(stage) === 'undefined') {
         console.log("Tried to add an object without creating canvas first!");
+        return;
     }
     stage.add(obj);
 }
 
 function remove(obj) {
-    if (typeof obj === 'undefined') {
+    if (typeof(stage) === 'undefined') {
         console.log("Tried to add an object without creating canvas first!");
+        return;
     }
     stage.remove(obj);
 }
