@@ -93,6 +93,9 @@ PIXI.Stage.prototype.add = function(graphicsObject) {
 /* hack to let GObjects be treated like graphics elements
  * to the eyes of the stage */
 PIXI.Stage.prototype.remove = function(graphicsObject) {
+    if (typeof(graphicsObject) === 'undefined' 
+        || graphicsObject === '')
+        return;
     if (graphicsObject instanceof GObject) {
         this.removeChild(graphicsObject.graphics);
         var i = this.gobjects.indexOf(graphicsObject);
@@ -232,7 +235,10 @@ function GImage(image_loc) {
 
 /* Begin GLabel */
 function GLabel(str) {
-    this.text = new PIXI.Text(str, { font: "30px Verdana", fill: 0x000000, align: "left"});
+   this.style = { font: "30px Verdana", fill: 0x000000, align: "left"};
+    var text = new PIXI.Text(str, this.style);
+    text.position.x = 0;
+    text.position.y = 0;
     return text;
 }
 
