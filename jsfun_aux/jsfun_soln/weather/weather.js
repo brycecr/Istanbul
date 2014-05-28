@@ -2,6 +2,7 @@
 // Create your interactors and canvas here!
 var app = new GraphicsApp();
 var textField;
+var weatherStatus;
 
 var IMAGE_Y = 10;
 var IMAGE_WIDTH = 128;
@@ -69,10 +70,11 @@ function getImageForCondition(cond) {
 }
 
 function displayStatusMessage(message) {
-    var status = new GLabel(message);
-    status.position.x = STATUS_MESSAGE_X;
-    status.position.y = STATUS_MESSAGE_Y;
-    add(status);
+    remove(weatherStatus);
+    weatherStatus = new GLabel(message);
+    weatherStatus.position.x = STATUS_MESSAGE_X;
+    weatherStatus.position.y = STATUS_MESSAGE_Y;
+    add(weatherStatus);
 }
 
 function success(data) {
