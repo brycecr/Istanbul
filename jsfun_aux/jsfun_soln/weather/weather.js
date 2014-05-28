@@ -54,6 +54,7 @@ function recieveCoords(lat, long) {
 }
 
 function error() {
+    clearCanvas();
     displayStatusMessage("Something bad happened");   
 }
 
@@ -70,7 +71,6 @@ function getImageForCondition(cond) {
 }
 
 function displayStatusMessage(message) {
-    remove(weatherStatus);
     weatherStatus = new GLabel(message);
     weatherStatus.position.x = STATUS_MESSAGE_X;
     weatherStatus.position.y = STATUS_MESSAGE_Y;
@@ -79,6 +79,7 @@ function displayStatusMessage(message) {
 
 function success(data) {
     clearCanvas();
+    weatherStatus = undefined;
     displayStatusMessage("Weather loaded.");
     for (var i=0; i<data.length; ++i) {
         var image = new GImage(getImageForCondition(data[i].weatherDescription));
