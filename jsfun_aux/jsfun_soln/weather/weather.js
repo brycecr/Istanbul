@@ -13,8 +13,8 @@ var TEXT_Y = IMAGE_Y + IMAGE_HEIGHT + IMAGE_GAP;
 var CANVAS_WIDTH = 1100;
 var CANVAS_HEIGHT = 400;
 
-var STATUS_MESSAGE_X = 0;
-var STATUS_MESSAGE_Y = 900;
+var STATUS_MESSAGE_X = 700;
+var STATUS_MESSAGE_Y = 360;
 
 function getColor(temp) {
     if (temp < 10) {
