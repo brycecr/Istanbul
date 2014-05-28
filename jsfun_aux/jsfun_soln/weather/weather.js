@@ -10,6 +10,12 @@ var IMAGE_GAP = 20;
 
 var TEXT_Y = IMAGE_Y + IMAGE_HEIGHT + IMAGE_GAP;
 
+var CANVAS_WIDTH = 1100;
+var CANVAS_HEIGHT = 400;
+
+var STATUS_MESSAGE_X = 0;
+var STATUS_MESSAGE_Y = 900;
+
 function getColor(temp) {
     if (temp < 10) {
         return Color.blue;   
@@ -21,19 +27,24 @@ function getColor(temp) {
 }
 
 function run() {
+    app.addTitle("WeatherBug");
+    textField = app.addTextField();
     app.addButton("Show Weather", showWeather);
     app.addButton("Show Local Weather", showLocalWeather);
-    textField = app.addTextField();
-    app.addCanvas(1100,400);
+
+    app.addCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
 }
 
 function showWeather() {
     clearCanvas();
     var query = textField.value;
+    displayStatusMessage("Loading weather...");
     app.fetchWeatherForQuery(query, 7, success, error);
 }
 
 function showLocalWeather() {
+    clearCanvas();
+    displayStatusMessage("Loading local weather...");
     app.getCurrentLocation(recieveCoords);
 }
 
@@ -42,7 +53,7 @@ function recieveCoords(lat, long) {
 }
 
 function error() {
-    app.displayErrorMessage("Something bad happened");   
+    displayStatusMessage("Something bad happened");   
 }
 
 function getImageForCondition(cond) {
@@ -57,20 +68,29 @@ function getImageForCondition(cond) {
     }
 }
 
+function displayStatusMessage(message) {
+    var status = new GLabel(message);
+    status.position.x = STATUS_MESSAGE_X;
+    status.position.y = STATUS_MESSAGE_Y;
+    add(status);
+}
+
 function success(data) {
-for (var i=0; i<data.length; ++i) {
-    var image = new GImage(getImageForCondition(data[i].weatherDescription));
-    image.position.x = IMAGE_GAP+(IMAGE_GAP+IMAGE_WIDTH)*i;
-    image.position.y = IMAGE_Y;
-    image.scale = new PIXI.Point(.5,.5);
-    add(image);
+    clearCanvas();
+    displayStatusMessage("Weather loaded.");
+    for (var i=0; i<data.length; ++i) {
+        var image = new GImage(getImageForCondition(data[i].weatherDescription));
+        image.position.x = IMAGE_GAP+(IMAGE_GAP+IMAGE_WIDTH)*i;
+        image.position.y = IMAGE_Y;
+        image.scale = new PIXI.Point(.5,.5);
+        add(image);
     
-    var temp = Math.round(data[i].tempHigh);
-    var countingText = new GLabel(temp);
-    countingText.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i + .5*IMAGE_WIDTH - countingText._width;
-    countingText.position.y = TEXT_Y;
-    countingText.setColor(getColor(temp));
-    countingText.setFont('80px Verdana');
-    add(countingText);
-}   
+        var temp = Math.round(data[i].tempHigh);
+        var countingText = new GLabel(temp);
+        countingText.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i + .5*IMAGE_WIDTH - countingText._width;
+        countingText.position.y = TEXT_Y;
+        countingText.setColor(getColor(temp));
+        countingText.setFont('80px Verdana');
+        add(countingText);
+    }    
 }

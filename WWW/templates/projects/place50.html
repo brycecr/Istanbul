@@ -15,10 +15,10 @@
 		<!-- Header -->
 		<div id="pageHeader">
 			<h1>
-				Random Painter
+				Place 100 (with solution)
 			</h1>
 			<p>
-				Writen by Chris Piech
+				Problem written by Chris
 			</p>
 
 		</div>
@@ -27,55 +27,64 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p>
-					Karel is starting to find her world too black and white. Help her fill it with color.
-					<p>
-					<center>
-						<img style="width:100%"  src="{{pathToRoot}}projects/img/randomPainter/long.png">	
-					</center>
-					</p>
+					Your goal is to have Karel create a pile of 100 beepers to create a world identical to the one below. Your solution should *not* have 100 lines of putBeepers :). 
 				</p>
-				<h2>Paint and Random</h2>
-				<p>
-					Karel has a few commands up her sleeve. She can paint the corner on which she is standing using the instruction
-<div class="well"><code>paintCorner(color);</code></div>
-The value enclosed in the parentheses, which is called an argument in the terminology
-of programming languages, may be any of the following:
-                 <span style="color:red;">RED</span>&nbsp;&nbsp;  
-                 <span style="color:orange;">ORANGE</span>&nbsp;&nbsp;
-                 <span style="color:green;">GREEN</span>&nbsp;&nbsp;
-                 <span style="color:cyan;">CYAN</span>&nbsp;&nbsp;
-                 <span style="color:blue;">BLUE</span>&nbsp;&nbsp;
-                 <span style="color:magenta;">MAGENTA</span>
-                 and more...             
-				</p>
-				<p>
-					Karel also defines a new condition random, which is true half the time, but in an unpredictable way. Like flipping a coin, sometimes it returns true and sometimes it returns false. For example the code 
-					<div class="well"><code>if(random()) {<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;putBeeper();<br/>
-					}</code></div>
-					Will place a beeper, or will not, with equal probability.
 
-				</p>
-				<h2>Painter</h2>
-				<p>
-					Use these new abilities to have karel randomly paint each corner of a world one of two colors. You can chose any two colors you would like, we chose green and blue.
-				</p>
-				<p>
-
-					 Below are three executions of the same program that randomly paints any sized world green and blue executed on a 10x10 world. Note that because of the random condition, the pattern of green and blue is different on each run!
-				</p>
 				<p>
 					<center>
-						<img style="width:100%"  src="{{pathToRoot}}projects/img/randomPainter/randoms.png">	
+						<img style="width:400px" src="{{pathToRoot}}projects/img/emc2/demo.png">	
 					</center>
 				</p>
-				<p>
-					As always, remember to decompose your solution! Your program should work on a world of any size.
-				</p>
+				<p>You can assume that the world is initially empty and that Karel is facing East from the bottom left corner.</p>
+				
 			</div>
 
 		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Solution</h2>
 
+
+<pre id="editor" style="height:480px">/**
+ * Program: EMC2
+ * -------------
+ * This program helps users calculate how much energy they could
+ * get if they transformed their mass. Thanks Einstein!
+ */
+public class EMC2 extends ConsoleProgram {
+	
+	// This declares a constant... it can never change value.
+	// Speed of light in m/s
+	private static final double C = 299792458;
+	
+	public void run() {
+		while(true) {
+			// Read the mass in from the user.
+			double massInKg = readDouble("Enter kilos of mass: ");
+			
+			// Calculate energy
+			double energyInJoules = massInKg * C * C;
+			
+			// Display work to the user
+			println("e = m * C^2...");
+			println("m = " + massInKg + " kg");
+			println("C = " + C + " m/s");
+			println(energyInJoules + " joules of energy!");
+			println("");
+		}
+	}
+}</pre>
+    
+<script src="{{pathToRoot}}plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/java");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
 		
 		%include templates/parts/footer.html
 
