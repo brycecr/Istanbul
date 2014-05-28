@@ -103,7 +103,11 @@ PIXI.Stage.prototype.remove = function(graphicsObject) {
             this.gobjects.splice(i, 1);   
         }
     } else {
+        try {
         this.removeChild(graphicsObject);
+        } catch (err) {
+            console.log("tried to remove something not on canvas "+err);
+        }
     }
 }
 
