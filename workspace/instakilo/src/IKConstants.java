@@ -1,7 +1,10 @@
 public interface IKConstants {
 	
 	public static final String DATAFILE_NAME = "instakilo_data.txt";
-
+	
+	public static final String BLACK_AND_WHITE = "BlackAndWhite";
+	public static final String NO_FILTER = "NoFilter";
+	
 	/**
 	 * The width of the application window.
 	 */
@@ -13,7 +16,7 @@ public interface IKConstants {
 	public static final int APPLICATION_HEIGHT = 680;
 	
 	/**
-	 * The height of the application window.
+	 * The height of a row of images.
 	 */
 	public static final int ROW_HEIGHT = 180;
 
@@ -39,12 +42,6 @@ public interface IKConstants {
 	 * Name component and the top of the Image displayed in the profile.
 	 */
 	public static final double IMAGE_IMAGE_MARGIN = 20;
-
-	/**
-	 * The number of pixels in the vertical margin between the baseline of the
-	 * Name component and the top of the Image displayed in the profile.
-	 */
-	public static final double CAPTION_IMAGE_MARGIN = 20;
 
 	/**
 	 * The number of pixels in the horizontal margin between the left side of
