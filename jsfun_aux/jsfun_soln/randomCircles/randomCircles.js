@@ -14,10 +14,10 @@ function clearCircles() {
 }
 
 function randomCircle() {
-    var randx = Math.random()*WIDTH;
-    var randy = Math.random()*HEIGHT;
     var randwidth = Math.random() * 100 + 50;
     var randheight = Math.random() * 100 + 50;
+    var randx = Math.random()*Math.abs(WIDTH-randwidth)+randwidth/2;
+    var randy = Math.random()*Math.abs(HEIGHT-randheight)+randheight/2;
     var oval = new GOval(randx, randy, randwidth, randheight);
     oval.setColor(pickRandomProperty(Color));
     add(oval);

@@ -1,0 +1,92 @@
+<head>
+
+	%include templates/parts/head.html
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				Place 100 (with solution)
+			</h1>
+			<p>
+				Problem written by Chris
+			</p>
+
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					Your goal is to have Karel create a pile of 100 beepers to create a world identical to the one below. Your solution should *not* have 100 lines of putBeepers :). 
+				</p>
+
+				<p>
+					<center>
+						<img style="width:400px" src="{{pathToRoot}}projects/img/emc2/demo.png">	
+					</center>
+				</p>
+				<p>You can assume that the world is initially empty and that Karel is facing East from the bottom left corner.</p>
+				
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Solution</h2>
+
+
+<pre id="editor" style="height:480px">/**
+ * Program: EMC2
+ * -------------
+ * This program helps users calculate how much energy they could
+ * get if they transformed their mass. Thanks Einstein!
+ */
+public class EMC2 extends ConsoleProgram {
+	
+	// This declares a constant... it can never change value.
+	// Speed of light in m/s
+	private static final double C = 299792458;
+	
+	public void run() {
+		while(true) {
+			// Read the mass in from the user.
+			double massInKg = readDouble("Enter kilos of mass: ");
+			
+			// Calculate energy
+			double energyInJoules = massInKg * C * C;
+			
+			// Display work to the user
+			println("e = m * C^2...");
+			println("m = " + massInKg + " kg");
+			println("C = " + C + " m/s");
+			println(energyInJoules + " joules of energy!");
+			println("");
+		}
+	}
+}</pre>
+    
+<script src="{{pathToRoot}}plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/java");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+		
+		%include templates/parts/footer.html
+
+	</div>
+</body>

@@ -1,0 +1,135 @@
+<head>
+
+	%include templates/parts/head.html
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				String Art (Worked Example)
+			</h1>
+			<p>
+				By Chris Piech
+			</p>
+			<p>
+				Topics:
+				<a href ="{{pathToRoot}}handouts/animation.html">Parameters</a>
+			</p>
+
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					By repeatedly drawing lines, we can make a curved looking shape. Consider the example below where we imagine dots evenly space along the bottom and the left of a canvas. If we connect the topmost dot on the left edge to the left most dot on the right edge, we would be a line like the picture of the far left. If we then connect the next 10 dots we get a picture in the middle and if we connect all dots we get the picture on the right.
+				</p>
+				
+				<p>
+					<center>
+						<img style="width:700px" src="{{pathToRoot}}projects/img/stringArt/startToEnd.png">	
+					</center>
+				</p>
+				<p>Write a program that creates the "curve" in the above right image using straight lines.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Decomposition</h2>
+				<p>
+					This problem has a logical group of commands that draws the ith line. In your program, implement and use a method with the following prototype:
+					<div class="well"><code>private drawLine(int index) {
+						<br/>&nbsp;&nbsp;&nbsp;//code for drawing the ith line
+						<br/>}</code></div>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Solution</h2>
+
+
+<pre id="editor" style="height:850px">import acm.graphics.*;
+import acm.program.*;
+
+public class StringArt extends GraphicsProgram {
+
+	/** The size of the screen **/
+	public static final int APPLICATION_WIDTH = 400;
+	public static final int APPLICATION_HEIGHT = 400;
+	
+	/** The number of pixels between end points of the line **/
+	public static final int LINE_SPACING = 20;
+	
+	/** The number of lines we will have to draw **/
+	public static final int NUM_LINES = APPLICATION_WIDTH / LINE_SPACING;
+
+	public void run() {
+		for(int i = 0; i < NUM_LINES; i++) {
+			drawLine(i);
+		}
+	}
+
+	/**
+	 * Method: Draw Line
+	 * -----------------
+	 * Draws the ith line in the string art picture. The offset is 
+	 * i * LINE_SPACING.
+	 */
+	private void drawLine(int i) {
+		int offset = i * LINE_SPACING;
+		int startX = offset;
+		int startY = getHeight();
+		int endX = 0;
+		int endY = offset;
+		GLine line = new GLine(startX, startY, endX, endY);
+		add(line);
+		addPoint(startX, startY);
+		addPoint(endX, endY);
+	}
+
+	/**
+	 * Method: Add Point
+	 * -----------------
+	 * Draws a filled circle of radius 5 around the point x, y
+	 */
+	private void addPoint(int x, int y) {
+		double width = 5;
+		GOval oval = new GOval(x - width/2, y - width/2, width, width);
+		oval.setFilled(true);
+		add(oval);
+
+	}
+}</pre>
+    
+<script src="{{pathToRoot}}plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/java");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+
+			</div>
+		</div>
+
+
+		
+		%include templates/parts/footer.html
+
+	</div>
+</body>

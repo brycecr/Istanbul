@@ -25,6 +25,14 @@ pre {
   height:50px;
 }
 
+h2 {
+  padding-top: 0.5em;
+}
+
+h1 {
+  font-size: 42px;
+}
+
 .projectImg {
   width:150px;
   height:100px;
@@ -160,10 +168,7 @@ margin-top: 3px;
 		background-color:#f8f6ea !important;
 }
 
-.dropdown-menu li a:hover {
-    background-color:#820000 !important;
-    background-image:none;
-}
+
 
 .navCaret {
 border-top-color: #f8f6ea !important;

@@ -1,13 +1,13 @@
 var STAGE_WIDTH = 400;
 var STAGE_HEIGHT = 600;
 
-var stage = setBackground(STAGE_WIDTH, STAGE_HEIGHT, 0xFFFFFF);
+var app = new GraphicsApp();
 
 /* local game state */
-var TOP_GAP = 20;
-var BRICK_GAP = 5;
-var BRICKS_ROW = 10;
-var NUM_ROWS = 10;
+var TOP_GAP = 20; //Gap from top wall to firs brick
+var BRICK_GAP = 5; // Gap between bricks
+var BRICKS_ROW = 10; // Number of bricks in a row
+var NUM_ROWS = 10; // Number of rows of bricks
 
 var BRICK_WIDTH = Math.floor((STAGE_WIDTH - BRICK_GAP*(BRICKS_ROW+2))/BRICKS_ROW);
 var BRICK_HEIGHT = 10;
@@ -17,29 +17,42 @@ var BALL_RADIUS = 10;
 var PADDLE_WIDTH = 80;
 var PADDLE_HEIGHT = 20;
 
-var numlives = 3;
-var bricksLeft = 100;
+var bricksLeft = 100; // number of bricks left on the screen. if 0, player wins
 
-var colors = [0xFF0000, 0xFFFF00, 0xFF00FF, 0x00FFFF, 0x00FF00];
+var colors = [Color.red, Color.yellow, Color.magenta, Color.green, Color.blue];
 
-for (var i=0; i < NUM_ROWS; ++i) {
-    for (var j=0; j < BRICKS_ROW; ++j) {
-        var rect = new GRect(BRICK_GAP + (i*(BRICK_WIDTH+BRICK_GAP)), 
-                             TOP_GAP + BRICK_GAP + (j*(BRICK_HEIGHT+BRICK_GAP)), 
-                             BRICK_WIDTH, BRICK_HEIGHT);
-        rect.setColor(colors[Math.floor(j/2)]);
-        stage.add(rect);
+var ball;
+var paddle;
+
+/**
+ * We create all the gameplay elements here: ball, paddle, and bricks!
+ */
+function run() {
+    app.addCanvas(STAGE_WIDTH, STAGE_HEIGHT);
+    for (var i=0; i < NUM_ROWS; ++i) {
+        for (var j=0; j < BRICKS_ROW; ++j) {
+            var rect = new GRect(BRICK_GAP + (i*(BRICK_WIDTH+BRICK_GAP)), 
+                                 TOP_GAP + BRICK_GAP + (j*(BRICK_HEIGHT+BRICK_GAP)), 
+                                 BRICK_WIDTH, BRICK_HEIGHT);
+            rect.setColor(colors[Math.floor(j/2)]);
+            add(rect);
+        }
     }
+    
+    ball = new GCircle(200,400,BALL_RADIUS);
+    ball.vx = Math.random()*20-10;
+    ball.vy = 6;
+    add(ball);
+    
+    paddle = new GRect(180,550,PADDLE_WIDTH,PADDLE_HEIGHT);
+    add(paddle);
 }
 
-var ball = new GCircle(200,400,BALL_RADIUS);
-ball.vx = Math.random()*20-10;
-ball.vy = 6;
-stage.add(ball);
-
-var paddle = new GRect(180,550,PADDLE_WIDTH,PADDLE_HEIGHT);
-stage.add(paddle);
-
+/**
+ * Detect when the ball has hit any of the walls. The ball
+ * bounces off the north, east, and west walls, and indicates
+ * failure if the ball goes off the bottom of the screen
+ */
 function detectWalls() {
     if (ball.position.y > STAGE_HEIGHT) {
         var text = new PIXI.Text("YOU LOSE", {font:"50px Arial", fill:"red"});
@@ -56,6 +69,12 @@ function detectWalls() {
     }
 }
 
+/**
+ * Detect a collision between the ball and another object!
+ * If it collides with any element (brick or paddle), we
+ * reverse its y direction. In addition, if the collider
+ * is a brick, we remove the brick
+ */
 function detectCollision() {
     
     detectWalls();
@@ -63,7 +82,6 @@ function detectCollision() {
         for (var j=0; j<BALL_RADIUS; j+=BALL_RADIUS) {
             var collider = stage.getElementAt(ball.position.x+i, ball.position.y+j);
             if (collider !== null) {
-                console.log(collider);
                 ball.vy = -ball.vy;
                 if (collider !== paddle) {
                     stage.remove(collider);
@@ -75,7 +93,12 @@ function detectCollision() {
     }
 }
 
-
+/**
+ * This function is called inside a loop to animate the
+ * game. Here is where we update the positions of all the
+ * elements in the game and remove / add elements
+ * with response to gameplay events (collisions, win/loss, etc)
+ */
 function drawFrame() {
     ball.position.x += ball.vx;
     ball.position.y += ball.vy;

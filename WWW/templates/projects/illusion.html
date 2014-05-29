@@ -1,0 +1,80 @@
+<head>
+
+	%include templates/parts/head.html
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	%include templates/parts/navBar.html
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				Optical Illusion
+			</h1>
+			<p>
+				Based on a handout by ?
+			</p>
+			<p>
+				Topics:
+				<a href ="{{pathToRoot}}handouts/animation.html">Parameters</a>
+				<br/>
+				Worked Example: 
+				<a href="{{pathToRoot}}projects/stringArt.html">String Art</a>
+			</p>
+
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					Sometimes repeating patters can cause our eyes to see things that aren't there. Look at the picture below. Can you see little gret squares in the intersections of the white lines? Write a GraphicsProgram that create the optical illusion:
+				</p>
+				
+				<p>
+					<center>
+						<img style="width:500px" src="{{pathToRoot}}projects/img/illusion/illusion1.png">	
+					</center>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Decomposition</h2>
+				<p>
+					This problem has a logical group of commands that draws a square that should be decomposed into its own method. The challenge is, that the method needs extra information, the row and column where it should be drawn. This problem can be addressed by using parameter passing. In your program, implement and use a method with the following prototype:
+					<div class="well"><code>private drawSquare(int row, int col) {
+						<br/>&nbsp;&nbsp;&nbsp;//code for drawing a square at the position row, col
+						<br/>}</code></div>
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Extension</h2>
+				<p>
+					If you have time, try creating this optical illusion! Note that all the squares are the same size and all lines are horizontal! Think about how to decompose your solution.
+				</p>
+				
+				<p>
+					<center>
+						<img style="width:500px" src="{{pathToRoot}}projects/img/illusion/illusion2.png">	
+					</center>
+				</p>
+			</div>
+		</div>
+
+
+		
+		%include templates/parts/footer.html
+
+	</div>
+</body>

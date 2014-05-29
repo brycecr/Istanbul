@@ -93,6 +93,9 @@ PIXI.Stage.prototype.add = function(graphicsObject) {
 /* hack to let GObjects be treated like graphics elements
  * to the eyes of the stage */
 PIXI.Stage.prototype.remove = function(graphicsObject) {
+    if (typeof(graphicsObject) === 'undefined' 
+        || graphicsObject === '')
+        return;
     if (graphicsObject instanceof GObject) {
         this.removeChild(graphicsObject.graphics);
         var i = this.gobjects.indexOf(graphicsObject);
@@ -100,11 +103,15 @@ PIXI.Stage.prototype.remove = function(graphicsObject) {
             this.gobjects.splice(i, 1);   
         }
     } else {
+        try {
         this.removeChild(graphicsObject);
+        } catch (err) {
+            console.log("tried to remove something not on canvas "+err);
+        }
     }
 }
 
-PIXI.Stage.prototype.getElementAt = function(x, y, notelem) {
+PIXI.Stage.prototype.getElementAt = function(x, y) {
     var children = stage.gobjects;
     for (var i=0; i<children.length; ++i) {
         var child = children[i];
@@ -115,6 +122,14 @@ PIXI.Stage.prototype.getElementAt = function(x, y, notelem) {
         }
     }
     return null;
+}
+
+function getElementAt(x,y) {
+    if (typeof(stage) === 'undefined') {
+        console.log('Tried to getElementAt without adding a stage first!');
+        return;
+    }
+    stage.getElementAt(x,y);    
 }
 
 var stage;
@@ -232,12 +247,16 @@ function GImage(image_loc) {
 
 /* Begin GLabel */
 function GLabel(str) {
-    this.text = new PIXI.Text(str, { font: "30px Verdana", fill: 0x000000, align: "left"});
+   this.style = { font: "30px Verdana", fill: 0x000000, align: "left"};
+    var text = new PIXI.Text(str, this.style);
+    text.position.x = 0;
+    text.position.y = 0;
     return text;
 }
 
 function GLabel(str, x, y) {
-    var text = new PIXI.Text(str, { font: "30px Verdana", fill: 0x000000, align: "left"});
+    this.style = { font: "30px Verdana", fill: 0x000000, align: "left"};
+    var text = new PIXI.Text(str, this.style);
     text.position.x = x;
     text.position.y = y;
     return text;
@@ -247,14 +266,29 @@ PIXI.Text.prototype.setColor = function(color) {
     if (typeof(color) === "number" || typeof(color) === "Number") {
         color = '#' + ('00000' + (color | 0).toString(16)).substr(-6); 
     }
-    this.setStyle({'fill': color});   
+    this.style.fill = color;
+    this.setStyle(this.style);   
+}
+
+PIXI.Text.prototype.setFont = function(font) {
+    this.style.font = font;
+    this.setStyle(this.style);
 }
 
 function add(obj) {
-    if (typeof obj === 'undefined') {
+    if (typeof(stage) === 'undefined') {
         console.log("Tried to add an object without creating canvas first!");
+        return;
     }
     stage.add(obj);
+}
+
+function remove(obj) {
+    if (typeof(stage) === 'undefined') {
+        console.log("Tried to add an object without creating canvas first!");
+        return;
+    }
+    stage.remove(obj);
 }
 
 function clearCanvas() {
