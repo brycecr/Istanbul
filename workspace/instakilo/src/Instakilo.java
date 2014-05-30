@@ -4,15 +4,18 @@
  * Reference implementation (in progress) for Instakilo.
  */
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.io.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import acm.graphics.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.program.GraphicsProgram;
-import acm.util.ErrorException;
 
 public class Instakilo extends GraphicsProgram implements IKConstants {
 
@@ -21,10 +24,10 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 	private JTextField nameInput = new  JTextField();
 	private JTextField newPhotoName = new JTextField();
 	private FileSystem fileSystem = new FileSystem();
+	private String filter = NO_FILTER;
 
 	public void init() {
-		data = new HashMap<String, ArrayList<String>>();
-		//data = fileSystem.loadMap(DATAFILE_NAME);
+		data = fileSystem.loadMap(DATAFILE_NAME);
 		addInteractors();
 		showWelcomeMessage();
 	}
@@ -49,10 +52,14 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 	//Graphics
 	private void addInteractors() {
 
+		JButton noFilterButton = new JButton(NO_FILTER);
+		JButton blackAndWhiteButton = new JButton(BLACK_AND_WHITE);
 		JButton displayButton = new JButton("Display");
 		JButton newProfileButton = new JButton("Create");
 		JButton newPhotoButton = new JButton("Post");
 
+		add (noFilterButton, NORTH);
+		add (blackAndWhiteButton, NORTH);
 		add(new JLabel("Profile:"), WEST);
 		add(nameInput, WEST);
 		add(displayButton,WEST);
@@ -62,7 +69,9 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 		add(new JLabel("New photo name:"), WEST);
 		add(newPhotoName, WEST);
 		add(newPhotoButton, WEST);
-
+		
+		noFilterButton.addActionListener(this);
+		blackAndWhiteButton.addActionListener(this);
 		displayButton.addActionListener(this);
 		newProfileButton.addActionListener(this);
 		newPhotoButton.addActionListener(this);
@@ -75,6 +84,11 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 	}
 
 	private void displayProfile(String name) {
+		
+		if (name == null) {
+			return;
+		}
+		
 		if(!data.containsKey(name)) {
 			displayMessage("no such profile");
 			return;
@@ -97,14 +111,15 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 			System.out.println(photo);
 		}
 		
-		for (String photo : photos) {
+		for (int i=0; i<photos.size(); i++ ) {
+			String photo = photos.get(i);
 			GImage image = new GImage(photo);
+			image = applyFilter(image);
 
 			if (image != null) {
 
 				scaleImage(image);
 
-				//TODO doesn't account for width of interactors bar?
 				double imageRight = x + image.getWidth();
 				double maxRight = getWidth() - RIGHT_MARGIN;
 				if (imageRight >  maxRight) {
@@ -128,14 +143,21 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 	}
 
 
+	private GImage applyFilter(GImage img) {
+		if (filter !=null && filter.equals(BLACK_AND_WHITE)) {
+			img = toBlackAndWhite(img);
+		}
+		return img;
+	}
+
 	private void scaleImage(GImage image) {
 		double amount = ROW_HEIGHT / image.getHeight();
 		image.scale(amount);
 	}
 
-	//TODO add extension to detect "enter" key press or print messages if fields are empty
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
+		println(command);
 		if(command.equals("Display")) {
 			displayProfile(nameInput.getText());
 		} else if(command.equals("Create")) {
@@ -144,9 +166,33 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 			displayProfile(name);
 		} else if(command.equals("Post")) {
 			postPhoto();
-		} 
+		} else if(command.equals(BLACK_AND_WHITE)) {
+			filter = BLACK_AND_WHITE;
+			displayProfile(currProfileName);
+		} else if(command.equals(NO_FILTER)) {
+			filter = NO_FILTER;
+			displayProfile(currProfileName);
+		}
 	}
 
+	private GImage toBlackAndWhite(GImage img) {
+		int[][] pxls = img.getPixelArray();
+		for (int i=0; i< pxls.length; i++) {
+			for (int j=0; j<pxls[0].length; j++) {
+				int oldVal = pxls[i][j];
+				int red = GImage.getRed(oldVal);
+				int green = GImage.getGreen(oldVal);
+				int blue = GImage.getBlue(oldVal);
+				
+				int newRGB = (int) (0.21*red + 0.72*green + 0.07*blue);
+				pxls[i][j] = GImage.createRGBPixel(newRGB, newRGB, newRGB);
+			}
+		}
+		GImage transformedImg = new GImage(pxls);
+		return transformedImg;
+		
+	}
+	
 	private void postPhoto() {
 		if (currProfileName == null) {
 			displayMessage("Please pick a profile first");
@@ -160,7 +206,7 @@ public class Instakilo extends GraphicsProgram implements IKConstants {
 			displayProfile(currProfileName);
 		}
 		//displayMessage("Photo added");
-	}
-
+	}	
+	
 }
 
