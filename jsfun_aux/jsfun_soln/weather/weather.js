@@ -19,7 +19,7 @@ var STATUS_MESSAGE_Y = 360;
 function getColor(temp) {
     if (temp < 10) {
         return Color.blue;   
-    } else if (temp < 20) {
+    } else if (temp < 27) {
         return Color.green;   
     } else {
         return Color.red;
@@ -36,14 +36,14 @@ function run() {
 }
 
 function showWeather() {
-    clearCanvas();
+    removeAll();
     var query = textField.value;
     displayStatusMessage("Loading weather...");
     app.fetchWeatherForQuery(query, 7, success, error);
 }
 
 function showLocalWeather() {
-    clearCanvas();
+    removeAll();
     displayStatusMessage("Loading local weather...");
     app.getCurrentLocation(recieveCoords);
 }
@@ -53,7 +53,7 @@ function recieveCoords(lat, long) {
 }
 
 function error() {
-    clearCanvas();
+    removeAll();
     displayStatusMessage("Something bad happened");   
 }
 
@@ -71,25 +71,22 @@ function getImageForCondition(cond) {
 
 function displayStatusMessage(message) {
     var weatherStatus = new GLabel(message);
-    weatherStatus.position.x = STATUS_MESSAGE_X;
-    weatherStatus.position.y = STATUS_MESSAGE_Y;
+    weatherStatus.setPosition(STATUS_MESSAGE_X, STATUS_MESSAGE_Y);
     add(weatherStatus);
 }
 
 function success(data) {
-    clearCanvas();
+    removeAll();
     displayStatusMessage("Weather loaded.");
     for (var i=0; i<data.length; ++i) {
         var image = new GImage(getImageForCondition(data[i].weatherDescription));
-        image.position.x = IMAGE_GAP+(IMAGE_GAP+IMAGE_WIDTH)*i;
-        image.position.y = IMAGE_Y;
+        image.setPosition(IMAGE_GAP+(IMAGE_GAP+IMAGE_WIDTH)*i, IMAGE_Y);
         image.scale = new PIXI.Point(.5,.5);
         add(image);
     
         var temp = Math.round(data[i].tempHigh);
         var countingText = new GLabel(temp);
-        countingText.position.x = IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i + .5*IMAGE_WIDTH - countingText._width;
-        countingText.position.y = TEXT_Y;
+        countingText.setPosition(IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i + .5*IMAGE_WIDTH - countingText._width, TEXT_Y);
         countingText.setColor(getColor(temp));
         countingText.setFont('80px Verdana');
         add(countingText);
