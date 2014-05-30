@@ -132,7 +132,7 @@ GraphicsApp.prototype.getCurrentLocation = function(successFn, errorFn) {
 	if (navigator.geolocation) {
 		// Query the user's location
 		navigator.geolocation.getCurrentPosition(function(position) {
-			callbackFn(position.coords.latitude, position.coords.longitude);
+			successFn(position.coords.latitude, position.coords.longitude);
 		});
 	} else errorFn();
 }

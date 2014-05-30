@@ -194,7 +194,8 @@ GObject.prototype = {
             this.graphics.endFill(this.color);
         } 
     },
-    draw: function() { /*ABSTRACT: override to draw something*/ }
+    draw: function() { /*ABSTRACT: override to draw something*/ },
+    setPosition: function(x,y) { this.position.x = x; this.position.y; }
 };
 /* End GObject */
 
@@ -275,6 +276,14 @@ PIXI.Text.prototype.setFont = function(font) {
     this.setStyle(this.style);
 }
 
+PIXI.Sprite.prototype.getWidth = function() {
+    return this.width;
+}
+
+PIXI.Sprite.prototype.getHeight = function() {
+    return this.height;
+}
+
 function add(obj) {
     if (typeof(stage) === 'undefined') {
         console.log("Tried to add an object without creating canvas first!");
@@ -291,10 +300,15 @@ function remove(obj) {
     stage.remove(obj);
 }
 
-function clearCanvas() {
+function removeAll() {
     for (var i = stage.children.length - 1; i >= 0; --i) {
         stage.removeChild(stage.children[i]);   
     }
+}
+
+PIXI.Sprite.prototype.setPosition = function(x,y) {
+    this.position.x = x;
+    this.position.y = y;
 }
 
 /* Cute solution from http://stackoverflow.com/questions/2532218/pick-random-property-from-a-javascript-object */
