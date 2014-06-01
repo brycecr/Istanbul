@@ -278,7 +278,6 @@ PIXI.Text.prototype.setFont = function(font) {
 }
 
 PIXI.Sprite.prototype.getWidth = function() {
-    console.log(this.width);
     return this.width;
 }
 
