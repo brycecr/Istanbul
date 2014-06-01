@@ -99,7 +99,6 @@ function success(data) {
         var countingText = new GLabel(temp);
         countingText.setColor(getColor(temp));
         countingText.setFont('80px Verdana');
-        countingText.updateText();
         countingText.setPosition(width*i+width/2-countingText.width/2, TEXT_Y);
         add(countingText);
     }    
