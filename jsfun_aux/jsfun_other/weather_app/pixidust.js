@@ -274,9 +274,11 @@ PIXI.Text.prototype.setColor = function(color) {
 PIXI.Text.prototype.setFont = function(font) {
     this.style.font = font;
     this.setStyle(this.style);
+    this.updateText();
 }
 
 PIXI.Sprite.prototype.getWidth = function() {
+    console.log(this.width);
     return this.width;
 }
 
