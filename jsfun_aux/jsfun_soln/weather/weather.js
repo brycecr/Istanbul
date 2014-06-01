@@ -75,20 +75,32 @@ function displayStatusMessage(message) {
     add(weatherStatus);
 }
 
+function drawBackground(len) {
+    var width = CANVAS_WIDTH / len;
+    for (var i=0; i < len; ++i) {
+        var rect = new GRect(i*width, 0, width, CANVAS_HEIGHT);
+        rect.setColor((i%2)?0xDDDDEE: 0xEEEEFF);
+        add(rect);
+    }
+}
+
 function success(data) {
     removeAll();
     displayStatusMessage("Weather loaded.");
+    drawBackground(data.length);
+    var width = CANVAS_WIDTH / data.length;
     for (var i=0; i<data.length; ++i) {
         var image = new GImage(getImageForCondition(data[i].weatherDescription));
-        image.setPosition(IMAGE_GAP+(IMAGE_GAP+IMAGE_WIDTH)*i, IMAGE_Y);
+        image.setPosition(width*i+width/2-IMAGE_WIDTH/2, IMAGE_Y);
         image.scale = new PIXI.Point(.5,.5);
         add(image);
     
         var temp = Math.round(data[i].tempHigh);
         var countingText = new GLabel(temp);
-        countingText.setPosition(IMAGE_GAP + (IMAGE_GAP+IMAGE_WIDTH)*i + .5*IMAGE_WIDTH - countingText._width, TEXT_Y);
         countingText.setColor(getColor(temp));
         countingText.setFont('80px Verdana');
+        countingText.updateText();
+        countingText.setPosition(width*i+width/2-countingText.width/2, TEXT_Y);
         add(countingText);
     }    
 }
