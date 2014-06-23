@@ -15,7 +15,7 @@
 		<!-- Header -->
 		<div id="pageHeader">
 			<h1>
-				Random Painter
+				Beeper Line
 			</h1>
 			<p>
 				Writen by Chris Piech
@@ -27,53 +27,63 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p>
-					Karel is starting to find her world too black and white. Help her fill it with color.
+					Your goal is to fill the first row of Karel's world with beepers. You can assume that Karel starts in the bottom left corner, facing east. For example, if you ran your program on the world on the left, it should produce the world on the right.
 					<p>
 					<center>
-						<img style="width:100%"  src="{{pathToRoot}}projects/img/randomPainter/long.png">	
+						<img style="width:600px"  src="{{pathToRoot}}img/projects/beeperLine/beeperLine1.png">	
+					</center>
+					</p>
+					Your program should also work for worlds of different sizes. For example if we run the EXACT same program on this slightly larger world, Karel should still be able to place a full line of beepers without crashing. This means we can't use a for loop. We don't know before hand how big the world is going to be!
+					<p>
+					<center>
+						<img style="width:700px"  src="{{pathToRoot}}img/projects/beeperLine/beeperLine2.png">	
 					</center>
 					</p>
 				</p>
-				<h2>Paint and Random</h2>
-				<p>
-					Karel has a few commands up her sleeve. She can paint the corner on which she is standing using the instruction
-<div class="well"><code>paintCorner(color);</code></div>
-The value enclosed in the parentheses, which is called an argument in the terminology
-of programming languages, may be any of the following:
-                 <span style="color:red;">RED</span>&nbsp;&nbsp;  
-                 <span style="color:orange;">ORANGE</span>&nbsp;&nbsp;
-                 <span style="color:green;">GREEN</span>&nbsp;&nbsp;
-                 <span style="color:cyan;">CYAN</span>&nbsp;&nbsp;
-                 <span style="color:blue;">BLUE</span>&nbsp;&nbsp;
-                 <span style="color:magenta;">MAGENTA</span>
-                 and more...             
-				</p>
-				<p>
-					Karel also defines a new condition random, which is true half the time, but in an unpredictable way. Like flipping a coin, sometimes it returns true and sometimes it returns false. For example the code 
-					<div class="well"><code>if(random()) {<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;putBeeper();<br/>
-					}</code></div>
-					Will place a beeper, or will not, with equal probability.
-
-				</p>
-				<h2>Painter</h2>
-				<p>
-					Use these new abilities to have karel randomly paint each corner of a world one of two colors. You can chose any two colors you would like, we chose green and blue.
-				</p>
-				<p>
-
-					 Below are three executions of the same program that randomly paints any sized world green and blue executed on a 10x10 world. Note that because of the random condition, the pattern of green and blue is different on each run!
-				</p>
-				<p>
-					<center>
-						<img style="width:100%"  src="{{pathToRoot}}projects/img/randomPainter/randoms.png">	
-					</center>
-				</p>
-				<p>
-					As always, remember to decompose your solution! Your program should work on a world of any size.
-				</p>
+				
+				
 			</div>
 
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Solution</h2>
+
+
+<pre id="editor" style="height:320px">/**
+ * Program: BeeperLine
+ * -------------------
+ * Fill the first row with beepers. Assumes that Karel starts out in
+ * the bottom left corner of the screen, facing east.
+ */
+public class BeeperLine extends SuperKarel {
+	
+	public void run() {
+		while(frontIsClear()) {
+			putBeeper();
+			move();
+		}
+		// This line is necessary to place the final beeper. The number
+		// of times Karel moves is one less than the number of times karel
+		// places a beeper (if the world is five squares wide, we place
+		// 5 beepers but only move 4 times
+		putBeeper();
+	}
+}</pre>
+    
+<script src="{{pathToRoot}}plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/java");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+
+			</div>
 		</div>
 
 		

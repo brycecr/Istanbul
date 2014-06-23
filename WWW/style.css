@@ -25,6 +25,8 @@ pre {
   height:50px;
 }
 
+ol li{margin-bottom:10px;}
+
 h2 {
   padding-top: 0.5em;
 }
@@ -137,6 +139,7 @@ margin-top: 3px;
 #headerText {
     margin-left:10px;
     float:left;
+    margin-bottom:10px;
 }
 
 #header {
@@ -147,6 +150,11 @@ margin-top: 3px;
 #pageHeader {
     width:100%;
     padding-top:30px;
+}
+
+.page-header {
+  padding-bottom:0px !important;
+  margin-bottom:0px !important;
 }
 
 #pageTitle {

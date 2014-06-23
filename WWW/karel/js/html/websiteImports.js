@@ -90,7 +90,7 @@ function importEditor(id, parentId) {
 function importButtonBar() {
    var runBar = document.getElementById('runButtonBar');
    createTextButton(runBar, '<span class="glyphicon glyphicon-play"></span> Run Program', 'playButton', 'btn btn-primary interactor');
-   addWorldDropDown(runBar, 'programWorldDrop');
+   //addWorldDropDown(runBar, 'programWorldDrop');
 }
 
 function importScripts(list) {

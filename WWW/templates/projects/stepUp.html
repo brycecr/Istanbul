@@ -22,9 +22,12 @@
 			</p>
 
 			<p>
-				Topics:
-				<a href ="{{pathToRoot}}handouts/karelCommands.html">KarelCommands</a>,
-				<a href ="{{pathToRoot}}handouts/methods.html">Methods</a>
+				<!--Topics:
+				KarelCommands,
+				Methods
+			<br/>-->
+			Handouts:
+				<a href ="{{pathToRoot}}handouts/karel.html">Karel Reference</a>
 			</p>
 
 		</div>
@@ -33,34 +36,75 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p>
-					Karel has been hired to repair parts of the columns in the Temple of Artemis in Efes that have fallen down. In particular, Karel is to repair a set of arches where some of the stones (represented by beepers, of course) are missing from the columns supporting the arches, as follows:
-				</p>
+					Karel starts in the world on the left. How would you program Karel to pick up the beeper and transport it to the top of the ledge?  Karel should drop the beeper at the corner of 2nd Street and 4th Avenue and then continue one more corner to the east, ending up on 5th Avenue. At the end of your program, Karel's world should look like the picture on the right.
+				</p
 				<p>
 					<center>
-						<img class="psetImg" src="{{pathToRoot}}projects/img/efes/efesBroken.png">	
+						<img style="width:700px" class="psetImg" src="{{pathToRoot}}img/projects/stepUp/stepUp.png">	
 					</center>
 				</p>
+				
+				<br/>
 				<p>
-					As shown above the arches are separated by three avenues and are all five rows high. When Karel is done, the missing columns should be replaced by beepers, so the final picture would look like this:
-				</p>
-				<p>
-					<center>
-						<img class="psetImg" src="{{pathToRoot}}projects/img/efes/efesRepaired.png">	
-					</center>
-				</p>
-				<p>
-					Karel's final location and the final direction he is facing at end of the run do not matter. Karel may count on the following facts about the world, listed below:
-				<ul>
-					<li>Karel starts at 1st Avenue and 1st Street, facing east.
-					<li>The columns are exactly four units apart, on 1st, 5th, 9th and 13th Avenue.
-					<li>Karel can assume that columns are always five units high.
-				</ul>
-				</p>
-				<p>
-					Even though the program is only a few lines, it is still worth getting at least a little practice in decomposition.  In your solution, include a private method for each of the steps shown in the outline.
+					If Karel only knows the commands: 
+					<div class="well">
+						<code>
+							move()
+							<br/>pickBeeper()
+							<br/>putBeeper()
+							<br/>turnLeft()
+						</code>
+					</div>
+					How can you make Karel turn to the right?
 				</p>
 			</div>
 
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Solution</h2>
+
+				<p>
+					A solution is provided for this example, so that you can see what a full program looks like!
+				</p>
+
+
+<pre id="editor" style="height:370px">/**
+ * Program: Step Up
+ * ----------------
+ * Your first example Karel program. Have Karel pick up the beeper infront
+ * of her and place it on top of the ledge.
+ * This is a comment. Your computer will ignore it.
+ */
+public class StepUp extends Karel {
+	
+	// When you start your program, this code will be executed.
+	public void run() {
+		move();
+		pickBeeper();
+		turnLeft();
+		move();
+		turnLeft();
+		turnLeft();
+		turnLeft();
+		move();
+		putBeeper();
+		move();
+	}
+}</pre>
+    
+<script src="{{pathToRoot}}plugins/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+   editor.setTheme('ace/theme/eclipse');
+   editor.getSession().setMode("ace/mode/java");
+   editor.setReadOnly(true);
+   editor.renderer.setShowGutter(false); 
+    /*editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/java");*/
+</script>
+			</div>
 		</div>
 
 		

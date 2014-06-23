@@ -1,0 +1,201 @@
+<head>
+
+<title>Intro to CS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Fonts -->
+<!--<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>-->
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap-3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap-3.1/js/bootstrap.min.js"></script>
+
+<script src="../karel/ace/ace.js" type="text/javascript"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>-->
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<nav class="navbar-inverse navbar-default" role="navigation">
+  <div class="container-fluid">
+  	<div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">Stanford Intro CS</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <!--<li ><a href="#">Link</a></li>-->
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Handouts <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="../handouts/karel.html">Karel Reference</a></li>
+	          	<li><a href="../handouts/graphics.html">Graphics Reference</a></li>
+	          	<li><a href="../handouts/arrayLists.html">ArrayLists</a></li>
+	          	<!--<li><a href="../handouts/forLoops.html">For Loops</a></li>
+	          	<li><a href="../handouts/loopAndAHalf.html">Loop and a Half</a></li>
+	          	<li><a href="../handouts/whileLoops.html">While Loops</a></li>
+	          	<li><a href="../handouts/ifStatements.html">If Statements</a></li>
+	          	<li><a href="../handouts/variables.html">Variables</a></li>
+	            <li><a href="../handouts/scope.html">Scope</a></li>
+	            <li><a href="../handouts/operations.html">Operations</a></li>
+	            <li><a href="../handouts/graphics.html">Graphics</a></li>
+	            <li><a href="../handouts/passingData.html">Passing Data</a></li>-->
+	            
+	          </ul>
+	        </li>
+
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="../projects/collectNewspaper.html">Collect Newspaper</a></li>
+	          	<li><a href="../projects/efes.html">Build Efes</a></li>
+	          	<li><a href="../projects/mountain.html">Mountain Karel</a></li>
+	          	<li><a href="../projects/randomPainter.html">Random Painter</a></li>
+	          		<li class="divider"></li>
+
+	          	<li><a href="../projects/carbonDating.html">Carbon Dating</a></li>
+	          	<li><a href="../projects/hailstone.html">Hailstone</a></li>
+	          	<li><a href="../projects/awesome.html">Programming is Awesome</a></li>
+	            <li><a href="../projects/randomCircles.html">Random Circles</a></li>
+	            <li><a href="../projects/bouncingBall.html">Bouncing Ball</a></li>
+	            <li><a href="../projects/illusion.html">Optical Illusion</a></li>
+	            <li><a href="../projects/sunset.html">Short Film</a></li>
+	            <li><a href="../projects/breakout.html">Breakout</a></li>
+	            <li><a href="../projects/music.html">Waves of Sound</a></li>
+	            <!--<li><a href="../projects/instakilo.html">Instakilo</a></li>
+                    <li class="divider"></li>
+	            <li><a href="../projects/weather.html">Weather.com</a></li>
+	            <li><a href="../projects/randomOvals.html">Random Ovals</a></li>-->
+	          </ul>
+	        </li>
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="../projects/stepUp.html">Step Up</a></li>
+	          	<li><a href="../projects/place100.html">Place 100</a></li>
+	          	<li><a href="../projects/beeperLine.html">Beeper Line</a></li>
+	          	<li><a href="../projects/invert.html">Invert</a></li>
+	          	<li><a href="../projects/unKarel.html">UN Karel</a></li>
+	          	<li class="divider"></li>
+	            <li><a href="../projects/emc2.html">E=MC2</a></li>
+	            <li><a href="../projects/fibb.html">Fibonacci</a></li>
+	            
+	            <li><a href="../projects/robotFace.html">Robot Face</a></li>
+	            <!--<li><a href="../projects/findPi.html">Find Pi</a></li>-->
+	            <li><a href="../projects/8Ball.html">8-Ball</a></li>
+	            <li><a href="../projects/mysterySquare.html">Mystery Square</a></li>
+	             <li><a href="../projects/stringArt.html">String Art</a></li>
+	             <li><a href="../projects/target.html">Target</a></li>
+	             <li><a href="../projects/stampTool.html">Stamp Tool</a></li>
+	             <li><a href="../projects/snow.html">Snow</a></li>
+                  <!--  <li class="divider"></li>
+	            <li><a href="../projects/breakoutOnline.html">Breakout Online</a></li>-->
+	          </ul>
+	        </li>
+
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Internet <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="https://www.dropbox.com/s/1jtjo9hde8in0xn/1-How%20the%20internet%20works.pptx">How the Internet Works</a></li>
+	          	<li><a href="https://www.dropbox.com/s/1t7pwltugsy4pxg/2-day-in-the-life-of-packet.pptx">Day in the Life of a Packet</a></li>
+	          	<li class="divider"></li>
+	          	<li><a href="http://yuba.stanford.edu/~huangty/dacka/lab1.html">Lab 1</a></li>
+	          	<li><a href="http://yuba.stanford.edu/~huangty/dacka/lab2.html">Lab 2</a></li>
+
+	          	
+	          </ul>
+	        </li>
+
+
+
+	      </ul>
+
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#">About</a></li>
+	        
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	</div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				ArrayLists Reference
+			</h1>
+			<p>
+				Written by Eric Roberts
+			</p>
+
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-md-12">
+				<center><img style="width:700px;" src="../img/handouts/arrayLists/arrayLists.png"></img></center>
+			</div>
+		</div>
+
+		
+		
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2014 &#124; Created by 
+		<a href="#">Bryce</a>, 
+		<a href="http://stanford.edu/~cpiech">Chris</a>, 
+		<a href="#">Julia</a> and  
+		<a href="#">Nick</a>.
+		Based on the wonderful CS106A class which was developed by many talented teachers.
+	</p>
+	<!--<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>-->
+</div>
+<!--<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>-->
+
+	</div>
+</body>
