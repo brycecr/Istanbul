@@ -1,0 +1,281 @@
+<head>
+
+<title>Intro to CS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Fonts -->
+<!--<link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,600italic,700italic,900italic' rel='stylesheet' type='text/css'>-->
+
+<!-- Styles -->
+
+<link href="../plugins/bootstrap-3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../style.css">
+
+<!-- Java Script -->
+<script src="../plugins/jquery.min.js"></script>
+<script src="../plugins/bootstrap-3.1/js/bootstrap.min.js"></script>
+
+<script src="../karel/ace/ace.js" type="text/javascript"></script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+  </script>-->
+
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+<nav class="navbar-inverse navbar-default" role="navigation">
+  <div class="container-fluid">
+  	<div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="/">Stanford Intro CS</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <!--<li ><a href="#">Link</a></li>-->
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Handouts <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="../handouts/karel.html">Karel Reference</a></li>
+	          	<li><a href="../handouts/graphics.html">Graphics Reference</a></li>
+	          	<li><a href="../handouts/arrayLists.html">ArrayLists</a></li>
+	          	<!--<li><a href="../handouts/forLoops.html">For Loops</a></li>
+	          	<li><a href="../handouts/loopAndAHalf.html">Loop and a Half</a></li>
+	          	<li><a href="../handouts/whileLoops.html">While Loops</a></li>
+	          	<li><a href="../handouts/ifStatements.html">If Statements</a></li>
+	          	<li><a href="../handouts/variables.html">Variables</a></li>
+	            <li><a href="../handouts/scope.html">Scope</a></li>
+	            <li><a href="../handouts/operations.html">Operations</a></li>
+	            <li><a href="../handouts/graphics.html">Graphics</a></li>
+	            <li><a href="../handouts/passingData.html">Passing Data</a></li>-->
+	            
+	          </ul>
+	        </li>
+
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="../projects/collectNewspaper.html">Collect Newspaper</a></li>
+	          	<li><a href="../projects/efes.html">Build Efes</a></li>
+	          	<li><a href="../projects/mountain.html">Mountain Karel</a></li>
+	          	<li><a href="../projects/randomPainter.html">Random Painter</a></li>
+	          		<li class="divider"></li>
+
+	          	<li><a href="../projects/carbonDating.html">Carbon Dating</a></li>
+	          	<li><a href="../projects/hailstone.html">Hailstone</a></li>
+	          	<li><a href="../projects/awesome.html">Programming is Awesome</a></li>
+	            <li><a href="../projects/randomCircles.html">Random Circles</a></li>
+	            <li><a href="../projects/bouncingBall.html">Bouncing Ball</a></li>
+	            <li><a href="../projects/illusion.html">Optical Illusion</a></li>
+	            <li><a href="../projects/sunset.html">Short Film</a></li>
+	            <li><a href="../projects/breakout.html">Breakout</a></li>
+	            <li><a href="../projects/music.html">Waves of Sound</a></li>
+	            <!--<li><a href="../projects/instakilo.html">Instakilo</a></li>
+                    <li class="divider"></li>
+	            <li><a href="../projects/weather.html">Weather.com</a></li>
+	            <li><a href="../projects/randomOvals.html">Random Ovals</a></li>-->
+	          </ul>
+	        </li>
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="../projects/stepUp.html">Step Up</a></li>
+	          	<li><a href="../projects/place100.html">Place 100</a></li>
+	          	<li><a href="../projects/beeperLine.html">Beeper Line</a></li>
+	          	<li><a href="../projects/invert.html">Invert</a></li>
+	          	<li><a href="../projects/unKarel.html">UN Karel</a></li>
+	          	<li class="divider"></li>
+	            <li><a href="../projects/emc2.html">E=MC2</a></li>
+	            <li><a href="../projects/fibb.html">Fibonacci</a></li>
+	            
+	            <li><a href="../projects/robotFace.html">Robot Face</a></li>
+	            <!--<li><a href="../projects/findPi.html">Find Pi</a></li>-->
+	            <li><a href="../projects/8Ball.html">8-Ball</a></li>
+	            <li><a href="../projects/mysterySquare.html">Mystery Square</a></li>
+	             <li><a href="../projects/stringArt.html">String Art</a></li>
+	             <li><a href="../projects/target.html">Target</a></li>
+	             <li><a href="../projects/stampTool.html">Stamp Tool</a></li>
+	             <li><a href="../projects/snow.html">Snow</a></li>
+                  <!--  <li class="divider"></li>
+	            <li><a href="../projects/breakoutOnline.html">Breakout Online</a></li>-->
+	          </ul>
+	        </li>
+
+
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Internet <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="https://www.dropbox.com/s/1jtjo9hde8in0xn/1-How%20the%20internet%20works.pptx">How the Internet Works</a></li>
+	          	<li><a href="https://www.dropbox.com/s/1t7pwltugsy4pxg/2-day-in-the-life-of-packet.pptx">Day in the Life of a Packet</a></li>
+	          	<li class="divider"></li>
+	          	<li><a href="http://yuba.stanford.edu/~huangty/dacka/lab1.html">Lab 1</a></li>
+	          	<li><a href="http://yuba.stanford.edu/~huangty/dacka/lab2.html">Lab 2</a></li>
+
+	          	
+	          </ul>
+	        </li>
+
+
+
+	      </ul>
+
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#">About</a></li>
+	        
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	</div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+	<!-- Main Content -->
+	<div class="container">
+
+		<!-- Header -->
+		<div id="pageHeader">
+			<h1>
+				Sandcastles
+			</h1>
+			<p>
+				Written by Chris Piech, TY Huang, Bryce Cronkite-Ratcliff, and Julia Lee.
+			</p>
+			<p>
+				Handouts:
+				<a href ="../handouts/graphics.html">Graphics Reference</a>,  
+				<a href ="../handouts/arrayLists.html">ArrayList Reference</a>, 
+				<a href ="../handouts/karel.html">Karel Reference</a>
+			</p>
+
+		</div>
+		<hr/>
+
+		<div class="row">
+			<div class="col-md-12">
+				<p>
+					Sandcastles may be short-lived, but they're fun and beautiful, just like this collection of small problems. Complete these problems individually.
+				</p>
+				<p>
+					<center>
+						<img style="width:500px" src="../img/projects/sandcastles/sandcastle.jpg">	
+					</center>
+				</p>
+				<h2>1. Karel's Stairway to Heaven</h2>
+				<p>
+Karel loves stairs! Make a diagonal line of beepers across the world. You may assume the world is square.
+				</p>
+				<h2>2. Five's a Crowd</h2>
+				<p>
+Print out the number sequence 0, 5, 10, 15, 20... Print 20 numbers in all.
+				</p>
+				<h2>3. Mooning</h2>
+				<p>
+The user (an earthling) enters his or her weight on earth. Your program will print the user`s weight on the moon, which is 16.5% of his or her weight on earth. 
+				</p>
+				<h2>4. Random Tandem</h2>
+				<p>
+Print 100 randomly generated numbers using a RandomGenerator.
+				</p>
+				<h2>5. All your GObject</h2>
+				<p>
+Add 2 GRects and 2 GOvals to the screen (any size or color). If the user clicks any of the GObjects, it should be removed from the screen. 
+				</p>
+				<h2>6. The Best Number is 12 (duh)</h2>
+				<p>
+Write a method that returns a boolean indicating whether an integer (provided as a parameter) is your favorite number or not (choose your favorite number if you don`t have one already!!). Use this method to write a program that accepts an integer and tells the user if the integer is your favorite number.
+
+				</p>
+				<h2>7. Mysteriously Random</h2>
+				<p>
+Generate a random integer. Ask the user to guess the random number. Tell the user if their guess is too high, too low, or correct. Continue asking for guesses until the user guesses the correct number.
+				</p>
+				<h2>8. Black Oval Sun</h2>
+				<p>
+Draw 5 GOvals. Using an ArrayList, make the GOvals grow bigger forever.
+				</p>
+				<h2>9. That`s Some Sum</h2>
+				<p>
+Accept input from the user. Keep track of the sum of all the numbers you have seen so far and print that sum to the user.
+				</p>
+				<h2>10. GStairway to Heaven</h2>
+				<p>
+Draw a staircase! Use GRects and a double for loop to draw the image below. Do not fill the GRects.
+				</p>
+				<h2>11. Tax Me Maybe</h2>
+				<p>
+Fill in the provided method so that it takes in an income and returns the corresponding amount of tax (in YTL) that is collected (a double).
+				</p>
+				<style>
+				.tg  {border-collapse:collapse;border-spacing:0;}
+				.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+				.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+				</style>
+				<table class="tg">
+				  <tr>
+				    <th class="tg-031e">Tax %</th>
+				    <th class="tg-031e">The Tax Base (YTL)</th>
+				  </tr>
+				  <tr>
+				    <td class="tg-031e">15</td>
+				    <td class="tg-031e">0-20.000</td>
+				  </tr>
+				  <tr>
+				    <td class="tg-031e">20</td>
+				    <td class="tg-031e">20.001 or greater</td>
+				  </tr>
+				</table>
+
+			</div>
+
+		</div>
+
+		</div>
+
+		
+<hr>
+
+<div class="footer">
+	<p class="pull-left">
+		&#169; Stanford 2014 &#124; Created by 
+		<a href="#">Bryce</a>, 
+		<a href="http://stanford.edu/~cpiech">Chris</a>, 
+		<a href="#">Julia</a> and  
+		<a href="#">Nick</a>.
+		Based on the wonderful CS106A class which was developed by many talented teachers.
+	</p>
+	<!--<p class="pull-right">
+		<a href="../fall12">Fall 2012</a>
+	</p>-->
+</div>
+<!--<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-35433298-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+</script>-->
+
+	</div>
+</body>
