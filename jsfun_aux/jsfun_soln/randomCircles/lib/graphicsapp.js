@@ -1,10 +1,5 @@
 /***** AVAILABLE JAVASCRIPT FUNCTIONS ******/
 
-function random(upperBound) {
-	var rand = Math.random();
-	rand *= upperBound;
-	return rand;
-}
 
 /* Function: GraphicsApp()
  * --------------------------------
