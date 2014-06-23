@@ -2,6 +2,7 @@ var app = new GraphicsApp();
 
 var HEIGHT = 500;
 var WIDTH = 1200;
+var MAX_RADIUS = 100;
 
 function run() {
     app.addButton("Make Circle!", randomCircle);
@@ -14,11 +15,12 @@ function clearCircles() {
 }
 
 function randomCircle() {
-    var randwidth = Math.random() * 100 + 50;
-    var randheight = Math.random() * 100 + 50;
-    var randx = Math.random()*Math.abs(WIDTH-randwidth)+randwidth/2;
-    var randy = Math.random()*Math.abs(HEIGHT-randheight)+randheight/2;
-    var oval = new GOval(randx, randy, randwidth, randheight);
+    var randSize = Math.random() * 2 * MAX_RADIUS;
+    //var randx = Math.random() * (WIDTH - randwidth);
+    //var randy = Math.random() * (HEIGHT - randheight);
+    var randx = Math.random()*Math.abs(WIDTH-randSize)+randSize/2;
+    var randy = Math.random()*Math.abs(HEIGHT-randSize)+randSize/2;
+    var oval = new GOval(randx, randy, randSize, randSize);
     oval.setColor(Color.red);
     add(oval);
 }
