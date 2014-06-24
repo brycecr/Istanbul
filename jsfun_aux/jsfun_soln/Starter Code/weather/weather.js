@@ -26,7 +26,7 @@ function displayStatusMessage(message) {
 
 
 
-function success(data) {
+function displayGraphics(data) {
     removeAll();
     displayStatusMessage("Weather loaded.");
     drawBackground(data.length);
