@@ -12,9 +12,6 @@ import acm.io.IODialog;
 
 public class BreakoutServer implements BreakoutConstants{
 	public static final int MIN_PEOPLE_IN_GAME = 2;
-	public static final int GAME_STATUS_WAITING = 0;
-	public static final int GAME_STATUS_STARTED = 1;
-	public static final int GAME_STATUS_FINISH = 2;
 
 	public static Hashtable<String, PrintWriter> clientSocketWriterMap = new Hashtable<String, PrintWriter>();
 	public static Hashtable<String, Integer> scoreBoard = new Hashtable<String, Integer>();
@@ -45,7 +42,6 @@ public class BreakoutServer implements BreakoutConstants{
 		        	
 		        	if(command.startsWith("/join")){
 		        		String clientName = st.nextToken();
-	        			System.out.println("inside the synchronized block");
 	        			if(!clientSocketWriterMap.containsKey(clientName)){
 	        				clientSocketWriterMap.put(clientName, out);
 	        				scoreBoard.put(clientName, 0);
@@ -57,9 +53,9 @@ public class BreakoutServer implements BreakoutConstants{
 	        					sendMsg(update);
 	        				}else{
 	        					GAME_STATUS = GAME_STATUS_WAITING;
-	        					System.out.println("Waiting for at least " + (MIN_PEOPLE_IN_GAME - clientSocketWriterMap.size()) + "more people to join the game.");
+	        					//System.out.println("Waiting for at least " + (MIN_PEOPLE_IN_GAME - clientSocketWriterMap.size()) + "more people to join the game.");
 	        				}
-        					System.out.println( clientSocketWriterMap.size() + " people in the game");
+        					//System.out.println( clientSocketWriterMap.size() + " people in the game");
 	        			}else{
 	        				/*handle the problem where an existing client using the same name*/
 	        			}
@@ -93,18 +89,18 @@ public class BreakoutServer implements BreakoutConstants{
 			return scoreUpdate;
 		}
 		public void broadcast(String msg, ArrayList<String> exceptList){
-			System.out.println("broadcasting ... " + msg);
+			//System.out.println("broadcasting ... " + msg);
 			Iterator<Map.Entry<String, PrintWriter>> it = clientSocketWriterMap.entrySet().iterator();
 			while(it.hasNext()){
 				Map.Entry<String, PrintWriter> pairs = (Map.Entry<String, PrintWriter>) it.next();
 				String name = (String)pairs.getKey();
 				PrintWriter clientOut = (PrintWriter) pairs.getValue();
 				if(exceptList!=null && exceptList.contains(name)){
-					System.out.println("Skip sending message to " + name);
+					//System.out.println("Skip sending message to " + name);
 					continue;
 				}
 				clientOut.println(msg);
-				System.out.println("Sending message to ... " + (String) pairs.getKey());
+				//System.out.println("Sending message to ... " + (String) pairs.getKey());
 			}
 		}
 		

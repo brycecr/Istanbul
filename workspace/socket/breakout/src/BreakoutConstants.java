@@ -104,4 +104,9 @@ public interface BreakoutConstants {
 	// Stage 6: Multi-People Breakout Game
 	public static int PORT = 23456;
 	public static int MAX_PLAYER = 5;
+	
+	public static final int GAME_STATUS_WAITING = 0;
+	public static final int GAME_STATUS_STARTED = 1;
+	public static final int GAME_STATUS_FINISH = 2;
+
 }

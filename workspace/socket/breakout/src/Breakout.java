@@ -17,9 +17,13 @@ import java.util.*;
 
 public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	int NUM_LIFE = 1000000;
+	int game_status = GAME_STATUS_WAITING;
+	String winner = "No one";
 	GRect paddle = new GRect(PADDLE_WIDTH, PADDLE_HEIGHT);
 	GOval ball = new GOval(2 * BALL_RADIUS, 2 * BALL_RADIUS);
 	GLabel nameTag;
+	GLabel winnerLabel = new GLabel(winner);
+	GLabel leadingLabel = new GLabel(" is leading!");
 	ArrayList<GLabel> scores = new ArrayList<GLabel>();
 	String userName;
 	String serverName;
@@ -41,17 +45,22 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	private void setUp() {
 		getUserInput();
 		establishConn();
-		drawNameTag();
+		drawLabelsInTheWorld();
 		drawBricks();
 		paddle.setFilled(true);
 		add(paddle, 0, getHeight() - PADDLE_Y_OFFSET);
 		ball.setFilled(true);
 	}
 	
-	private void drawNameTag(){
+	private void drawLabelsInTheWorld(){
 		nameTag = new GLabel("Player " + userName);
 		nameTag.scale(1.5);
+		nameTag.setColor(Color.GREEN);
 		add(nameTag, getWidth()/2 - nameTag.getWidth()/2, 20);
+		leadingLabel.scale(1.5);
+		add(leadingLabel, getWidth() - leadingLabel.getWidth(), nameTag.getHeight()*2);
+		winnerLabel.scale(1.5);
+		add(winnerLabel, getWidth() - leadingLabel.getWidth() - winnerLabel.getWidth(), nameTag.getHeight()*2);
 	}
 
 	private void resetBall() {
@@ -121,7 +130,7 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	}
 	
 	private void updateWorld(){
-		for(int i = 0; i< msgQueue.size(); i++){
+		for(int i = 0; i< msgQueue.size() && game_status != GAME_STATUS_FINISH; i++){
 			String inputLine = msgQueue.remove(0);
 			if(inputLine != null){
 	        	println("MSG received: " + inputLine);
@@ -142,17 +151,52 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	        			remove(scores.remove(0));
 	        		}
 	        		int startX = 0;
+	        		int totalScore = 0;
+	        		int maxScore = 0;
+	        		//Parsing the score message
 	        		while(st.hasMoreTokens()){
 	        			//Format: TY:2 
 	        			String name_score = st.nextToken();
+	        			StringTokenizer nsst = new StringTokenizer(name_score, ":");
+	        			String name = nsst.nextToken();
+	        			int score = Integer.parseInt(nsst.nextToken());
+	        			totalScore += score;
+	        			if(score > maxScore){
+	        				winner = name;
+	        				maxScore = score;
+	        			}
+	        			if(totalScore >= NBRICKS_PER_ROW * NBRICK_ROWS){
+	        				game_status = GAME_STATUS_FINISH;
+	        			}
 	        			GLabel scoreLabel = new GLabel(name_score);
 	        			scoreLabel.scale(1.5);
+	        			scoreLabel.setColor(Color.DARK_GRAY);
 	        			add(scoreLabel, startX, nameTag.getHeight()*2);
 	        			startX += scoreLabel.getWidth() + 10;
 	        			scores.add(scoreLabel);
 	        		}
+	        		if(!winnerLabel.getLabel().equals(winner)){
+		        		remove(winnerLabel);
+		        		winnerLabel.setLabel(winner);
+		        		winnerLabel.scale(2);
+		        		winnerLabel.setColor(Color.RED);
+		        		add(winnerLabel, getWidth() - leadingLabel.getWidth() - winnerLabel.getWidth(), nameTag.getHeight()*2);
+		        		pause(20);
+		        		winnerLabel.scale(0.5);
+		        		winnerLabel.setColor(Color.BLACK);
+	        		}
 	        	}
 	        }
+			if(game_status == GAME_STATUS_FINISH){
+				//removeAll();
+				GLabel winnerIs = new GLabel("The Winner is ....");
+				winnerIs.scale(3);
+				add(winnerIs, (getWidth()-winnerIs.getWidth())/2, getHeight()/2 - winnerIs.getHeight());
+				winnerLabel.scale(3);
+				winnerLabel.setColor(Color.RED);
+				add(winnerLabel, (getWidth()-winnerLabel.getWidth())/2, getHeight()/2);
+				break;
+			}
 		}
 	}
 	
@@ -182,20 +226,19 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 				dy *= -1;
 			}
 
+			
 			GObject colliding = getCollidingObject();
 			
 			
 			if(colliding == paddle) {
 				dy = -Math.abs(dy);
-			} else if(colliding != null && colliding != nameTag && !scores.contains(colliding)) {
+			}else if(game_status != GAME_STATUS_FINISH && colliding != null && colliding != nameTag && colliding != winnerLabel && colliding != leadingLabel && !scores.contains(colliding)) {
 				remove(colliding);
 				String msg ="/remove " + colliding.getX() + " " + colliding.getY() + " " + userName;
 				sendMsg(msg);
 				dy *= -1;
 			}
-
-			//sendMsg();
-			//recvMsg();
+			
 			pause(DELAY);
 		}
 	}
