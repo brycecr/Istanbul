@@ -15,12 +15,27 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.*;
 
+
+/**
+2-Person Breakout -- Client
+
+The Protocol of the Game:
+Messages from the Clients:
+1. "/join <USERNAME>" tells the server that a user called USERNAME is joining the game.
+2. "/remove <X> <Y> <USERNAME>" tells the server that the user USERNAME removed a brick at coordinate (X, Y)
+Messages from the Server:
+1. "/start" tells the clients that the game is now started.
+2. "/score <USERNAME1>:<SCORE1> <USERNAME2>:<SCORE2>" tells the clients of the scores of each player
+
+**/
+
 public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	int NUM_LIFE = 1000000;
 	int game_status = GAME_STATUS_WAITING;
 	String winner = "No one";
 	GRect paddle = new GRect(PADDLE_WIDTH, PADDLE_HEIGHT);
 	GOval ball = new GOval(2 * BALL_RADIUS, 2 * BALL_RADIUS);
+	
 	GLabel nameTag;
 	GLabel winnerLabel = new GLabel(winner);
 	GLabel leadingLabel = new GLabel(" is leading!");
@@ -29,6 +44,7 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	String serverName;
 	Socket breakoutSocket;
 	BufferedReader in;
+	
 	public static ArrayList<String> msgQueue = new ArrayList<String>();
 
 	public void run() {
@@ -37,26 +53,32 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		
 		for(int i = 0; i < NUM_LIFE; i++) {
 			resetBall();
-			//waitForClick();
 			playTurn();
 		}
 	}
 
 	private void setUp() {
+		//Get user's name and server's IP
 		getUserInput();
+		//Setup the connection with the Server
 		establishConn();
+		//Render the labels in the game world (ex: User's name, scores ... etc) 
 		drawLabelsInTheWorld();
+		//Render the bricks
 		drawBricks();
 		paddle.setFilled(true);
 		add(paddle, 0, getHeight() - PADDLE_Y_OFFSET);
 		ball.setFilled(true);
 	}
 	
+	//This function is to render the labels in the game world
 	private void drawLabelsInTheWorld(){
+		//Render the label for user's name
 		nameTag = new GLabel("Player " + userName);
 		nameTag.scale(1.5);
 		nameTag.setColor(Color.GREEN);
 		add(nameTag, getWidth()/2 - nameTag.getWidth()/2, 20);
+		//Render the label for the current leader
 		leadingLabel.scale(1.5);
 		add(leadingLabel, getWidth() - leadingLabel.getWidth(), nameTag.getHeight()*2);
 		winnerLabel.scale(1.5);
@@ -69,6 +91,7 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		add(ball, ballX, ballY);
 	}
 	
+	//This function is to get user's input through IODialog
 	private void getUserInput(){
 		IODialog nameDialog = new IODialog();
 		userName = nameDialog.readLine("Please Enter Your Name:");
@@ -76,9 +99,13 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		serverName = serverDialog.readLine("Please Enter the IP Address or Hostname of the Breakout Server:");
 	}
 	
+	//This function is to establish connections between the client and the server
 	private void establishConn(){
+		
 		try{
+			//Send out the connection request through sockets
 			breakoutSocket = new Socket(serverName, PORT);
+			//Setup the helps to translate byte streams from the socket to "string" stream
 			in = new BufferedReader(new InputStreamReader(breakoutSocket.getInputStream()));
 		}catch(IOException e){
 			IODialog errDialog = new IODialog();
@@ -87,10 +114,11 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		}
 		pause(1000);
 		
-		//Successfully connected to the game server
+		//If the program progresses to this point, it means we have successfully connected to the game server
 		String joinMsg = "/join " + userName;
 		sendMsg(joinMsg);
 		
+		//Wait for the other player to join, until the server tells us to start (by sending us the "/start" message)
 		String waitMsg = "Wait for the Other Player to Join ... ";
 		GLabel waitScreen = new GLabel(waitMsg);
 		waitScreen.scale(1.5);
@@ -101,8 +129,12 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		try {
 			while ((recv = in.readLine()) != null) {
 				if(recv.startsWith("/start")){
+					//If the server tells us to start,
+					//remove the wait screen
 					remove(waitScreen);
+					//count down from 3 to 1
 					countDown();
+					//launch a separate thread to handle the follow up communications with the server
 					new commandHandler(in).start();
 					break;
 				}
@@ -116,6 +148,7 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		println("LET's GO!");
 	}
 	
+	//This function is to count down from 3 to 1 before starting the game
 	private void countDown(){
 		for(int i = 3; i > 0; i--){
 			String waitMsg = i + " ... ";
@@ -129,15 +162,18 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		}
 	}
 	
+	//At the beginning of each turn, we will update the world based on the messages we received so far.
+	//1. Remove bricks that the other player knocks off
+	//2. Update the score labels
 	private void updateWorld(){
 		for(int i = 0; i< msgQueue.size() && game_status != GAME_STATUS_FINISH; i++){
 			String inputLine = msgQueue.remove(0);
-			if(inputLine != null){
-	        	println("MSG received: " + inputLine);
-	        	
+			if(inputLine != null){	        	
+	        	//Analyze the message, separate them using " ".
 	        	StringTokenizer st = new StringTokenizer(inputLine);
 	        	String command = st.nextToken();
 	        	if(command.contains("/remove")){
+	        		//If it is a "remove" message, remove the brick at the corresponding (x, y)
 	        		Double x = new Double(st.nextToken());
 	        		Double y = new Double(st.nextToken());
 	        		println("Removing Object at (" + x + ", " + y + ")");
@@ -146,7 +182,9 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		        		remove(colliding);
 	        		}
 	        	}else if(command.contains("/score")){
-	        		println("score update: " + inputLine);
+	        		//If it is a "score" message, update the score labels.
+	        		
+	        		//Remove the current score labels
 	        		while(!scores.isEmpty()){
 	        			remove(scores.remove(0));
 	        		}
@@ -161,13 +199,16 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	        			String name = nsst.nextToken();
 	        			int score = Integer.parseInt(nsst.nextToken());
 	        			totalScore += score;
+	        			//Find out who is leading
 	        			if(score > maxScore){
 	        				winner = name;
 	        				maxScore = score;
 	        			}
+	        			//If the total score from all users reaches the number of bricks, the games is finished.
 	        			if(totalScore >= NBRICKS_PER_ROW * NBRICK_ROWS){
 	        				game_status = GAME_STATUS_FINISH;
 	        			}
+	        			//Generate new score labels, and add them onto the game world.
 	        			GLabel scoreLabel = new GLabel(name_score);
 	        			scoreLabel.scale(1.5);
 	        			scoreLabel.setColor(Color.DARK_GRAY);
@@ -175,6 +216,7 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	        			startX += scoreLabel.getWidth() + 10;
 	        			scores.add(scoreLabel);
 	        		}
+	        		//Update the leading labels depends on who is currently leading.
 	        		if(!winnerLabel.getLabel().equals(winner)){
 		        		remove(winnerLabel);
 		        		winnerLabel.setLabel(winner);
@@ -187,8 +229,8 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 	        		}
 	        	}
 	        }
+			//If the game is finished, show the user who is the winner!
 			if(game_status == GAME_STATUS_FINISH){
-				//removeAll();
 				GLabel winnerIs = new GLabel("The Winner is ....");
 				winnerIs.scale(3);
 				add(winnerIs, (getWidth()-winnerIs.getWidth())/2, getHeight()/2 - winnerIs.getHeight());
@@ -200,6 +242,7 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		}
 	}
 	
+	//This function will help send the message to the server
 	private void sendMsg(String msg){
 		try{
 			PrintWriter out = new PrintWriter(breakoutSocket.getOutputStream(), true);
@@ -209,10 +252,13 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 			errDialog.showErrorMessage(e.getLocalizedMessage());
 		}
 	}
+	
+	//This function will animate the ball movement.
 	private void playTurn() {
 		double dx = .5;
 		double dy = .5;
 		while(ball.getY() < getHeight()) {
+			//At the beginning of each turn, update the world of the game on canvas.
 			updateWorld();
 			ball.move(dx, dy);
 
@@ -233,7 +279,9 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 			if(colliding == paddle) {
 				dy = -Math.abs(dy);
 			}else if(game_status != GAME_STATUS_FINISH && colliding != null && colliding != nameTag && colliding != winnerLabel && colliding != leadingLabel && !scores.contains(colliding)) {
+				//If the ball is colliding with a brick, remove it.
 				remove(colliding);
+				//Also, send a message to the server.
 				String msg ="/remove " + colliding.getX() + " " + colliding.getY() + " " + userName;
 				sendMsg(msg);
 				dy *= -1;
@@ -301,6 +349,9 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 		paddle.setLocation(paddleX, getHeight() - PADDLE_Y_OFFSET);
 	}
 
+	//This thread is started when the game is started.
+	//It is used to listen the messages from the server, and put incoming messages into a queue.
+	//These messages will be parsed at the beginning of each turn (see playTurn()).
 	private static class commandHandler extends Thread {
 		private BufferedReader input;
 		public commandHandler(BufferedReader in){
