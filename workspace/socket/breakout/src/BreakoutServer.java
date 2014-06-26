@@ -17,6 +17,8 @@ Messages from the Server:
 1. "/start" tells the clients that the game is now started.
 2. "/score <USERNAME1>:<SCORE1> <USERNAME2>:<SCORE2>" tells the clients of the scores of each player
 
+When executing, run the BreakoutServer before running the Breakout client.
+
 **/
 
 public class BreakoutServer implements BreakoutConstants{

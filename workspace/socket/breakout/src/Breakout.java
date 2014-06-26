@@ -27,6 +27,8 @@ Messages from the Server:
 1. "/start" tells the clients that the game is now started.
 2. "/score <USERNAME1>:<SCORE1> <USERNAME2>:<SCORE2>" tells the clients of the scores of each player
 
+When executing, run the BreakoutServer before running the Breakout client.
+
 **/
 
 public class Breakout extends GraphicsProgram implements BreakoutConstants {
@@ -317,11 +319,11 @@ public class Breakout extends GraphicsProgram implements BreakoutConstants {
 			for(int j = 0; j < NBRICKS_PER_ROW; j++) {
 				double x = BRICK_SEP + j * (BRICK_WIDTH + BRICK_SEP);
 				double y = BRICK_Y_OFFSET + i * (BRICK_HEIGHT + BRICK_SEP);
-				Brick r = new Brick(i, j, BRICK_WIDTH, BRICK_HEIGHT);
+				GRect r = new GRect(BRICK_WIDTH, BRICK_HEIGHT);
 				Color rectColor = getColor(i);
-				r.getRect().setColor(rectColor);
-				r.getRect().setFilled(true);
-				add(r.getRect(), x, y);
+				r.setColor(rectColor);
+				r.setFilled(true);
+				add(r, x, y);
 			}
 		}
 
