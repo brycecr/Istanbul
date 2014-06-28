@@ -16,8 +16,6 @@ function clearCircles() {
 
 function randomCircle() {
     var randSize = Math.random() * 2 * MAX_RADIUS;
-    //var randx = Math.random() * (WIDTH - randwidth);
-    //var randy = Math.random() * (HEIGHT - randheight);
     var randx = Math.random()*Math.abs(WIDTH-randSize)+randSize/2;
     var randy = Math.random()*Math.abs(HEIGHT-randSize)+randSize/2;
     var oval = new GOval(randx, randy, randSize, randSize);

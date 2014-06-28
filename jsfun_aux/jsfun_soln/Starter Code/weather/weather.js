@@ -9,6 +9,32 @@ function run() {
     app.addTitle("WeatherBug");
     textField = app.addTextField();
     app.addCanvas(CANVAS_WIDTH,CANVAS_HEIGHT);
+    app.addButton("Show Weather", showWeather);
+    app.addButton("Show Local Weather", showLocalWeather);
+}
+
+
+function showWeather() {
+    app.fetchWeatherForQuery(textField.value, 7, success, error);
+}
+
+
+function success(weatherData) {
+    displayGraphics(weatherData);
+}
+
+
+function error() {
+    displayStatusMessage("Error - something didn't work!");
+}
+
+
+function showLocalWeather() {
+    app.getCurrentLocation(calculatedCurrentLocation);
+}
+
+function calculatedCurrentLocation(lat, lon) {
+    app.fetchWeatherForCoordinates(lat, lon, 7, success, error);
 }
 
 
